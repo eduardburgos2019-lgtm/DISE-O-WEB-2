@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Completa: Paddings en CSS | Box Model</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Principal -->
+        <header class="main-header">
+            <div class="header-content">
+                <h1><i class="fas fa-arrows-alt"></i> Guía Completa: Paddings en CSS</h1>
+                <p class="subtitle">Domina el espacio interno de los elementos con esta guía exhaustiva sobre la propiedad padding</p>
+                <div class="header-meta">
+                    <span><i class="fas fa-clock"></i> Tiempo de lectura: 15 min</span>
+                    <span><i class="fas fa-calendar"></i> Actualizado: Noviembre 2024</span>
+                    <span><i class="fas fa-tags"></i> CSS · Box Model · Web Design</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navegación de Contenido -->
+        <nav class="content-nav">
+            <h2><i class="fas fa-list"></i> Contenido de la Guía</h2>
+            <ul>
+                <li><a href="#que-es"><i class="fas fa-question-circle"></i> ¿Qué es Padding?</a></li>
+                <li><a href="#sintaxis"><i class="fas fa-code"></i> Sintaxis y Valores</a></li>
+                <li><a href="#uniforme"><i class="fas fa-square"></i> Padding Uniforme</a></li>
+                <li><a href="#asimetrico"><i class="fas fa-arrows-alt-h"></i> Padding Asimétrico</a></li>
+                <li><a href="#practico"><i class="fas fa-laptop-code"></i> Casos Prácticos</a></li>
+                <li><a href="#background"><i class="fas fa-fill-drip"></i> Padding y Background</a></li>
+                <li><a href="#box-sizing"><i class="fas fa-cube"></i> Box-Sizing</a></li>
+                <li><a href="#inline-block"><i class="fas fa-text-height"></i> Inline vs Block</a></li>
+                <li><a href="#mejores-practicas"><i class="fas fa-check-circle"></i> Mejores Prácticas</a></li>
+            </ul>
+        </nav>
+
+        <!-- Introducción -->
+        <section class="demo-section intro-section">
+            <div class="section-header">
+                <h2 id="que-es"><i class="fas fa-question-circle"></i> ¿Qué es el Padding?</h2>
+                <div class="section-badge">Concepto Fundamental</div>
+            </div>
+            
+            <div class="content-card">
+                <div class="definition">
+                    <h3><i class="fas fa-info-circle"></i> Definición Técnica</h3>
+                    <p><strong>Padding</strong> es la propiedad CSS que controla el <span class="highlight">espacio interno</span> entre el contenido de un elemento y su borde.</p>
+                    <p>Forma parte esencial del <strong>Box Model</strong> de CSS junto con <code>margin</code> (espacio externo), <code>border</code> (borde), y el contenido mismo.</p>
+                    
+                    <div class="box-model-diagram">
+                        <div class="box-model">
+                            <div class="margin">Margin (Espacio externo)</div>
+                            <div class="border">Border (Borde)</div>
+                            <div class="padding">Padding (Espacio interno)</div>
+                            <div class="content">Contenido</div>
+                        </div>
+                        <div class="legend">
+                            <span class="margin-color">Margin: espacio externo</span>
+                            <span class="border-color">Border: límite del elemento</span>
+                            <span class="padding-color">Padding: espacio interno</span>
+                            <span class="content-color">Contenido: texto/imágenes</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="key-points">
+                    <h3><i class="fas fa-key"></i> Puntos Clave</h3>
+                    <ul>
+                        <li><strong>Afecta el tamaño total del elemento</strong> (a menos que uses <code>box-sizing: border-box</code>)</li>
+                        <li><strong>No es transparente</strong> - El background del elemento se extiende al área de padding</li>
+                        <li><strong>No colapsa</strong> - A diferencia de los márgenes, los paddings no se superponen</li>
+                        <li><strong>Valores aceptados</strong>: pixeles (px), ems (em), rems (rem), porcentajes (%) y viewport units (vw/vh)</li>
+                        <li><strong>Aplica a casi todos los elementos</strong> excepto elementos de tabla con <code>border-collapse: collapse</code></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 1: Sintaxis -->
+        <section class="demo-section">
+            <div class="section-header">
+                <h2 id="sintaxis"><i class="fas fa-code"></i> Sintaxis y Valores</h2>
+                <div class="section-badge">Aprendiendo a Escribirlo</div>
+            </div>
+            
+            <div class="syntax-examples">
+                <h3><i class="fas fa-terminal"></i> Formas de Especificar Padding</h3>
+                
+                <div class="code-grid">
+                    <div class="code-example">
+                        <h4>1. Un Solo Valor</h4>
+                        <pre><code>/* Aplica a los 4 lados */
+padding: 20px;</code></pre>
+                        <div class="visual-example single-value">
+                            <div class="example-content">Mismo padding en todos los lados</div>
+                        </div>
+                    </div>
+                    
+                    <div class="code-example">
+                        <h4>2. Dos Valores</h4>
+                        <pre><code>/* vertical | horizontal */
+padding: 10px 20px;</code></pre>
+                        <div class="visual-example two-values">
+                            <div class="example-content">Arriba/Abajo: 10px<br>Izquierda/Derecha: 20px</div>
+                        </div>
+                    </div>
+                    
+                    <div class="code-example">
+                        <h4>3. Tres Valores</h4>
+                        <pre><code>/* top | horizontal | bottom */
+padding: 10px 20px 15px;</code></pre>
+                        <div class="visual-example three-values">
+                            <div class="example-content">Arriba: 10px<br>Izq/Der: 20px<br>Abajo: 15px</div>
+                        </div>
+                    </div>
+                    
+                    <div class="code-example">
+                        <h4>4. Cuatro Valores</h4>
+                        <pre><code>/* top | right | bottom | left */
+padding: 10px 15px 20px 25px;</code></pre>
+                        <div class="visual-example four-values">
+                            <div class="example-content">Arriba: 10px<br>Derecha: 15px<br>Abajo: 20px<br>Izquierda: 25px</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Regla Mnemotécnica</h4>
+                    <p>Recuerda el orden de los 4 valores como <strong>T-R-B-L</strong> (Top, Right, Bottom, Left) o como las manecillas del reloj empezando desde las 12: <strong>12 → 3 → 6 → 9</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 2: Padding Uniforme -->
+        <section class="demo-section">
+            <div class="section-header">
+                <h2 id="uniforme"><i class="fas fa-square"></i> Padding Uniforme</h2>
+                <div class="section-badge">Mismo espacio en todos los lados</div>
+            </div>
+            
+            <div class="info-box">
+                <p><strong>Padding uniforme</strong> es cuando aplicas el mismo valor a los cuatro lados del elemento. Es útil para crear elementos simétricos y visualmente balanceados.</p>
+            </div>
+            
+            <h3><i class="fas fa-sliders-h"></i> Comparación de Niveles de Padding</h3>
+            <div class="examples-grid">
+                <div class="box">
+                    <div class="content padding-none" data-tooltip="Sin espacio interno">
+                        <div class="example-header">
+                            <i class="fas fa-times-circle"></i>
+                            <p><strong>Sin Padding</strong></p>
+                        </div>
+                        <p><code>padding: 0;</code></p>
+                        <div class="visual-indicator">
+                            <span class="indicator-top">0</span>
+                            <span class="indicator-right">0</span>
+                            <span class="indicator-bottom">0</span>
+                            <span class="indicator-left">0</span>
+                        </div>
+                        <p class="description">El contenido toca directamente los bordes. Útil para controles muy compactos.</p>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <div class="content padding-small" data-tooltip="Espacio pequeño (10px)">
+                        <div class="example-header">
+                            <i class="fas fa-compress-alt"></i>
+                            <p><strong>Padding Pequeño</strong></p>
+                        </div>
+                        <p><code>padding: 10px;</code></p>
+                        <div class="visual-indicator">
+                            <span class="indicator-top">10px</span>
+                            <span class="indicator-right">10px</span>
+                            <span class="indicator-bottom">10px</span>
+                            <span class="indicator-left">10px</span>
+                        </div>
+                        <p class="description">Espacio mínimo para legibilidad. Ideal para elementos densos.</p>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <div class="content padding-medium" data-tooltip="Espacio mediano (20px)">
+                        <div class="example-header">
+                            <i class="fas fa-balance-scale"></i>
+                            <p><strong>Padding Mediano</strong></p>
+                        </div>
+                        <p><code>padding: 20px;</code></p>
+                        <div class="visual-indicator">
+                            <span class="indicator-top">20px</span>
+                            <span class="indicator-right">20px</span>
+                            <span class="indicator-bottom">20px</span>
+                            <span class="indicator-left">20px</span>
+                        </div>
+                        <p class="description">Balance perfecto entre contenido y espacio. Recomendado para la mayoría de elementos.</p>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <div class="content padding-large" data-tooltip="Espacio grande (40px)">
+                        <div class="example-header">
+                            <i class="fas fa-expand-alt"></i>
+                            <p><strong>Padding Grande</strong></p>
+                        </div>
+                        <p><code>padding: 40px;</code></p>
+                        <div class="visual-indicator">
+                            <span class="indicator-top">40px</span>
+                            <span class="indicator-right">40px</span>
+                            <span class="indicator-bottom">40px</span>
+                            <span class="indicator-left">40px</span>
+                        </div>
+                        <p class="description">Mucho espacio para destacar contenido importante. Usar con moderación.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="use-cases">
+                <h4><i class="fas fa-thumbtack"></i> Cuándo Usar Cada Uno</h4>
+                <div class="cases-grid">
+                    <div class="case">
+                        <h5><i class="fas fa-mobile-alt"></i> Sin Padding</h5>
+                        <p>Iconos pequeños, elementos de navegación compacta, botones en interfaces muy densas.</p>
+                    </div>
+                    <div class="case">
+                        <h5><i class="fas fa-list"></i> Pequeño (10px)</h5>
+                        <p>Elementos de formulario, items de lista, botones secundarios, etiquetas.</p>
+                    </div>
+                    <div class="case">
+                        <h5><i class="fas fa-newspaper"></i> Mediano (20px)</h5>
+                        <p>Cards de contenido, botones principales, secciones de artículo, contenedores.</p>
+                    </div>
+                    <div class="case">
+                        <h5><i class="fas fa-star"></i> Grande (40px)</h5>
+                        <p>Hero sections, CTAs importantes, testimonios destacados, encabezados principales.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 3: Padding Asimétrico -->
+        <section class="demo-section">
+            <div class="section-header">
+                <h2 id="asimetrico"><i class="fas fa-arrows-alt-h"></i> Padding Asimétrico</h2>
+                <div class="section-badge">Diferentes valores por lado</div>
+            </div>
+            
+            <div class="info-box">
+                <p><strong>Padding asimétrico</strong> permite controlar cada lado del elemento independientemente. Esto es especialmente útil para crear layouts más dinámicos y adaptativos.</p>
+            </div>
+            
+            <h3><i class="fas fa-random"></i> Ejemplos de Padding Asimétrico</h3>
+            <div class="examples-grid">
+                <div class="box">
+                    <div class="content padding-vertical" data-tooltip="Más espacio arriba/abajo">
+                        <div class="example-header">
+                            <i class="fas fa-arrows-alt-v"></i>
+                            <p><strong>Vertical (30px 10px)</strong></p>
+                        </div>
+                        <p><code>padding: 30px 10px;</code></p>
+                        <div class="visual-indicator">
+                            <span class="indicator-top">30px</span>
+                            <span class="indicator-right">10px</span>
+                            <span class="indicator-bottom">30px</span>
+                            <span class="indicator-left">10px</span>
+                        </div>
+                        <p class="description">Más espacio vertical que horizontal. Ideal para elementos con texto largo.</p>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <div class="content padding-horizontal" data-tooltip="Más espacio izquierda/derecha">
+                        <div class="example-header">
+                            <i class="fas fa-arrows-alt-h"></i>
+                            <p><strong>Horizontal (10px 40px)</strong></p>
+                        </div>
+                        <p><code>padding: 10px 40px;</code></p>
+                        <div class="visual-indicator">
+                            <span class="indicator-top">10px</span>
+                            <span class="indicator-right">40px</span>
+                            <span class="indicator-bottom">10px</span>
+                            <span class="indicator-left">40px</span>
+                        </div>
+                        <p class="description">Más espacio horizontal que vertical. Perfecto para botones anchos.</p>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <div class="content padding-custom" data-tooltip="Todos los lados diferentes">
+                        <div class="example-header">
+                            <i class="fas fa-sliders-h"></i>
+                            <p><strong>Personalizado (10px 20px 30px 40px)</strong></p>
+                        </div>
+                        <p><code>padding: 10px 20px 30px 40px;</code></p>
+                        <div class="visual-indicator">
+                            <span class="indicator-top">10px</span>
+                            <span class="indicator-right">20px</span>
+                            <span class="indicator-bottom">30px</span>
+                            <span class="indicator-left">40px</span>
+                        </div>
+                        <p class="description">Cada lado con un valor diferente. Para layouts complejos y creativos.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <h4><i class="fas fa-magic"></i> Truco Práctico: Padding Lógico</h4>
+                <p>CSS moderno incluye propiedades lógicas que se adaptan automáticamente al idioma y dirección del texto:</p>
+                <div class="code-comparison">
+                    <div>
+                        <h5>Físico (Tradicional)</h5>
+                        <pre><code>padding-top: 10px;
+padding-right: 20px;
+padding-bottom: 30px;
+padding-left: 40px;</code></pre>
+                    </div>
+                    <div>
+                        <h5>Lógico (Moderno)</h5>
+                        <pre><code>padding-block-start: 10px;
+padding-inline-end: 20px;
+padding-block-end: 30px;
+padding-inline-start: 40px;</code></pre>
+                    </div>
+                </div>
+                <p>Las propiedades lógicas funcionan automáticamente en idiomas RTL (derecha a izquierda) como árabe o hebreo.</p>
+            </div>
+        </section>
+
+        <!-- Sección 4: Casos Prácticos -->
+        <section class="demo-section">
+            <div class="section-header">
+                <h2 id="practico"><i class="fas fa-laptop-code"></i> Casos de Uso Prácticos</h2>
+                <div class="section-badge">Aplicaciones reales</div>
+            </div>
+            
+            <div class="info-box">
+                <p>El padding es esencial para crear interfaces de usuario atractivas y funcionales. Veamos cómo se aplica en componentes comunes.</p>
+            </div>
+            
+            <h3><i class="fas fa-mouse-pointer"></i> Botones - Diferentes Tamaños</h3>
+            <div class="buttons-demo">
+                <div class="button-group">
+                    <h4>Botones Primarios</h4>
+                    <button class="btn btn-small">
+                        <i class="fas fa-download"></i> Pequeño
+                    </button>
+                    <button class="btn btn-medium">
+                        <i class="fas fa-download"></i> Mediano
+                    </button>
+                    <button class="btn btn-large">
+                        <i class="fas fa-download"></i> Grande
+                    </button>
+                </div>
+                
+                <div class="button-specs">
+                    <div class="spec">
+                        <h5><code>.btn-small</code></h5>
+                        <p><strong>Padding:</strong> 6px 12px</p>
+                        <p><strong>Uso:</strong> Tablas densas, toolbars</p>
+                    </div>
+                    <div class="spec">
+                        <h5><code>.btn-medium</code></h5>
+                        <p><strong>Padding:</strong> 10px 20px</p>
+                        <p><strong>Uso:</strong> Estándar en formularios</p>
+                    </div>
+                    <div class="spec">
+                        <h5><code>.btn-large</code></h5>
+                        <p><strong>Padding:</strong> 14px 28px</p>
+                        <p><strong>Uso:</strong> LLamadas a la acción principales</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-keyboard"></i> Inputs - Para Diferentes Contextos</h3>
+            <div class="inputs-demo">
+                <div class="input-group">
+                    <label for="small-input">Input pequeño (compacto)</label>
+                    <input type="text" id="small-input" class="input input-small" placeholder="padding: 6px 8px">
+                    
+                    <label for="medium-input">Input mediano (estándar)</label>
+                    <input type="text" id="medium-input" class="input input-medium" placeholder="padding: 10px 12px">
+                    
+                    <label for="large-input">Input grande (accesible)</label>
+                    <input type="text" id="large-input" class="input input-large" placeholder="padding: 14px 16px">
+                </div>
+                
+                <div class="accessibility-note">
+                    <h5><i class="fas fa-universal-access"></i> Nota de Accesibilidad</h5>
+                    <p>Los inputs con padding suficiente (mínimo 10px vertical) son más fáciles de usar para personas con movilidad reducida o en dispositivos táctiles.</p>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-id-card"></i> Cards - Diferentes Niveles de Énfasis</h3>
+            <div class="cards-demo">
+                <div class="card card-compact">
+                    <div class="card-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h4>Card Compacta</h4>
+                    <p>Perfecta para listas densas de elementos.</p>
+                    <div class="card-spec">
+                        <code>padding: 12px;</code>
+                        <span class="card-tag">Compacto</span>
+                    </div>
+                </div>
+                
+                <div class="card card-comfortable">
+                    <div class="card-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h4>Card Cómoda</h4>
+                    <p>Balance ideal para contenido principal.</p>
+                    <div class="card-spec">
+                        <code>padding: 20px;</code>
+                        <span class="card-tag">Recomendado</span>
+                    </div>
+                </div>
+                
+                <div class="card card-spacious">
+                    <div class="card-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>Card Espaciosa</h4>
+                    <p>Para contenido destacado o premium.</p>
+                    <div class="card-spec">
+                        <code>padding: 32px;</code>
+                        <span class="card-tag">Destacado</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 5: Padding y Background -->
+        <section class="demo-section">
+            <div class="section-header">
+                <h2 id="background"><i class="fas fa-fill-drip"></i> Padding y Backgrounds</h2>
+                <div class="section-badge">Comportamiento visual</div>
+            </div>
+            
+            <div class="info-box">
+                <p>Una característica crucial del padding es que <strong>el background del elemento se extiende hasta el borde, incluyendo el área de padding</strong>. Esto permite crear efectos visuales interesantes.</p>
+            </div>
+            
+            <div class="bg-demo">
+                <div class="bg-box bg-no-padding">
+                    <div class="inner-content">
+                        <h4><i class="fas fa-times"></i> Sin Padding</h4>
+                        <p>El background solo cubre el contenido</p>
+                        <code>padding: 0;</code>
+                    </div>
+                </div>
+                
+                <div class="bg-box bg-with-padding">
+                    <div class="inner-content">
+                        <h4><i class="fas fa-check"></i> Con Padding</h4>
+                        <p>El background cubre contenido + padding</p>
+                        <code>padding: 30px;</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="demo-effects">
+                <h3><i class="fas fa-palette"></i> Efectos Visuales con Padding</h3>
+                <div class="effects-grid">
+                    <div class="effect">
+                        <div class="effect-demo hover-effect">
+                            <div class="effect-content">Hover me</div>
+                        </div>
+                        <h5>Efecto Hover</h5>
+                        <p>Padding extra en hover para crear un efecto de expansión</p>
+                    </div>
+                    
+                    <div class="effect">
+                        <div class="effect-demo inset-effect">
+                            <div class="effect-content">Inset</div>
+                        </div>
+                        <h5>Efecto Inset</h5>
+                        <p>Background diferente en padding para crear profundidad</p>
+                    </div>
+                    
+                    <div class="effect">
+                        <div class="effect-demo gradient-effect">
+                            <div class="effect-content">Gradiente</div>
+                        </div>
+                        <h5>Gradiente Expandido</h5>
+                        <p>El padding permite que los gradientes se vean mejor</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <h4><i class="fas fa-exclamation-triangle"></i> Advertencia Común</h4>
+                <p>Si defines un background y luego agregas padding, el fondo se expandirá automáticamente. Esto es diferente de <code>margin</code>, que no afecta el background.</p>
+            </div>
+        </section>
+
+        <!-- Sección 6: Box-Sizing -->
+        <section class="demo-section">
+            <div class="section-header">
+                <h2 id="box-sizing"><i class="fas fa-cube"></i> Padding y Box-Sizing</h2>
+                <div class="section-badge">Control del tamaño total</div>
+            </div>
+            
+            <div class="info-box">
+                <p>La propiedad <code>box-sizing</code> determina cómo se calcula el tamaño total de un elemento cuando tiene padding y border.</p>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="comparison-box">
+                    <h3><i class="fas fa-plus-circle"></i> content-box (Valor por defecto)</h3>
+                    <div class="sized-box content-box-demo">
+                        <div class="size-label">Contenido: 200px</div>
+                        <div class="padding-label">+ Padding: 20px cada lado</div>
+                        <div class="total-label">Tamaño total: 240px</div>
+                    </div>
+                    <p class="explanation"><strong>Fórmula:</strong> width + padding + border = tamaño total</p>
+                    <p class="code-example"><code>box-sizing: content-box;</code> (implícito)</p>
+                </div>
+
+                <div class="comparison-box">
+                    <h3><i class="fas fa-equals-circle"></i> border-box (Recomendado)</h3>
+                    <div class="sized-box border-box-demo">
+                        <div class="size-label">Ancho total: 200px</div>
+                        <div class="padding-label">- Padding: 20px cada lado</div>
+                        <div class="total-label">Contenido: 160px</div>
+                    </div>
+                    <p class="explanation"><strong>Fórmula:</strong> width = contenido + padding + border</p>
+                    <p class="code-example"><code>box-sizing: border-box;</code> (debes definirlo)</p>
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <h4><i class="fas fa-graduation-cap"></i> Mejor Práctica Universal</h4>
+                <p>Siempre incluye esto al inicio de tu CSS:</p>
+                <pre><code>*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}</code></pre>
+                <p>Esto hará que todos los elementos usen <code>border-box</code>, haciendo los cálculos de layout mucho más predecibles.</p>
+            </div>
+            
+            <div class="interactive-demo">
+                <h3><i class="fas fa-sliders-h"></i> Demo Interactiva</h3>
+                <div class="demo-controls">
+                    <div class="control-group">
+                        <label for="box-sizing-select">box-sizing:</label>
+                        <select id="box-sizing-select" class="demo-select">
+                            <option value="content-box">content-box</option>
+                            <option value="border-box" selected>border-box</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="padding-slider">padding:</label>
+                        <input type="range" id="padding-slider" class="demo-slider" min="0" max="50" value="20">
+                        <span id="padding-value">20px</span>
+                    </div>
+                </div>
+                
+                <div class="interactive-box" id="interactive-box">
+                    <div class="box-content">
+                        <p>Ancho definido: 300px</p>
+                        <p id="current-padding">Padding: 20px</p>
+                        <p id="current-sizing">box-sizing: border-box</p>
+                        <p id="total-size">Tamaño total: 300px</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 7: Inline vs Block -->
+        <section class="demo-section">
+            <div class="section-header">
+                <h2 id="inline-block"><i class="fas fa-text-height"></i> Padding en Elementos Inline vs Block</h2>
+                <div class="section-badge">Comportamiento diferente</div>
+            </div>
+            
+            <div class="info-box">
+                <p>El comportamiento del padding varía según el tipo de display del elemento. Es importante entender estas diferencias para evitar problemas de layout.</p>
+            </div>
+            
+            <div class="display-types">
+                <div class="display-type">
+                    <h3><i class="fas fa-align-left"></i> Inline (span, a, strong)</h3>
+                    <div class="display-demo">
+                        <p>Este es un <span class="inline-padded">elemento inline con padding</span> dentro de un párrafo normal. Observa cómo el padding horizontal funciona, pero el vertical se superpone con las líneas adyacentes.</p>
+                    </div>
+                    <div class="display-rules">
+                        <h5>Reglas para elementos inline:</h5>
+                        <ul>
+                            <li>✅ <strong>Padding horizontal</strong> funciona normalmente</li>
+                            <li>⚠️ <strong>Padding vertical</strong> se aplica pero no afecta el flujo</li>
+                            <li>❌ No respeta width/height</li>
+                            <li>✅ El background se aplica al padding</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="display-type">
+                    <h3><i class="fas fa-square"></i> Inline-block (display: inline-block)</h3>
+                    <div class="display-demo">
+                        <p>Este es un <span class="inline-block-padded">elemento inline-block con padding</span> dentro del texto. El padding funciona correctamente en todos los lados y respeta el espacio de otras líneas.</p>
+                    </div>
+                    <div class="display-rules">
+                        <h5>Reglas para elementos inline-block:</h5>
+                        <ul>
+                            <li>✅ <strong>Todo el padding</strong> funciona normalmente</li>
+                            <li>✅ Respeta width/height</li>
+                            <li>✅ Se alinea en línea como texto</li>
+                            <li>✅ El background se aplica al padding</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="display-type">
+                    <h3><i class="fas fa-square-full"></i> Block (div, p, section)</h3>
+                    <div class="display-demo">
+                        <div class="block-padded">
+                            Elemento block con padding. Ocupa todo el ancho disponible y el padding se aplica dentro de ese ancho.
+                        </div>
+                    </div>
+                    <div class="display-rules">
+                        <h5>Reglas para elementos block:</h5>
+                        <ul>
+                            <li>✅ <strong>Todo el padding</strong> funciona normalmente</li>
+                            <li>✅ Ocupa todo el ancho disponible (100%)</li>
+                            <li>✅ Se apila verticalmente</li>
+                            <li>✅ El background se aplica al padding</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="conversion-table">
+                <h3><i class="fas fa-exchange-alt"></i> Cuándo Usar Cada Display</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Display</th>
+                            <th>Cuándo Usarlo</th>
+                            <th>Ejemplo Común</th>
+                            <th>Padding Completo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>inline</code></td>
+                            <td>Elementos dentro del texto</td>
+                            <td>Links, palabras resaltadas</td>
+                            <td>No (solo horizontal)</td>
+                        </tr>
+                        <tr>
+                            <td><code>inline-block</code></td>
+                            <td>Elementos en línea con dimensiones</td>
+                            <td>Botones, chips, iconos</td>
+                            <td>Sí</td>
+                        </tr>
+                        <tr>
+                            <td><code>block</code></td>
+                            <td>Elementos estructurales</td>
+                            <td>Contenedores, secciones</td>
+                            <td>Sí</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Sección 8: Mejores Prácticas -->
+        <section class="demo-section">
+            <div class="section-header">
+                <h2 id="mejores-practicas"><i class="fas fa-check-circle"></i> Mejores Prácticas y Consejos</h2>
+                <div class="section-badge">Consejos profesionales</div>
+            </div>
+            
+            <div class="best-practices">
+                <div class="practice">
+                    <div class="practice-icon">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <div class="practice-content">
+                        <h4>1. Usa Unidades Relativas para Responsive Design</h4>
+                        <p>En lugar de píxeles fijos, utiliza unidades relativas como <code>rem</code>, <code>em</code> o porcentajes para que el padding se escale apropiadamente en diferentes dispositivos.</p>
+                        <div class="code-comparison">
+                            <pre><code>/* No óptimo */
+padding: 20px;
+
+/* Mejor - Escala con el tamaño de fuente base */
+padding: 1.25rem;
+
+/* Excelente - Responsive basado en el contenedor */
+padding: 5%;</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
