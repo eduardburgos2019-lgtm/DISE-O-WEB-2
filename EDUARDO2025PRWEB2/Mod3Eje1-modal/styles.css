@@ -1,149 +1,247 @@
+/* Reset y configuraciones básicas */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Variables CSS para colores */
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --accent-color: #4a5568;
+    --light-color: #f6f9fc;
+    --dark-color: #2d3748;
+    --success-color: #48bb78;
+    --danger-color: #f56565;
+    --white: #ffffff;
+    --shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    --radius: 20px;
+    --transition: all 0.3s ease;
+}
+
+/* Estilos del body */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    padding: 20px;
+    color: var(--dark-color);
+    line-height: 1.6;
 }
 
+/* Contenedor principal */
 .container {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 50px;
+    box-shadow: var(--shadow);
+    max-width: 700px;
+    width: 100%;
     text-align: center;
-    background: white;
-    padding: 3rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    max-width: 600px;
-}
-
-.container h1 {
-    color: #333;
-    margin-bottom: 1rem;
-    font-size: 2rem;
-}
-
-.container p {
-    color: #666;
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
-}
-
-.btn-open {
-    background: #667eea;
-    color: white;
-    border: none;
-    padding: 1rem 2.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-open:hover {
-    background: #5568d3;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-}
-
-.btn-open:active {
-    transform: translateY(0);
-}
-
-.info {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background: #f8f9fa;
-    border-radius: 10px;
-    text-align: left;
-}
-
-.info h3 {
-    color: #667eea;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-}
-
-.info ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.info li {
-    color: #555;
-    margin-bottom: 0.5rem;
-    padding-left: 1.5rem;
+    animation: slideIn 0.6s ease-out;
     position: relative;
+    overflow: hidden;
 }
 
-.info li::before {
-    content: "→";
+/* Efecto decorativo en el container */
+.container::before {
+    content: '';
     position: absolute;
+    top: 0;
     left: 0;
-    color: #667eea;
-    font-weight: bold;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
 }
 
-/* ==============================
-   MODAL OVERLAY
-   ============================== */
-.modal-overlay {
-    /* Position fixed para cubrir toda la pantalla */
-    position: fixed;
+/* Títulos */
+h1 {
+    color: var(--dark-color);
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+}
+
+/* Párrafos */
+.container p {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-bottom: 35px;
+    line-height: 1.7;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Botón principal - Abrir modal */
+.btn-open {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--white);
+    border: none;
+    padding: 18px 45px;
+    font-size: 1.3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    margin: 30px 0 50px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Efecto hover del botón */
+.btn-open::before {
+    content: '';
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    
-    /* Fondo semitransparente */
-    background-color: rgba(0, 0, 0, 0.7);
-    
-    /* Flexbox para centrar el modal */
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    z-index: -1;
+    opacity: 0;
+    transition: var(--transition);
+    border-radius: 50px;
+}
+
+.btn-open:hover::before {
+    opacity: 1;
+}
+
+.btn-open:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+}
+
+.btn-open:active {
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* Sección de información */
+.info {
+    background: linear-gradient(135deg, var(--light-color) 0%, #edf2f7 100%);
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 30px;
+    text-align: left;
+    border-left: 6px solid var(--primary-color);
+    border-right: 2px solid rgba(255, 255, 255, 0.8);
+    border-top: 2px solid rgba(255, 255, 255, 0.8);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+.info h3 {
+    color: var(--dark-color);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
     display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+}
+
+.info h3::before {
+    content: "✨";
+    font-size: 1.4rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* Lista de características */
+.info ul {
+    list-style: none;
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.info li {
+    color: var(--accent-color);
+    padding: 12px 15px 12px 45px;
+    position: relative;
+    line-height: 1.5;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.info li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.info li::before {
+    content: "✓";
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+/* ===== MODAL STYLES ===== */
+
+/* Overlay del modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
     justify-content: center;
     align-items: center;
-    
-    /* z-index alto para estar encima de todo */
     z-index: 1000;
-    
-    /* Oculto por defecto */
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.4s ease-out;
+    padding: 20px;
     opacity: 0;
-    visibility: hidden;
-    
-    /* Transición suave */
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    
-    /* Padding para evitar que el modal toque los bordes en móviles */
-    padding: 1rem;
+    transition: opacity 0.3s ease;
 }
 
-/* Clase para mostrar el modal */
 .modal-overlay.active {
     opacity: 1;
-    visibility: visible;
 }
 
-/* ==============================
-   MODAL CONTENIDO
-   ============================== */
+/* Contenedor del modal */
 .modal {
-    background: white;
-    border-radius: 20px;
-    padding: 2.5rem;
-    max-width: 500px;
+    background: linear-gradient(145deg, #ffffff, #f5f7fa);
+    border-radius: 25px;
+    padding: 50px;
+    max-width: 550px;
     width: 100%;
     position: relative;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    
-    /* Animación de entrada */
-    transform: scale(0.7);
+    box-shadow: 
+        0 40px 100px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    animation: modalIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transform: scale(0.9);
     transition: transform 0.3s ease;
 }
 
@@ -151,164 +249,377 @@ body {
     transform: scale(1);
 }
 
-/* ==============================
-   BOTÓN DE CIERRE
-   ============================== */
+/* Título del modal */
+.modal h2 {
+    color: var(--dark-color);
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.3;
+}
+
+/* Párrafos del modal */
+.modal p {
+    color: var(--accent-color);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-size: 1.15rem;
+}
+
+/* Código dentro del modal */
+.modal code {
+    background: linear-gradient(135deg, #f6f9fc 0%, #edf2f7 100%);
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    color: var(--primary-color);
+    font-weight: 700;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    font-size: 1.05rem;
+}
+
+/* Botón de cerrar (X) */
 .btn-close {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: transparent;
+    top: 25px;
+    right: 25px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--white);
     border: none;
     font-size: 2rem;
-    color: #999;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    transition: all 0.3s ease;
+    transition: var(--transition);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    z-index: 10;
+    font-weight: 300;
     line-height: 1;
 }
 
 .btn-close:hover {
-    background: #f0f0f0;
-    color: #333;
-    transform: rotate(90deg);
+    transform: rotate(180deg) scale(1.1);
+    background: linear-gradient(135deg, var(--danger-color) 0%, #e53e3e 100%);
+    box-shadow: 0 8px 25px rgba(245, 101, 101, 0.4);
 }
 
-/* ==============================
-   CONTENIDO DEL MODAL
-   ============================== */
+/* Icono del modal */
 .modal-icon {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto 1.5rem;
-    color: #667eea;
+    margin: 25px auto 35px;
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    box-shadow: 
+        0 15px 35px rgba(102, 126, 234, 0.4),
+        inset 0 4px 10px rgba(255, 255, 255, 0.3);
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+}
+
+.modal-icon::after {
+    content: '';
+    position: absolute;
+    width: 110%;
+    height: 110%;
+    border-radius: 50%;
+    background: rgba(102, 126, 234, 0.1);
+    z-index: -1;
     animation: pulse 2s ease-in-out infinite;
+}
+
+.modal-icon svg {
+    width: 45px;
+    height: 45px;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+/* Sección de características del modal */
+.modal-features {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 18px;
+    padding: 30px;
+    margin: 35px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    padding: 15px;
+    border-radius: 12px;
+    background: var(--white);
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--success-color) 0%, #38a169 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: bold;
+    font-size: 1.3rem;
+    box-shadow: 0 6px 15px rgba(72, 187, 120, 0.3);
+}
+
+.feature span:last-child {
+    color: var(--dark-color);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+}
+
+/* Botón de acción del modal */
+.btn-modal-action {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--white);
+    border: none;
+    padding: 18px 45px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    margin-top: 15px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-modal-action::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    z-index: -1;
+    opacity: 0;
+    transition: var(--transition);
+    border-radius: 50px;
+}
+
+.btn-modal-action:hover::before {
+    opacity: 1;
+}
+
+.btn-modal-action:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+}
+
+.btn-modal-action:active {
+    transform: translateY(-1px);
+}
+
+/* ===== ANIMACIONES ===== */
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: scale(0.7) translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
 }
 
 @keyframes pulse {
     0%, 100% {
         transform: scale(1);
+        opacity: 0.5;
     }
     50% {
         transform: scale(1.1);
+        opacity: 0.2;
     }
 }
 
-.modal h2 {
-    color: #333;
-    margin-bottom: 1rem;
-    font-size: 1.8rem;
-    text-align: center;
-}
+/* ===== RESPONSIVE DESIGN ===== */
 
-.modal p {
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.modal code {
-    background: #f0f0f0;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    color: #667eea;
-    font-family: 'Courier New', monospace;
-}
-
-.modal-features {
-    display: flex;
-    gap: 1rem;
-    margin: 1.5rem 0;
-    flex-wrap: wrap;
-}
-
-.feature {
-    flex: 1;
-    min-width: 120px;
-    padding: 0.8rem;
-    background: #f8f9fa;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 0.85rem;
-    color: #555;
-}
-
-.feature-icon {
-    display: block;
-    color: #4caf50;
-    font-size: 1.2rem;
-    margin-bottom: 0.3rem;
-}
-
-.btn-modal-action {
-    width: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    padding: 1rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 1rem;
-    transition: all 0.3s ease;
-}
-
-.btn-modal-action:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-}
-
-.btn-modal-action:active {
-    transform: translateY(0);
-}
-
-/* ==============================
-   RESPONSIVE
-   ============================== */
 @media (max-width: 768px) {
+    .container {
+        padding: 40px 30px;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .container p {
+        font-size: 1.1rem;
+    }
+    
+    .btn-open {
+        padding: 16px 35px;
+        font-size: 1.2rem;
+    }
+    
     .modal {
-        padding: 2rem;
+        padding: 40px 30px;
     }
     
     .modal h2 {
-        font-size: 1.5rem;
+        font-size: 1.9rem;
     }
     
-    .modal p {
-        font-size: 0.95rem;
+    .info ul {
+        grid-template-columns: 1fr;
     }
     
     .modal-features {
-        flex-direction: column;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
     }
     
     .feature {
-        min-width: auto;
+        padding: 12px;
     }
 }
 
 @media (max-width: 480px) {
     .container {
-        padding: 2rem;
+        padding: 30px 20px;
     }
     
-    .container h1 {
-        font-size: 1.5rem;
+    h1 {
+        font-size: 1.9rem;
+    }
+    
+    .container p {
+        font-size: 1rem;
+    }
+    
+    .btn-open {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+        margin: 25px 0 40px;
     }
     
     .modal {
-        padding: 1.5rem;
+        padding: 35px 25px;
+    }
+    
+    .modal h2 {
+        font-size: 1.7rem;
+    }
+    
+    .modal-features {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .modal-icon {
+        width: 75px;
+        height: 75px;
+    }
+    
+    .modal-icon svg {
+        width: 35px;
+        height: 35px;
     }
     
     .btn-close {
-        top: 0.5rem;
-        right: 0.5rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1.8rem;
+        top: 20px;
+        right: 20px;
+    }
+}
+
+/* Modo oscuro opcional */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --light-color: #1a202c;
+        --dark-color: #f7fafc;
+        --accent-color: #cbd5e0;
+    }
+    
+    .container {
+        background: #2d3748;
+    }
+    
+    .info {
+        background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    }
+    
+    .info li {
+        background: #4a5568;
+        color: var(--accent-color);
+    }
+    
+    .modal {
+        background: linear-gradient(145deg, #2d3748, #4a5568);
+    }
+    
+    .modal-features {
+        background: linear-gradient(135deg, #4a5568 0%, #718096 100%);
+    }
+    
+    .feature {
+        background: #4a5568;
     }
 }
