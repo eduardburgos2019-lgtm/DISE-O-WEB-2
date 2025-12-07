@@ -3,111 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solución: Card con Badge</title>
+    <title>Luxury Collection | Cards Premium</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>Cards con Badges Posicionados</h1>
-        <p class="subtitle">Ejemplos de position: absolute en acción</p>
+        <h1><i class="fas fa-gem"></i> Luxury Collection</h1>
+        <p class="subtitle">Productos exclusivos con diseño premium y materiales de lujo</p>
         
         <div class="cards-grid">
-            <!-- Card 1: Badge esquina superior derecha -->
+            <!-- Card 1: Smartphone Premium -->
             <div class="card">
-                <span class="badge badge-new">NUEVO</span>
+                <span class="badge badge-new"><i class="fas fa-star"></i> NUEVO</span>
                 <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop" alt="Auriculares premium">
+                    <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&h=400&fit=crop&crop=center&auto=format" 
+                         alt="Smartphone Premium" 
+                         loading="lazy">
                 </div>
                 <div class="card-content">
-                    <h3>Auriculares Pro Max</h3>
-                    <p>Cancelación de ruido activa y sonido de alta fidelidad para una experiencia inmersiva.</p>
+                    <h3><i class="fas fa-mobile-alt"></i> Smartphone Pro Max</h3>
+                    <p>Pantalla OLED 6.7", cámara triple 108MP, procesador de última generación y diseño premium en titanio.</p>
                     <div class="card-footer">
-                        <span class="price">$299.99</span>
-                        <button class="btn">Comprar</button>
+                        <span class="price">1,299.<small>99</small></span>
+                        <button class="btn" onclick="buyProduct('Smartphone Pro Max', 1299.99)">
+                            <i class="fas fa-shopping-cart"></i> Comprar
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Card 2: Badge con descuento -->
+            <!-- Card 2: Laptop Gaming -->
             <div class="card">
-                <span class="badge badge-discount">-20%</span>
+                <span class="badge badge-discount"><i class="fas fa-tag"></i> -25%</span>
                 <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop" alt="Reloj elegante">
+                    <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&h=400&fit=crop&crop=center&auto=format" 
+                         alt="Laptop Gaming" 
+                         loading="lazy">
                 </div>
                 <div class="card-content">
-                    <h3>Reloj Smartwatch</h3>
-                    <p>Seguimiento de actividad 24/7 con diseño elegante y duración de batería de 7 días.</p>
+                    <h3><i class="fas fa-laptop"></i> Laptop Gaming Pro</h3>
+                    <p>RTX 4080, Intel i9, 32GB RAM, pantalla 240Hz 4K. El máximo rendimiento para gaming profesional.</p>
                     <div class="card-footer">
-                        <span class="price">$199.99</span>
-                        <button class="btn">Comprar</button>
+                        <span class="price">3,499.<small>99</small></span>
+                        <button class="btn" onclick="buyProduct('Laptop Gaming Pro', 3499.99)">
+                            <i class="fas fa-shopping-cart"></i> Comprar
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Card 3: Badge de oferta -->
+            <!-- Card 3: Smartwatch -->
             <div class="card">
-                <span class="badge badge-hot">HOT</span>
+                <span class="badge badge-hot"><i class="fas fa-fire"></i> HOT</span>
                 <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=300&fit=crop" alt="Gafas de sol">
+                    <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600&h=400&fit=crop&crop=center&auto=format" 
+                         alt="Smartwatch Elegante" 
+                         loading="lazy">
                 </div>
                 <div class="card-content">
-                    <h3>Gafas de Sol Premium</h3>
-                    <p>Protección UV400 con diseño moderno y materiales de primera calidad.</p>
+                    <h3><i class="fas fa-clock"></i> Smartwatch Luxury</h3>
+                    <p>Pantalla AMOLED, titanio quirúrgico, monitoreo de salud avanzado y autonomía de 7 días.</p>
                     <div class="card-footer">
-                        <span class="price">$149.99</span>
-                        <button class="btn">Comprar</button>
+                        <span class="price">599.<small>99</small></span>
+                        <button class="btn" onclick="buyProduct('Smartwatch Luxury', 599.99)">
+                            <i class="fas fa-shopping-cart"></i> Comprar
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Card 4: Badge de agotándose -->
+            <!-- Card 4: Headphones -->
             <div class="card">
-                <span class="badge badge-limited">¡Últimas unidades!</span>
+                <span class="badge badge-limited"><i class="fas fa-exclamation"></i> ÚLTIMAS</span>
                 <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&h=300&fit=crop" alt="Zapatillas deportivas">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=400&fit=crop&crop=center&auto=format" 
+                         alt="Auriculares Premium" 
+                         loading="lazy">
                 </div>
                 <div class="card-content">
-                    <h3>Zapatillas Running Pro</h3>
-                    <p>Máximo confort y rendimiento para tus entrenamientos más exigentes.</p>
+                    <h3><i class="fas fa-headphones"></i> Headphones Elite</h3>
+                    <p>Cancelación de ruido activa, sonido Hi-Res, auriculares de cuero y autonomía de 40 horas.</p>
                     <div class="card-footer">
-                        <span class="price">$179.99</span>
-                        <button class="btn">Comprar</button>
+                        <span class="price">449.<small>99</small></span>
+                        <button class="btn" onclick="buyProduct('Headphones Elite', 449.99)">
+                            <i class="fas fa-shopping-cart"></i> Comprar
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Card 5: Badge premium -->
+            <!-- Card 5: Camera -->
             <div class="card">
-                <span class="badge badge-premium">PREMIUM</span>
+                <span class="badge badge-premium"><i class="fas fa-crown"></i> PREMIUM</span>
                 <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=300&fit=crop" alt="Mochila">
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&h=400&fit=crop&crop=center&auto=format" 
+                         alt="Cámara Profesional" 
+                         loading="lazy">
                 </div>
                 <div class="card-content">
-                    <h3>Mochila Profesional</h3>
-                    <p>Compartimento acolchado para laptop y diseño ergonómico anti-robo.</p>
+                    <h3><i class="fas fa-camera"></i> Cámara Pro</h3>
+                    <p>Sensor full-frame 50MP, video 8K 60fps, estabilización 5 ejes y construcción sellada.</p>
                     <div class="card-footer">
-                        <span class="price">$89.99</span>
-                        <button class="btn">Comprar</button>
+                        <span class="price">2,899.<small>99</small></span>
+                        <button class="btn" onclick="buyProduct('Cámara Pro', 2899.99)">
+                            <i class="fas fa-shopping-cart"></i> Comprar
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Card 6: Badge bestseller -->
+            <!-- Card 6: Console -->
             <div class="card">
-                <span class="badge badge-bestseller">★ Bestseller</span>
+                <span class="badge badge-bestseller"><i class="fas fa-trophy"></i> BESTSELLER</span>
                 <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&h=300&fit=crop" alt="Perfume">
+                    <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=600&h=400&fit=crop&crop=center&auto=format" 
+                         alt="Consola Gaming" 
+                         loading="lazy">
                 </div>
                 <div class="card-content">
-                    <h3>Fragancia Signature</h3>
-                    <p>Esencia única que combina notas frescas y amaderadas para ocasiones especiales.</p>
+                    <h3><i class="fas fa-gamepad"></i> Consola Ultimate</h3>
+                    <p>4K 120FPS, SSD 2TB, Ray Tracing, control haptic feedback. La consola más potente del mercado.</p>
                     <div class="card-footer">
-                        <span class="price">$129.99</span>
-                        <button class="btn">Comprar</button>
+                        <span class="price">699.<small>99</small></span>
+                        <button class="btn" onclick="buyProduct('Consola Ultimate', 699.99)">
+                            <i class="fas fa-shopping-cart"></i> Comprar
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function buyProduct(name, price) {
+            const btn = event.target.closest('.btn');
+            
+            // Crear efecto ripple
+            const circle = document.createElement('span');
+            const rect = btn.getBoundingClientRect();
+            const diameter = Math.max(rect.width, rect.height);
+            
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - rect.left - diameter/2}px`;
+            circle.style.top = `${event.clientY - rect.top - diameter/2}px`;
+            circle.classList.add('btn-click-effect');
+            
+            btn.appendChild(circle);
+            
+            // Cambiar texto del botón
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Añadido';
+            btn.disabled = true;
+            
+            // Mostrar notificación
+            showNotification(`✓ ${name} añadido al carrito - $${price.toFixed(2)}`);
+            
+            // Restaurar botón después de 2 segundos
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+                circle.remove();
+            }, 2000);
+        }
+        
+        function showNotification(message) {
+            // Crear notificación
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #D4AF37, #8A2BE2);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            `;
+            notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            
+            document.body.appendChild(notification);
+            
+            // Remover después de 3 segundos
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+            
+            // Añadir animaciones CSS
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Efecto de scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        console.log('🎯 Luxury Collection cargado correctamente');
+    </script>
 </body>
 </html>
