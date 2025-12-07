@@ -3,112 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery with CSS Grid | Auto-fit Responsive</title>
+    <title>Gamer Gallery | CSS Grid Auto-fit</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <h1>📸 Photo Gallery</h1>
-            <p class="subtitle">Responsive grid con <code>auto-fit</code> y <code>minmax()</code> - <strong>SIN media queries</strong></p>
+            <h1><i class="fas fa-gamepad"></i> Gamer World Gallery</h1>
+            <p class="subtitle">CSS Grid con <code>auto-fit</code> y <code>minmax()</code> - <strong>SIN media queries</strong></p>
         </header>
 
         <!-- Gallery Grid -->
         <section class="gallery">
             
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop" alt="Mountain landscape">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&h=600&fit=crop&crop=center&auto=format" 
+                     alt="Cyberpunk City" 
+                     loading="lazy">
                 <div class="overlay">
-                    <h3>Mountain View</h3>
-                    <p>Landscape Photography</p>
+                    <h3>Cyberpunk 2077</h3>
+                    <p>Night City Skyline</p>
                 </div>
             </div>
 
             <div class="gallery-item featured">
-                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=500&h=500&fit=crop" alt="Forest path">
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&h=600&fit=crop&crop=center&auto=format" 
+                     alt="Fantasy Landscape" 
+                     loading="lazy">
                 <div class="overlay">
-                    <h3>Forest Path</h3>
-                    <p>Nature Photography</p>
+                    <h3>The Witcher 3</h3>
+                    <p>Skellige Isles</p>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=500&fit=crop" alt="Beach sunset">
+                <img src="https://images.unsplash.com/photo-1606602562565-2c3f0d3f7933?w=800&h=600&fit=crop&crop=center&auto=format" 
+                     alt="Halo Ring" 
+                     loading="lazy">
                 <div class="overlay">
-                    <h3>Beach Sunset</h3>
-                    <p>Seascape</p>
+                    <h3>Halo Infinite</h3>
+                    <p>Zeta Halo</p>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=500&h=500&fit=crop" alt="Night sky">
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop&crop=center&auto=format" 
+                     alt="Minecraft Landscape" 
+                     loading="lazy">
                 <div class="overlay">
-                    <h3>Starry Night</h3>
-                    <p>Astrophotography</p>
+                    <h3>Minecraft</h3>
+                    <p>Infinite Worlds</p>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=500&h=500&fit=crop" alt="Flowers">
+                <img src="https://images.unsplash.com/photo-1512138664757-360e0aad5132?w=800&h=600&fit=crop&crop=center&auto=format" 
+                     alt="Elden Ring" 
+                     loading="lazy">
                 <div class="overlay">
-                    <h3>Spring Flowers</h3>
-                    <p>Macro Photography</p>
+                    <h3>Elden Ring</h3>
+                    <p>The Lands Between</p>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1516617442324-41f12f84c905?w=500&h=500&fit=crop" alt="City lights">
+                <img src="https://images.unsplash.com/photo-1602673221577-0b56d7ce446b?w=800&h=600&fit=crop&crop=center&auto=format" 
+                     alt="Assassin's Creed" 
+                     loading="lazy">
                 <div class="overlay">
-                    <h3>City Lights</h3>
-                    <p>Urban Photography</p>
+                    <h3>Assassin's Creed</h3>
+                    <p>Ancient Cities</p>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=500&h=500&fit=crop" alt="Misty forest">
+                <img src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?w=800&h=600&fit=crop&crop=center&auto=format" 
+                     alt="World of Warcraft" 
+                     loading="lazy">
                 <div class="overlay">
-                    <h3>Misty Forest</h3>
-                    <p>Atmospheric</p>
+                    <h3>World of Warcraft</h3>
+                    <p>Azeroth</p>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500&h=500&fit=crop" alt="Desert">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=center&auto=format" 
+                     alt="No Man's Sky" 
+                     loading="lazy">
                 <div class="overlay">
-                    <h3>Desert Dunes</h3>
-                    <p>Adventure</p>
+                    <h3>No Man's Sky</h3>
+                    <p>Procedural Planets</p>
                 </div>
             </div>
 
             <div class="gallery-item featured">
-                <img src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=500&h=500&fit=crop" alt="Waterfall">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&h=600&fit=crop&crop=center&auto=format" 
+                     alt="Red Dead Redemption" 
+                     loading="lazy">
                 <div class="overlay">
-                    <h3>Waterfall</h3>
-                    <p>Long Exposure</p>
+                    <h3>Red Dead Redemption 2</h3>
+                    <p>Wild West</p>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500&h=500&fit=crop" alt="Snowy mountains">
+                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=800&h=600&fit=crop&crop=center&auto=format" 
+                     alt="Zelda: Breath of the Wild" 
+                     loading="lazy">
                 <div class="overlay">
-                    <h3>Snowy Peaks</h3>
-                    <p>Winter Wonderland</p>
+                    <h3>Zelda: BOTW</h3>
+                    <p>Hyrule Kingdom</p>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=500&h=500&fit=crop" alt="Tropical beach">
+                <img src="https://images.unsplash.com/photo-1512138664757-360e0aad5132?w=800&h=600&fit=crop&crop=center&auto=format" 
+                     alt="Horizon Zero Dawn" 
+                     loading="lazy">
                 <div class="overlay">
-                    <h3>Paradise Beach</h3>
-                    <p>Travel</p>
+                    <h3>Horizon Zero Dawn</h3>
+                    <p>Post-Apocalyptic Nature</p>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&h=500&fit=crop" alt="River valley">
+                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800&h=600&fit=crop&crop=center&auto=format" 
+                     alt="Destiny 2" 
+                     loading="lazy">
                 <div class="overlay">
-                    <h3>River Valley</h3>
-                    <p>Aerial View</p>
+                    <h3>Destiny 2</h3>
+                    <p>The Last City</p>
                 </div>
             </div>
 
@@ -116,39 +144,262 @@
 
         <!-- Explicación del Grid -->
         <section class="explanation">
-            <h2>🎯 Cómo Funciona Este Grid</h2>
+            <h2><i class="fas fa-code"></i> Cómo Funciona Este Grid</h2>
             <div class="code-example">
-                <h3>CSS Grid Con Auto-fit</h3>
-                <pre><code>.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-/* ⭐ auto-fit: Crea tantas columnas como quepan
-   ⭐ minmax(250px, 1fr): Mínimo 250px, máximo 1 fracción
-   ⭐ Resultado: Responsive automático SIN media queries */</code></pre>
+                <h3><i class="fas fa-cog"></i> CSS Grid Con Auto-fit</h3>
+                <pre><code><span class="property">.gallery</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(auto-fit, minmax(300px, 1fr))</span>;
+    <span class="property">gap</span>: <span class="value">1.5rem</span>;
+}</code></pre>
+                <p class="comment" style="margin-top: 15px;">
+                    /* ⭐ auto-fit: Crea automáticamente columnas que caben en el contenedor<br>
+                    ⭐ minmax(300px, 1fr): Mínimo 300px, máximo 1 fracción del espacio<br>
+                    ⭐ Resultado: Grid completamente responsive SIN media queries */
+                </p>
             </div>
 
             <div class="features-grid">
                 <div class="feature">
-                    <h4>🔄 Auto-fit</h4>
-                    <p>Crea automáticamente el número de columnas que caben en el contenedor</p>
+                    <h4><i class="fas fa-sync-alt"></i> Auto-fit</h4>
+                    <p>Calcula automáticamente cuántas columnas caben en el ancho disponible</p>
                 </div>
                 <div class="feature">
-                    <h4>📏 Minmax()</h4>
-                    <p>Define un tamaño mínimo (250px) y máximo (1fr) para las columnas</p>
+                    <h4><i class="fas fa-expand-alt"></i> Minmax()</h4>
+                    <p>Define límites: mínimo 300px, máximo 1 fracción del espacio</p>
                 </div>
                 <div class="feature">
-                    <h4>🎨 1fr</h4>
-                    <p>Fracción del espacio disponible - las columnas crecen uniformemente</p>
+                    <h4><i class="fas fa-chart-pie"></i> 1fr</h4>
+                    <p>Fracción del espacio restante - distribuye equitativamente</p>
                 </div>
                 <div class="feature">
-                    <h4>📱 Sin Media Queries</h4>
-                    <p>Se adapta automáticamente a cualquier tamaño de pantalla</p>
+                    <h4><i class="fas fa-mobile-alt"></i> Sin Media Queries</h4>
+                    <p>Se adapta automáticamente a todos los dispositivos</p>
                 </div>
             </div>
         </section>
     </div>
+
+    <script>
+        // Efectos interactivos
+        document.addEventListener('DOMContentLoaded', () => {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            // Efecto hover mejorado
+            galleryItems.forEach(item => {
+                item.addEventListener('mouseenter', (e) => {
+                    // Crear partículas en hover
+                    createParticles(e);
+                    
+                    // Efecto de sonido (opcional)
+                    playHoverSound();
+                });
+                
+                // Click para ampliar
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').src;
+                    const title = this.querySelector('h3').textContent;
+                    const desc = this.querySelector('p').textContent;
+                    
+                    showModal(imgSrc, title, desc);
+                });
+            });
+            
+            // Botón shuffle
+            const shuffleBtn = document.createElement('button');
+            shuffleBtn.innerHTML = '<i class="fas fa-random"></i> Shuffle Grid';
+            shuffleBtn.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #00FF88, #00D4FF);
+                color: white;
+                border: none;
+                padding: 12px 24px;
+                border-radius: 30px;
+                cursor: pointer;
+                font-family: Orbitron, sans-serif;
+                font-weight: 600;
+                z-index: 1000;
+                box-shadow: 0 4px 25px rgba(0, 255, 136, 0.3);
+                transition: all 0.3s ease;
+            `;
+            document.body.appendChild(shuffleBtn);
+            
+            shuffleBtn.addEventListener('mouseenter', () => {
+                shuffleBtn.style.transform = 'scale(1.1)';
+                shuffleBtn.style.boxShadow = '0 8px 35px rgba(0, 255, 136, 0.4)';
+            });
+            
+            shuffleBtn.addEventListener('mouseleave', () => {
+                shuffleBtn.style.transform = 'scale(1)';
+                shuffleBtn.style.boxShadow = '0 4px 25px rgba(0, 255, 136, 0.3)';
+            });
+            
+            shuffleBtn.addEventListener('click', shuffleGrid);
+            
+            console.log('🎮 Gamer Gallery cargado exitosamente!');
+        });
+        
+        function createParticles(event) {
+            const item = event.currentTarget;
+            for (let i = 0; i < 8; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    width: 6px;
+                    height: 6px;
+                    background: #00FF88;
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 5;
+                `;
+                
+                const rect = item.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+                
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                
+                // Añadir animación
+                particle.style.animation = `particleFloat 1s ease-out forwards`;
+                
+                item.appendChild(particle);
+                
+                // Crear keyframes para la animación
+                if (!document.querySelector('#particle-animation')) {
+                    const style = document.createElement('style');
+                    style.id = 'particle-animation';
+                    style.textContent = `
+                        @keyframes particleFloat {
+                            0% {
+                                transform: translate(0, 0) scale(1);
+                                opacity: 1;
+                            }
+                            100% {
+                                transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) scale(0);
+                                opacity: 0;
+                            }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+                
+                setTimeout(() => particle.remove(), 1000);
+            }
+        }
+        
+        function playHoverSound() {
+            try {
+                const audio = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEAQB8AAEAfAAABAAgAZGF0YQ');
+                audio.volume = 0.1;
+                audio.play().catch(e => console.log('Sonido no disponible'));
+            } catch(e) {
+                console.log('Error con audio:', e);
+            }
+        }
+        
+        function showModal(imgSrc, title, desc) {
+            // Crear modal
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(10, 10, 20, 0.95);
+                backdrop-filter: blur(20px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 2000;
+                opacity: 0;
+                animation: fadeIn 0.3s ease forwards;
+            `;
+            
+            modal.innerHTML = `
+                <div style="max-width: 90%; max-height: 90%; position: relative;">
+                    <img src="${imgSrc}" alt="${title}" style="width: 100%; height: auto; border-radius: 20px; box-shadow: 0 20px 80px rgba(0, 255, 136, 0.4);">
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(10,10,20,0.9), transparent); padding: 30px; color: white;">
+                        <h2 style="color: #00FF88; margin-bottom: 10px; font-family: Orbitron, sans-serif;">${title}</h2>
+                        <p style="font-family: Inter, sans-serif;">${desc}</p>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 20px; right: 20px; background: linear-gradient(135deg, #00FF88, #00D4FF); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 20px rgba(0, 255, 136, 0.3);">×</button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Añadir animación fadeIn
+            if (!document.querySelector('#fadeIn-animation')) {
+                const style = document.createElement('style');
+                style.id = 'fadeIn-animation';
+                style.textContent = `
+                    @keyframes fadeIn {
+                        from { opacity: 0; }
+                        to { opacity: 1; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            // Cerrar modal al hacer clic fuera
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+            
+            // Cerrar con Escape
+            const closeModal = (e) => {
+                if (e.key === 'Escape') {
+                    modal.remove();
+                    document.removeEventListener('keydown', closeModal);
+                }
+            };
+            document.addEventListener('keydown', closeModal);
+        }
+        
+        function shuffleGrid() {
+            const gallery = document.querySelector('.gallery');
+            const items = Array.from(gallery.children);
+            
+            // Animación de shuffle
+            items.forEach(item => {
+                item.style.transition = 'all 0.5s ease';
+                item.style.transform = 'translateY(20px) rotate(5deg)';
+                item.style.opacity = '0.5';
+            });
+            
+            // Mezclar aleatoriamente
+            for (let i = items.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                gallery.appendChild(items[j]);
+            }
+            
+            // Restaurar animación
+            setTimeout(() => {
+                items.forEach(item => {
+                    item.style.transform = '';
+                    item.style.opacity = '1';
+                });
+            }, 500);
+            
+            // Efecto de sonido
+            playShuffleSound();
+        }
+        
+        function playShuffleSound() {
+            try {
+                const audio = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEAQB8AAEAfAAABAAgAZGF0YQ');
+                audio.volume = 0.2;
+                audio.play().catch(e => console.log('Sonido no disponible'));
+            } catch(e) {
+                console.log('Error con audio:', e);
+            }
+        }
+    </script>
 </body>
 </html>
