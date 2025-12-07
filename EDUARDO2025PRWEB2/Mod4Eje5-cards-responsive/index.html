@@ -3,114 +3,630 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solución: Galería Responsive</title>
+    <title>Galería de Proyectos Responsive</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header class="page-header">
-            <h1>Galería de Proyectos</h1>
-            <p>Explora nuestra colección de trabajos destacados</p>
+            <h1><i class="fas fa-rocket"></i> Galería de Proyectos</h1>
+            <p>Explora nuestra colección de trabajos destacados y filtra por categoría</p>
         </header>
 
         <div class="filter-buttons">
-            <button class="filter-btn active" data-filter="all">Todos</button>
-            <button class="filter-btn" data-filter="web">Web</button>
-            <button class="filter-btn" data-filter="mobile">Móvil</button>
-            <button class="filter-btn" data-filter="design">Diseño</button>
+            <button class="filter-btn active" data-filter="all">
+                <i class="fas fa-layer-group"></i> Todos
+                <span class="filter-count">9</span>
+            </button>
+            <button class="filter-btn" data-filter="web">
+                <i class="fas fa-globe"></i> Web
+                <span class="filter-count">3</span>
+            </button>
+            <button class="filter-btn" data-filter="mobile">
+                <i class="fas fa-mobile-alt"></i> Móvil
+                <span class="filter-count">3</span>
+            </button>
+            <button class="filter-btn" data-filter="design">
+                <i class="fas fa-palette"></i> Diseño
+                <span class="filter-count">3</span>
+            </button>
         </div>
 
         <div class="cards-grid">
             <div class="card" data-category="web">
-                <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=300&fit=crop" alt="E-commerce">
+                <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop&crop=center&auto=format" 
+                     alt="E-commerce Platform" 
+                     loading="lazy">
                 <div class="card-content">
                     <span class="card-tag">Web</span>
                     <h3>E-commerce Platform</h3>
-                    <p>Plataforma de comercio electrónico con dashboard administrativo completo.</p>
-                    <button class="btn">Ver Proyecto</button>
+                    <p>Plataforma de comercio electrónico con dashboard administrativo completo y sistema de pagos integrado.</p>
+                    <button class="btn">
+                        <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                    </button>
                 </div>
             </div>
 
             <div class="card" data-category="mobile">
-                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=300&fit=crop" alt="App Fitness">
+                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop&crop=center&auto=format" 
+                     alt="Fitness App" 
+                     loading="lazy">
                 <div class="card-content">
                     <span class="card-tag">Móvil</span>
                     <h3>App Fitness Tracker</h3>
-                    <p>Aplicación móvil para seguimiento de entrenamientos y nutrición.</p>
-                    <button class="btn">Ver Proyecto</button>
+                    <p>Aplicación móvil para seguimiento de entrenamientos, nutrición y progreso con wearables integrados.</p>
+                    <button class="btn">
+                        <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                    </button>
                 </div>
             </div>
 
             <div class="card" data-category="design">
-                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" alt="Branding">
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop&crop=center&auto=format" 
+                     alt="Branding Design" 
+                     loading="lazy">
                 <div class="card-content">
                     <span class="card-tag">Diseño</span>
                     <h3>Corporate Branding</h3>
-                    <p>Identidad visual completa para empresa tecnológica.</p>
-                    <button class="btn">Ver Proyecto</button>
+                    <p>Identidad visual completa para empresa tecnológica incluyendo logo, colores y sistema de diseño.</p>
+                    <button class="btn">
+                        <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                    </button>
                 </div>
             </div>
 
             <div class="card" data-category="web">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Dashboard">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop&crop=center&auto=format" 
+                     alt="Analytics Dashboard" 
+                     loading="lazy">
                 <div class="card-content">
                     <span class="card-tag">Web</span>
                     <h3>Analytics Dashboard</h3>
-                    <p>Panel de control de analíticas con visualización de datos en tiempo real.</p>
-                    <button class="btn">Ver Proyecto</button>
+                    <p>Panel de control de analíticas con visualización de datos en tiempo real y reportes personalizables.</p>
+                    <button class="btn">
+                        <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                    </button>
                 </div>
             </div>
 
             <div class="card" data-category="mobile">
-                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=300&fit=crop" alt="Social App">
+                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop&crop=center&auto=format" 
+                     alt="Social Network App" 
+                     loading="lazy">
                 <div class="card-content">
                     <span class="card-tag">Móvil</span>
                     <h3>Social Network App</h3>
-                    <p>Red social diseñada para conectar profesionales creativos.</p>
-                    <button class="btn">Ver Proyecto</button>
+                    <p>Red social diseñada para conectar profesionales creativos con funciones de colaboración en tiempo real.</p>
+                    <button class="btn">
+                        <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                    </button>
                 </div>
             </div>
 
             <div class="card" data-category="design">
-                <img src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=400&h=300&fit=crop" alt="UI Kit">
+                <img src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=600&h=400&fit=crop&crop=center&auto=format" 
+                     alt="UI Kit Design" 
+                     loading="lazy">
                 <div class="card-content">
                     <span class="card-tag">Diseño</span>
                     <h3>Modern UI Kit</h3>
-                    <p>Sistema de diseño completo con componentes reutilizables.</p>
-                    <button class="btn">Ver Proyecto</button>
+                    <p>Sistema de diseño completo con componentes reutilizables, iconografía y guías de estilo detalladas.</p>
+                    <button class="btn">
+                        <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                    </button>
                 </div>
             </div>
 
             <div class="card" data-category="web">
-                <img src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=400&h=300&fit=crop" alt="Portfolio">
+                <img src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=600&h=400&fit=crop&crop=center&auto=format" 
+                     alt="Portfolio Website" 
+                     loading="lazy">
                 <div class="card-content">
                     <span class="card-tag">Web</span>
                     <h3>Creative Portfolio</h3>
-                    <p>Portfolio interactivo para artista digital con galería dinámica.</p>
-                    <button class="btn">Ver Proyecto</button>
+                    <p>Portfolio interactivo para artista digital con galería dinámica, animaciones CSS y diseño responsive.</p>
+                    <button class="btn">
+                        <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                    </button>
                 </div>
             </div>
 
             <div class="card" data-category="mobile">
-                <img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=400&h=300&fit=crop" alt="Banking App">
+                <img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=600&h=400&fit=crop&crop=center&auto=format" 
+                     alt="Banking App" 
+                     loading="lazy">
                 <div class="card-content">
                     <span class="card-tag">Móvil</span>
                     <h3>Banking App</h3>
-                    <p>Aplicación bancaria segura con gestión de cuentas y transacciones.</p>
-                    <button class="btn">Ver Proyecto</button>
+                    <p>Aplicación bancaria segura con gestión de cuentas, transferencias y autenticación biométrica avanzada.</p>
+                    <button class="btn">
+                        <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                    </button>
                 </div>
             </div>
 
             <div class="card" data-category="design">
-                <img src="https://images.unsplash.com/photo-1545235617-7a424c1a60cc?w=400&h=300&fit=crop" alt="Packaging">
+                <img src="https://images.unsplash.com/photo-1545235617-7a424c1a60cc?w=600&h=400&fit=crop&crop=center&auto=format" 
+                     alt="Product Packaging" 
+                     loading="lazy">
                 <div class="card-content">
                     <span class="card-tag">Diseño</span>
                     <h3>Product Packaging</h3>
-                    <p>Diseño de empaque minimalista para línea de productos premium.</p>
-                    <button class="btn">Ver Proyecto</button>
+                    <p>Diseño de empaque minimalista para línea de productos premium con materiales eco-friendly.</p>
+                    <button class="btn">
+                        <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                    </button>
                 </div>
             </div>
         </div>
+
+        <div class="projects-counter">
+            <div class="counter-item" id="totalCounter">
+                <span class="counter-number">9</span>
+                <span class="counter-label">Proyectos Totales</span>
+            </div>
+            <div class="counter-item" id="visibleCounter">
+                <span class="counter-number">9</span>
+                <span class="counter-label">Mostrando</span>
+            </div>
+            <div class="counter-item" id="categoryCounter">
+                <span class="counter-number">Todos</span>
+                <span class="counter-label">Categoría Actual</span>
+            </div>
+        </div>
     </div>
-</body>
-</html>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Elementos del DOM
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.card');
+            const totalCounter = document.getElementById('totalCounter');
+            const visibleCounter = document.getElementById('visibleCounter');
+            const categoryCounter = document.getElementById('categoryCounter');
+            const filterCounts = document.querySelectorAll('.filter-count');
+            
+            // Contar proyectos por categoría
+            const countProjects = () => {
+                const categories = {
+                    'all': cards.length,
+                    'web': document.querySelectorAll('.card[data-category="web"]').length,
+                    'mobile': document.querySelectorAll('.card[data-category="mobile"]').length,
+                    'design': document.querySelectorAll('.card[data-category="design"]').length
+                };
+                
+                // Actualizar contadores en botones
+                filterCounts.forEach(span => {
+                    const filter = span.parentElement.dataset.filter;
+                    span.textContent = categories[filter];
+                });
+                
+                // Actualizar contador total
+                totalCounter.querySelector('.counter-number').textContent = cards.length;
+            };
+            
+            // Filtrar proyectos
+            const filterProjects = (filter) => {
+                let visibleCount = 0;
+                
+                cards.forEach(card => {
+                    const category = card.dataset.category;
+                    
+                    if (filter === 'all' || category === filter) {
+                        card.classList.remove('hidden');
+                        card.style.animation = 'cardIn 0.6s ease-out forwards';
+                        visibleCount++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+                
+                // Actualizar contadores
+                visibleCounter.querySelector('.counter-number').textContent = visibleCount;
+                categoryCounter.querySelector('.counter-number').textContent = 
+                    filter === 'all' ? 'Todos' : filter.charAt(0).toUpperCase() + filter.slice(1);
+                
+                // Actualizar clase activa en botones
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.filter === filter) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                // Efecto visual en el botón activo
+                const activeBtn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
+                createRippleEffect(activeBtn);
+                playClickSound();
+            };
+            
+            // Efecto ripple para botones
+            const createRippleEffect = (button) => {
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple-effect');
+                
+                const rect = button.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = rect.width / 2;
+                const y = rect.height / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    top: ${y - size/2}px;
+                    left: ${x - size/2}px;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.5);
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                `;
+                
+                button.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            };
+            
+            // Sonido de clic
+            const playClickSound = () => {
+                try {
+                    const audio = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEAQB8AAEAfAAABAAgAZGF0YQ');
+                    audio.volume = 0.2;
+                    audio.play();
+                } catch(e) {
+                    console.log('Sonido no disponible');
+                }
+            };
+            
+            // Inicializar contadores
+            countProjects();
+            
+            // Event listeners para botones de filtro
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.dataset.filter;
+                    filterProjects(filter);
+                });
+                
+                // Efecto hover
+                button.addEventListener('mouseenter', () => {
+                    button.style.transform = 'translateY(-3px) scale(1.05)';
+                });
+                
+                button.addEventListener('mouseleave', () => {
+                    if (!button.classList.contains('active')) {
+                        button.style.transform = '';
+                    }
+                });
+            });
+            
+            // Event listeners para cards
+            cards.forEach(card => {
+                const btn = card.querySelector('.btn');
+                
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const title = card.querySelector('h3').textContent;
+                    const category = card.dataset.category;
+                    
+                    // Mostrar modal con detalles
+                    showProjectModal(title, category);
+                    
+                    // Efecto visual
+                    createRippleEffect(btn);
+                });
+                
+                // Efecto hover en cards
+                card.addEventListener('mouseenter', () => {
+                    card.style.zIndex = '10';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.zIndex = '1';
+                });
+            });
+            
+            // Modal para mostrar detalles del proyecto
+            const showProjectModal = (title, category) => {
+                // Crear modal
+                const modal = document.createElement('div');
+                modal.className = 'project-modal';
+                
+                // Contenido del modal
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <button class="modal-close">&times;</button>
+                        <div class="modal-header">
+                            <span class="modal-category ${category}">${category}</span>
+                            <h2>${title}</h2>
+                        </div>
+                        <div class="modal-body">
+                            <p>Este es un proyecto destacado de la categoría <strong>${category}</strong>. 
+                            Contiene características avanzadas y diseño moderno que cumple con los más altos estándares de calidad.</p>
+                            <div class="modal-features">
+                                <h3><i class="fas fa-star"></i> Características Principales:</h3>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Diseño 100% responsive</li>
+                                    <li><i class="fas fa-check"></i> Optimización de performance</li>
+                                    <li><i class="fas fa-check"></i> Accesibilidad WCAG 2.1</li>
+                                    <li><i class="fas fa-check"></i> SEO optimizado</li>
+                                    <li><i class="fas fa-check"></i> Código limpio y mantenible</li>
+                                </ul>
+                            </div>
+                            <div class="modal-tech">
+                                <h3><i class="fas fa-code"></i> Tecnologías Utilizadas:</h3>
+                                <div class="tech-tags">
+                                    <span>HTML5</span>
+                                    <span>CSS3</span>
+                                    <span>JavaScript</span>
+                                    <span>React</span>
+                                    <span>Node.js</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-external-link-alt"></i> Ver Demo en Vivo
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="fab fa-github"></i> Ver Código Fuente
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                // Estilos del modal
+                const modalStyles = document.createElement('style');
+                modalStyles.textContent = `
+                    .project-modal {
+                        position
+                                        @keyframes modalFadeIn {
+                    to { opacity: 1; }
+                }
+                
+                .modal-content {
+                    background: linear-gradient(145deg, #1a1a2e, #16213e);
+                    border-radius: 24px;
+                    width: 100%;
+                    max-width: 800px;
+                    max-height: 90vh;
+                    overflow-y: auto;
+                    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    position: relative;
+                    animation: modalSlideIn 0.5s ease-out forwards;
+                    transform: translateY(30px);
+                }
+                
+                @keyframes modalSlideIn {
+                    to { transform: translateY(0); }
+                }
+                
+                .modal-close {
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    background: rgba(255, 255, 255, 0.1);
+                    border: none;
+                    color: white;
+                    font-size: 28px;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.3s ease;
+                    z-index: 10;
+                }
+                
+                .modal-close:hover {
+                    background: rgba(255, 255, 255, 0.2);
+                    transform: rotate(90deg);
+                }
+                
+                .modal-header {
+                    padding: 40px 40px 20px;
+                    background: linear-gradient(135deg, rgba(33, 82, 255, 0.1), rgba(235, 87, 87, 0.1));
+                    border-radius: 24px 24px 0 0;
+                }
+                
+                .modal-category {
+                    display: inline-block;
+                    padding: 6px 16px;
+                    border-radius: 20px;
+                    font-size: 12px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    margin-bottom: 15px;
+                }
+                
+                .modal-category.web { background: rgba(33, 82, 255, 0.2); color: #2152ff; border: 1px solid rgba(33, 82, 255, 0.3); }
+                .modal-category.mobile { background: rgba(46, 196, 182, 0.2); color: #2ec4b6; border: 1px solid rgba(46, 196, 182, 0.3); }
+                .modal-category.design { background: rgba(235, 87, 87, 0.2); color: #eb5757; border: 1px solid rgba(235, 87, 87, 0.3); }
+                
+                .modal-header h2 {
+                    color: white;
+                    font-size: 32px;
+                    margin: 10px 0 0;
+                    font-weight: 800;
+                    line-height: 1.2;
+                }
+                
+                .modal-body {
+                    padding: 30px 40px;
+                }
+                
+                .modal-body p {
+                    color: rgba(255, 255, 255, 0.8);
+                    font-size: 16px;
+                    line-height: 1.6;
+                    margin-bottom: 30px;
+                }
+                
+                .modal-features, .modal-tech {
+                    margin-bottom: 30px;
+                }
+                
+                .modal-features h3, .modal-tech h3 {
+                    color: white;
+                    font-size: 18px;
+                    margin-bottom: 15px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+                
+                .modal-features ul {
+                    list-style: none;
+                    padding: 0;
+                }
+                
+                .modal-features li {
+                    color: rgba(255, 255, 255, 0.8);
+                    margin-bottom: 10px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+                
+                .modal-features li i {
+                    color: #2ec4b6;
+                }
+                
+                .tech-tags {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .tech-tags span {
+                    background: rgba(255, 255, 255, 0.1);
+                    color: white;
+                    padding: 8px 16px;
+                    border-radius: 20px;
+                    font-size: 14px;
+                    transition: all 0.3s ease;
+                }
+                
+                .tech-tags span:hover {
+                    background: rgba(33, 82, 255, 0.3);
+                    transform: translateY(-3px);
+                }
+                
+                .modal-footer {
+                    padding: 20px 40px 40px;
+                    display: flex;
+                    gap: 15px;
+                    border-top: 1px solid rgba(255, 255, 255, 0.1);
+                }
+                
+                .modal-footer .btn {
+                    flex: 1;
+                    padding: 16px 24px;
+                    font-size: 16px;
+                    border-radius: 12px;
+                    border: none;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    transition: all 0.3s ease;
+                    font-weight: 600;
+                }
+                
+                .btn-primary {
+                    background: linear-gradient(135deg, #2152ff, #21d4fd);
+                    color: white;
+                }
+                
+                .btn-primary:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 10px 20px rgba(33, 82, 255, 0.3);
+                }
+                
+                .btn-secondary {
+                    background: rgba(255, 255, 255, 0.1);
+                    color: white;
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                }
+                
+                .btn-secondary:hover {
+                    background: rgba(255, 255, 255, 0.15);
+                    transform: translateY(-3px);
+                }
+                
+                @media (max-width: 768px) {
+                    .modal-content {
+                        max-width: 95%;
+                    }
+                    
+                    .modal-header h2 {
+                        font-size: 24px;
+                    }
+                    
+                    .modal-header, .modal-body, .modal-footer {
+                        padding: 25px;
+                    }
+                    
+                    .modal-footer {
+                        flex-direction: column;
+                    }
+                }
+            `;
+            
+            document.head.appendChild(modalStyles);
+            document.body.appendChild(modal);
+            
+            // Cerrar modal
+            const closeBtn = modal.querySelector('.modal-close');
+            closeBtn.addEventListener('click', () => {
+                modal.style.animation = 'modalFadeOut 0.3s ease-out forwards';
+                setTimeout(() => {
+                    document.body.removeChild(modal);
+                    document.head.removeChild(modalStyles);
+                }, 300);
+            });
+            
+            // Cerrar al hacer clic fuera del contenido
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeBtn.click();
+                }
+            });
+            
+            // Cerrar con tecla Escape
+            const handleEscape = (e) => {
+                if (e.key === 'Escape') {
+                    closeBtn.click();
+                    document.removeEventListener('keydown', handleEscape);
+                }
+            };
+            
+            document.addEventListener('keydown', handleEscape);
+            
+            // Eventos para botones del modal
+            modal.querySelector('.btn-primary').addEventListener('click', () => {
+                alert(`Redirigiendo a la demo de ${title}`);
+            });
+            
+            modal.querySelector('.btn-secondary').addEventListener('click', () => {
+                alert(`Redirigiendo al repositorio de ${title}`);
+            });
+        };
+        
+        // Animación de entrada para las cards
+        cards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+            card.style.animation = 'cardIn 0.6s ease-out forwards';
+        });
+    });
+</script>
