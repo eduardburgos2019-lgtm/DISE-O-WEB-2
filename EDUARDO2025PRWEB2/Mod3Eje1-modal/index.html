@@ -5,21 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solución: Modal Centrado</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>Ejercicio: Modal Centrado</h1>
-        <p>Haz clic en el botón para abrir el modal</p>
-        <button class="btn-open">Abrir Modal</button>
+        <h1><i class="fas fa-layer-group"></i> Ejercicio: Modal Centrado</h1>
+        <p>Haz clic en el botón para abrir el modal centrado con overlay semitransparente y efectos visuales modernos.</p>
+        <button class="btn-open" id="openModal">
+            <i class="fas fa-external-link-alt"></i> Abrir Modal
+        </button>
         
         <div class="info">
-            <h3>Características del Modal:</h3>
+            <h3><i class="fas fa-star"></i> Características del Modal:</h3>
             <ul>
-                <li>Centrado con position: fixed</li>
-                <li>Overlay semitransparente</li>
-                <li>Cierre con botón X</li>
-                <li>Cierre al hacer clic fuera</li>
-                <li>Transiciones suaves</li>
+                <li>Centrado con position: fixed y flexbox</li>
+                <li>Overlay semitransparente con blur effect</li>
+                <li>Cierre con botón X animado (360°)</li>
+                <li>Cierre al hacer clic fuera del modal</li>
+                <li>Transiciones suaves y animaciones CSS</li>
+                <li>Diseño completamente responsive</li>
+                <li>Gradientes modernos y sombras depth</li>
+                <li>Efectos hover en todos los elementos</li>
+                <li>Iconos SVG y Font Awesome</li>
+                <li>Soporte para modo oscuro</li>
             </ul>
         </div>
     </div>
@@ -34,9 +42,10 @@
                     <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
             </div>
-            <h2>¡Bienvenido al Modal!</h2>
-            <p>Este es un modal centrado usando <code>position: fixed</code>.</p>
-            <p>El modal está perfectamente centrado tanto horizontal como verticalmente usando flexbox en el overlay.</p>
+            <h2><i class="fas fa-check-circle"></i> ¡Bienvenido al Modal!</h2>
+            <p>Este es un modal centrado usando <code>position: fixed</code> con <code>display: flex</code> para centrado perfecto.</p>
+            <p>El overlay tiene efecto blur y el modal incluye animaciones de entrada y salida. También puedes cerrarlo presionando la tecla <code>ESC</code>.</p>
+            
             <div class="modal-features">
                 <div class="feature">
                     <span class="feature-icon">✓</span>
@@ -44,14 +53,29 @@
                 </div>
                 <div class="feature">
                     <span class="feature-icon">✓</span>
-                    <span>Overlay responsive</span>
+                    <span>Overlay con blur</span>
                 </div>
                 <div class="feature">
                     <span class="feature-icon">✓</span>
-                    <span>Animaciones suaves</span>
+                    <span>Animaciones CSS</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">✓</span>
+                    <span>Responsive design</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">✓</span>
+                    <span>Efectos hover</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">✓</span>
+                    <span>Tecla ESC</span>
                 </div>
             </div>
-            <button class="btn-modal-action">Entendido</button>
+            
+            <button class="btn-modal-action">
+                <i class="fas fa-thumbs-up"></i> Entendido
+            </button>
         </div>
     </div>
 
