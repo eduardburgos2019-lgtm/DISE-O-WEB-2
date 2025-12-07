@@ -1,290 +1,422 @@
+/* ===== RESET Y BASE ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+}
+
+:root {
+    /* PALETA DE COLORES COMPLETAMENTE NUEVA - Tono dorado y púrpura */
+    --primary-color: #D4AF37;        /* Oro */
+    --primary-dark: #B8860B;         /* Oro oscuro */
+    --primary-light: #FFD700;        /* Oro claro */
+    --secondary-color: #8A2BE2;      /* Púrpura brillante */
+    --accent-color: #00CED1;         /* Turquesa */
+    --success-color: #32CD32;        /* Verde lima */
+    --warning-color: #FF8C00;        /* Naranja oscuro */
+    --danger-color: #DC143C;         /* Rojo carmesí */
+    --info-color: #1E90FF;           /* Azul dodger */
+    
+    /* Escala de grises elegante */
+    --dark-color: #0F0F0F;           /* Negro carbón */
+    --dark-medium: #2D2D2D;          /* Gris oscuro */
+    --medium-color: #5A5A5A;         /* Gris medio */
+    --light-color: #F5F5F5;          /* Gris muy claro */
+    --white: #FFFFFF;                /* Blanco puro */
+    --gray-light: #E0E0E0;           /* Gris claro */
+    
+    /* Fondos nuevos */
+    --bg-body: linear-gradient(135deg, #0F0F23 0%, #1A1A2E 100%);
+    --bg-card: linear-gradient(145deg, #FFFFFF, #FAFAFA);
+    --bg-gradient: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    
+    /* Sombras mejoradas */
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.2);
+    --shadow-xl: 0 30px 70px rgba(0, 0, 0, 0.25);
+    --shadow-gold: 0 0 30px rgba(212, 175, 55, 0.4);
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--bg-body);
     min-height: 100vh;
-    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    color: var(--white);
+    line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
 }
 
+/* Efecto de partículas doradas en el fondo */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(0, 206, 209, 0.1) 0%, transparent 50%);
+    z-index: -1;
+}
+
+/* ===== CONTAINER PRINCIPAL ===== */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1400px;
+    width: 100%;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+    position: relative;
+    z-index: 1;
 }
 
-h1 {
-    color: white;
-    text-align: center;
-    margin-bottom: 0.5rem;
-    font-size: 2.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+.container h1 {
+    font-size: 3.8rem;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 900;
+    letter-spacing: -1px;
+    text-shadow: 0 5px 25px rgba(212, 175, 55, 0.3);
+    position: relative;
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+.container h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--primary-color), 
+        var(--secondary-color), 
+        transparent);
+    border-radius: 2px;
 }
 
 .subtitle {
     color: rgba(255, 255, 255, 0.9);
-    text-align: center;
-    margin-bottom: 3rem;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
+    margin-bottom: 60px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* ===== GRID DE CARDS ===== */
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
 }
 
-/* ==============================
-   CARD CONTAINER
-   ============================== */
+/* ===== CARD BASE ===== */
 .card {
-    /* position: relative es CRUCIAL para que el badge se posicione respecto a la card */
-    position: relative;
-    
-    background: white;
-    border-radius: 15px;
+    background: var(--bg-card);
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(-20px) scale(1.05);
+    box-shadow: var(--shadow-xl), var(--shadow-gold);
 }
 
-/* ==============================
-   BADGE POSICIONADO
-   ============================== */
-.badge {
-    /* position: absolute para posicionar respecto al contenedor .card */
-    position: absolute;
-    
-    /* Posicionamiento en la esquina superior derecha */
-    top: 1rem;
-    right: 1rem;
-    
-    /* z-index para asegurar que esté encima de la imagen */
-    z-index: 10;
-    
-    /* Estilos visuales */
-    padding: 0.5rem 1rem;
-    font-size: 0.75rem;
-    font-weight: bold;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    
-    /* Animación de entrada */
-    animation: badgeBounce 0.5s ease;
-}
-
-@keyframes badgeBounce {
-    0% {
-        transform: scale(0);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Variantes de badges */
-.badge-new {
-    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-    color: white;
-}
-
-.badge-discount {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    color: white;
-    font-size: 1rem;
-    padding: 0.6rem 1.2rem;
-}
-
-.badge-hot {
-    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-    color: #333;
-    animation: badgePulse 2s ease-in-out infinite;
-}
-
-@keyframes badgePulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-}
-
-.badge-limited {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
-    color: white;
-    font-size: 0.65rem;
-    padding: 0.4rem 0.8rem;
-    animation: badgeShake 3s ease-in-out infinite;
-}
-
-@keyframes badgeShake {
-    0%, 100% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(-5deg);
-    }
-    75% {
-        transform: rotate(5deg);
-    }
-}
-
-.badge-premium {
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-    color: #ffd700;
-    border: 2px solid #ffd700;
-}
-
-.badge-bestseller {
-    background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
-    color: white;
-}
-
-/* ==============================
-   CARD IMAGE
-   ============================== */
+/* ===== CARD IMAGE ===== */
 .card-image {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
     position: relative;
+    height: 250px;
+    overflow: hidden;
 }
 
 .card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.6s ease;
 }
 
 .card:hover .card-image img {
     transform: scale(1.1);
 }
 
-/* ==============================
-   CARD CONTENT
-   ============================== */
+.card-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
+}
+
+/* ===== CARD CONTENT ===== */
 .card-content {
-    padding: 1.5rem;
+    padding: 25px;
+    text-align: left;
 }
 
 .card-content h3 {
-    color: #333;
-    margin-bottom: 0.8rem;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--dark-color);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-content h3 i {
+    color: var(--primary-color);
 }
 
 .card-content p {
-    color: #666;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
+    color: var(--medium-color);
+    margin-bottom: 25px;
+    line-height: 1.7;
     font-size: 0.95rem;
 }
 
-/* ==============================
-   CARD FOOTER
-   ============================== */
+/* ===== CARD FOOTER ===== */
 .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 1rem;
-    border-top: 1px solid #eee;
+    padding-top: 20px;
+    border-top: 1px solid var(--gray-light);
 }
 
 .price {
-    font-size: 1.5rem;
-    font-weight: bold;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
 }
 
-.btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    padding: 0.7rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
+.price small {
+    font-size: 1rem;
     font-weight: 600;
+    color: var(--medium-color);
+}
+
+/* ===== BOTONES ===== */
+.btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
 
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(135deg, var(--primary-dark), var(--secondary-color));
 }
 
-.btn:active {
-    transform: translateY(0);
+/* ===== BADGES ===== */
+.badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: badgeIn 0.6s ease-out 0.3s forwards;
+    transform: translateX(20px);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
-/* ==============================
-   RESPONSIVE
-   ============================== */
+@keyframes badgeIn {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Tipos de badges con nuevos colores */
+.badge-new {
+    background: linear-gradient(135deg, var(--primary-color), #FFD700);
+    color: var(--dark-color);
+}
+
+.badge-discount {
+    background: linear-gradient(135deg, var(--danger-color), #FF6B6B);
+    color: var(--white);
+}
+
+.badge-hot {
+    background: linear-gradient(135deg, var(--warning-color), #FFA500);
+    color: var(--white);
+}
+
+.badge-limited {
+    background: linear-gradient(135deg, var(--secondary-color), #9370DB);
+    color: var(--white);
+    font-size: 0.8rem;
+    padding: 8px 16px;
+}
+
+.badge-premium {
+    background: linear-gradient(135deg, #FFD700, #FFF8DC);
+    color: var(--dark-color);
+    font-weight: 800;
+}
+
+.badge-bestseller {
+    background: linear-gradient(135deg, var(--info-color), #6495ED);
+    color: var(--white);
+}
+
+/* ===== EFECTO RIPPLE ===== */
+.btn-click-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación escalonada para cards */
+.cards-grid > * {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: cardIn 0.6s ease-out forwards;
+}
+
+@keyframes cardIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Retrasos escalonados */
+.cards-grid > *:nth-child(1) { animation-delay: 0.1s; }
+.cards-grid > *:nth-child(2) { animation-delay: 0.2s; }
+.cards-grid > *:nth-child(3) { animation-delay: 0.3s; }
+.cards-grid > *:nth-child(4) { animation-delay: 0.4s; }
+.cards-grid > *:nth-child(5) { animation-delay: 0.5s; }
+.cards-grid > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+    .cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+}
+
 @media (max-width: 768px) {
-    body {
-        padding: 1rem;
+    .container h1 {
+        font-size: 2.5rem;
     }
     
-    h1 {
-        font-size: 2rem;
+    .subtitle {
+        font-size: 1.1rem;
     }
     
     .cards-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .badge {
-        top: 0.7rem;
-        right: 0.7rem;
-        font-size: 0.7rem;
-        padding: 0.4rem 0.8rem;
-    }
-    
-    .badge-discount {
-        font-size: 0.9rem;
-        padding: 0.5rem 1rem;
+        max-width: 450px;
+        margin: 30px auto 0;
     }
 }
 
 @media (max-width: 480px) {
-    .card-content {
-        padding: 1rem;
+    .container h1 {
+        font-size: 2rem;
     }
     
-    .card-content h3 {
-        font-size: 1.1rem;
+    .subtitle {
+        font-size: 1rem;
     }
     
-    .card-content p {
-        font-size: 0.9rem;
+    .card-image {
+        height: 220px;
     }
     
     .price {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
     
     .btn {
-        padding: 0.6rem 1.2rem;
+        padding: 10px 20px;
         font-size: 0.9rem;
     }
+}
+
+/* SCROLLBAR PERSONALIZADA */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--primary-dark), var(--secondary-color));
 }
