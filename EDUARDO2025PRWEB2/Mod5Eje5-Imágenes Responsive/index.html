@@ -3,75 +3,885 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio 5: Imágenes Responsive</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Imágenes Responsive - Guía Completa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Source+Code+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Sistema de diseño */
+            --primary: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --accent: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --dark-bg: #0f172a;
+            --dark-card: #1e293b;
+            --light-bg: #f8fafc;
+            --light-card: #ffffff;
+            --text-dark: #1e293b;
+            --text-light: #f1f5f9;
+            --border-color: #e2e8f0;
+            
+            /* Espaciado */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
+            
+            /* Bordes y sombras */
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            
+            /* Transiciones */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: var(--space-md);
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            background: var(--light-card);
+            padding: var(--space-xl) var(--space-lg);
+            margin-bottom: var(--space-xl);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+            border-left: 6px solid var(--primary);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: var(--space-sm);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        header p {
+            font-size: 1.125rem;
+            color: #64748b;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--light-card);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            padding: var(--space-xl);
+        }
+
+        /* Secciones */
+        section {
+            margin-bottom: var(--space-2xl);
+            padding: var(--space-lg);
+            background: var(--light-bg);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary);
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        h2 i {
+            color: var(--primary);
+            background: rgba(59, 130, 246, 0.1);
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        section p {
+            color: #475569;
+            margin-bottom: var(--space-lg);
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        /* Separador */
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+            margin: var(--space-xl) 0;
+            position: relative;
+        }
+
+        hr::after {
+            content: '📷';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--light-card);
+            padding: 0 20px;
+            font-size: 1.25rem;
+        }
+
+        /* Imágenes responsive */
+        .responsive-img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            display: block;
+            margin: var(--space-lg) 0;
+            border: 2px solid transparent;
+        }
+
+        .responsive-img:hover {
+            transform: scale(1.01);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary);
+        }
+
+        /* Ejemplo 1: Srcset y Sizes */
+        .srcset-demo {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: var(--space-lg);
+            border-radius: var(--border-radius);
+            margin-top: var(--space-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .srcset-info {
+            background: rgba(255, 255, 255, 0.95);
+            padding: var(--space-md);
+            border-radius: var(--border-radius);
+            margin-top: var(--space-md);
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+
+        .srcset-info code {
+            color: var(--primary-dark);
+            background: rgba(59, 130, 246, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 0 2px;
+        }
+
+        /* Ejemplo 2: Picture Art Direction */
+        .picture-demo {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+
+        .breakpoint-indicators {
+            display: flex;
+            justify-content: space-between;
+            background: var(--light-bg);
+            padding: var(--space-sm);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--space-md);
+        }
+
+        .breakpoint {
+            text-align: center;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: var(--transition);
+        }
+
+        .breakpoint.mobile {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        .breakpoint.tablet {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary);
+        }
+
+        .breakpoint.desktop {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent);
+        }
+
+        /* Ejemplo 3: Background Image */
+        .hero-background {
+            width: 100%;
+            height: 400px;
+            border-radius: var(--border-radius);
+            margin-top: var(--space-lg);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: var(--transition);
+        }
+
+        .hero-background:hover {
+            transform: scale(1.01);
+        }
+
+        .hero-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .hero-background h3 {
+            position: relative;
+            z-index: 2;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            padding: var(--space-lg);
+        }
+
+        /* Paneles informativos */
+        .info-panel {
+            background: var(--dark-card);
+            color: white;
+            padding: var(--space-lg);
+            border-radius: var(--border-radius);
+            margin-top: var(--space-lg);
+            border-left: 6px solid var(--accent);
+        }
+
+        .info-panel h4 {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: white;
+        }
+
+        .info-panel h4 i {
+            color: var(--accent);
+        }
+
+        .info-panel p {
+            color: #cbd5e1;
+            margin-bottom: var(--space-sm);
+        }
+
+        .info-panel code {
+            font-family: 'Source Code Pro', monospace;
+            background: rgba(255, 255, 255, 0.1);
+            color: #f8fafc;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: var(--space-xl);
+            margin-top: var(--space-2xl);
+            background: var(--light-card);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            border-top: 6px solid var(--secondary);
+        }
+
+        footer p {
+            font-size: 1.125rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+        }
+
+        footer i {
+            color: var(--secondary);
+        }
+
+        /* Herramienta de debug */
+        .debug-tool {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 30px;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.875rem;
+            box-shadow: var(--shadow-xl);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .debug-tool:hover {
+            transform: translateY(-3px);
+            background: var(--primary-dark);
+        }
+
+        .debug-tool i {
+            color: var(--accent);
+        }
+
+        .debug-panel {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            background: var(--dark-card);
+            color: white;
+            padding: var(--space-lg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-xl);
+            z-index: 99;
+        }
+
+        .debug-panel.active {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .debug-panel h4 {
+            color: white;
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .debug-panel h4 i {
+            color: var(--accent);
+        }
+
+        .debug-info {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.875rem;
+            color: #cbd5e1;
+        }
+
+        .debug-info div {
+            margin-bottom: var(--space-sm);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .debug-info .label {
+            color: #94a3b8;
+        }
+
+        .debug-info .value {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .container {
+                padding: var(--space-lg);
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-background {
+                height: 300px;
+            }
+            
+            .hero-background h3 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: var(--space-sm);
+            }
+            
+            header {
+                padding: var(--space-lg) var(--space-md);
+            }
+            
+            .container {
+                padding: var(--space-md);
+            }
+            
+            section {
+                padding: var(--space-md);
+            }
+            
+            .breakpoint-indicators {
+                flex-direction: column;
+                gap: var(--space-xs);
+            }
+            
+            .hero-background {
+                height: 250px;
+            }
+            
+            .hero-background h3 {
+                font-size: 1.5rem;
+                padding: var(--space-md);
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .debug-tool {
+                bottom: 10px;
+                right: 10px;
+                padding: 10px 15px;
+                font-size: 0.75rem;
+            }
+            
+            .debug-panel {
+                width: calc(100% - 40px);
+                right: 10px;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Highlight para demostración */
+        .highlight {
+            position: relative;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid var(--accent);
+            border-radius: calc(var(--border-radius) + 5px);
+            animation: pulse 2s infinite;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
 
     <header>
-        <h1>Ejercicio 5: Imágenes Responsive</h1>
-        <p>Abre las herramientas de desarrollador (F12) y redimensiona la ventana para ver los cambios.</p>
+        <h1><i class="fas fa-image"></i> Imágenes Responsive - Guía Completa</h1>
+        <p>Abre las herramientas de desarrollador (F12) y redimensiona la ventana para ver los cambios en tiempo real.</p>
     </header>
 
     <main class="container">
-
         <section>
-            <h2>1. Srcset y Sizes (Misma imagen, distintos tamaños)</h2>
-            <p>El navegador elige la mejor imagen basándose en el ancho de pantalla y la densidad de píxeles (DPI).</p>
+            <h2><i class="fas fa-code"></i> 1. Srcset y Sizes (Misma imagen, distintos tamaños)</h2>
+            <p>El navegador elige automáticamente la mejor imagen basándose en el ancho de pantalla y la densidad de píxeles (DPI).</p>
             
-            <img 
-                src="https://placehold.co/400x300?text=Fallback+Img" 
-                srcset="
-                    https://placehold.co/400x300?text=Small+400w 400w,
-                    https://placehold.co/800x600?text=Medium+800w 800w,
-                    https://placehold.co/1200x900?text=Large+1200w 1200w
-                "
-                sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
-                alt="Ejemplo de srcset"
-                loading="lazy"
-                class="responsive-img"
-            >
-        </section>
-
-        <hr>
-
-        <section>
-            <h2>2. Elemento Picture (Art Direction)</h2>
-            <p>Usamos una imagen vertical para móviles y una horizontal panorámica para escritorio.</p>
-            
-            <picture>
-                <source 
-                    media="(min-width: 1024px)" 
-                    srcset="https://placehold.co/1200x400/2ecc71/white?text=Desktop+Wide+(Art+Direction)"
-                >
-                <source 
-                    media="(min-width: 768px)" 
-                    srcset="https://placehold.co/800x500/3498db/white?text=Tablet+(Art+Direction)"
-                >
+            <div class="srcset-demo">
                 <img 
-                    src="https://placehold.co/400x400/e74c3c/white?text=Mobile+Square" 
-                    alt="Ejemplo de art direction"
+                    src="https://placehold.co/400x300/3b82f6/white?text=Fallback+Img" 
+                    srcset="
+                        https://placehold.co/400x300/ef4444/white?text=Small+400w 400w,
+                        https://placehold.co/800x600/10b981/white?text=Medium+800w 800w,
+                        https://placehold.co/1200x900/8b5cf6/white?text=Large+1200w 1200w,
+                        https://placehold.co/1600x1200/f59e0b/white?text=XLarge+1600w 1600w
+                    "
+                    sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+                    alt="Ejemplo de srcset con diferentes tamaños"
                     loading="lazy"
-                    class="responsive-img"
+                    class="responsive-img pulse"
                 >
-            </picture>
-        </section>
-
-        <hr>
-
-        <section>
-            <h2>3. Background Image Responsive (CSS)</h2>
-            <p>La imagen de fondo de este div cambia según media queries en CSS.</p>
-            <div class="hero-background">
-                <h3>Contenido sobre el fondo</h3>
+            </div>
+            
+            <div class="srcset-info">
+                <p><strong>Código utilizado:</strong></p>
+                <code>srcset="
+    https://placehold.co/400x300/... 400w,
+    https://placehold.co/800x600/... 800w,
+    https://placehold.co/1200x900/... 1200w,
+    https://placehold.co/1600x1200/... 1600w
+"</code>
+                <br><br>
+                <code>sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"</code>
+            </div>
+            
+            <div class="info-panel">
+                <h4><i class="fas fa-lightbulb"></i> ¿Cómo funciona?</h4>
+                <p>El navegador calcula el tamaño necesario para la imagen según el <code>sizes</code> y luego elige la imagen más apropiada del <code>srcset</code>.</p>
+                <p><strong>Ejemplo:</strong> En una pantalla de 1200px, el tamaño será 33% = 400px. El navegador elegirá la imagen de 400w para pantallas 1x, o 800w para pantallas 2x (Retina).</p>
             </div>
         </section>
 
+        <hr>
+
+        <section>
+            <h2><i class="fas fa-crop-alt"></i> 2. Elemento Picture (Art Direction)</h2>
+            <p>Usamos imágenes diferentes según el tamaño de pantalla para optimizar la composición visual.</p>
+            
+            <div class="breakpoint-indicators">
+                <div class="breakpoint mobile">
+                    <i class="fas fa-mobile-alt"></i> Mobile: &lt;768px
+                </div>
+                <div class="breakpoint tablet">
+                    <i class="fas fa-tablet-alt"></i> Tablet: 768px-1024px
+                </div>
+                <div class="breakpoint desktop">
+                    <i class="fas fa-desktop"></i> Desktop: &gt;1024px
+                </div>
+            </div>
+            
+            <div class="picture-demo">
+                <picture>
+                    <source 
+                        media="(min-width: 1024px)" 
+                        srcset="https://placehold.co/1200x400/8b5cf6/white?text=Desktop+Wide+(1200×400)"
+                    >
+                    <source 
+                        media="(min-width: 768px)" 
+                        srcset="https://placehold.co/800x500/3b82f6/white?text=Tablet+(800×500)"
+                    >
+                    <img 
+                        src="https://placehold.co/400x400/10b981/white?text=Mobile+Square+(400×400)" 
+                        alt="Ejemplo de art direction con diferentes imágenes para cada breakpoint"
+                        loading="lazy"
+                        class="responsive-img highlight"
+                    >
+                </picture>
+            </div>
+            
+            <div class="info-panel">
+                <h4><i class="fas fa-paint-brush"></i> Art Direction</h4>
+                <p>No se trata solo de cambiar el tamaño, sino de cambiar la <strong>composición</strong> de la imagen para adaptarse mejor a cada dispositivo.</p>
+                <p><strong>Mobile:</strong> Imagen cuadrada o vertical, enfoque en el sujeto principal.</p>
+                <p><strong>Desktop:</strong> Imagen panorámica, más detalles y contexto.</p>
+            </div>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2><i class="fas fa-layer-group"></i> 3. Background Image Responsive (CSS)</h2>
+            <p>La imagen de fondo de este div cambia según media queries en CSS usando <code>background-image</code>.</p>
+            
+            <div class="hero-background">
+                <h3>Contenido sobre el fondo adaptativo</h3>
+            </div>
+            
+            <div class="info-panel">
+                <h4><i class="fas fa-css3-alt"></i> CSS utilizado:</h4>
+                <p><code>background-image: url('imagen-mobile.jpg');</code></p>
+                <p><code>@media (min-width: 768px) { background-image: url('imagen-tablet.jpg'); }</code></p>
+                <p><code>@media (min-width: 1024px) { background-image: url('imagen-desktop.jpg'); }</code></p>
+                <p><strong>Propiedades importantes:</strong> <code>background-size: cover</code>, <code>background-position: center</code></p>
+            </div>
+        </section>
+        
+        <!-- Sección adicional: Comparativa -->
+        <section>
+            <h2><i class="fas fa-balance-scale"></i> 4. Comparativa de Métodos</h2>
+            <p>Cada técnica tiene sus ventajas y casos de uso específicos.</p>
+            
+            <div class="info-panel" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <h4><i class="fas fa-check-circle"></i> ¿Cuándo usar cada método?</h4>
+                <p><strong>srcset + sizes:</strong> Para imágenes de contenido (fotos en artículos, galerías) donde solo cambia el tamaño.</p>
+                <p><strong>Picture element:</strong> Cuando necesitas cambiar la composición o recorte de la imagen (art direction).</p>
+                <p><strong>Background-image:</strong> Para imágenes decorativas, banners hero, o elementos de diseño.</p>
+                <p><strong>img con max-width: 100%:</strong> La solución más simple para imágenes que deben escalar con su contenedor.</p>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p>Fin del Ejercicio</p>
+        <p><i class="fas fa-check"></i> Fin del Ejercicio - Imágenes Responsive Dominadas</p>
     </footer>
 
+    <!-- Herramienta de debug -->
+    <div class="debug-tool" id="debugToggle">
+        <i class="fas fa-bug"></i>
+        <span>Debug Info</span>
+    </div>
+    
+    <div class="debug-panel" id="debugPanel">
+        <h4><i class="fas fa-info-circle"></i> Información de Debug</h4>
+        <div class="debug-info">
+            <div>
+                <span class="label">Viewport:</span>
+                <span class="value" id="viewportSize">Calculando...</span>
+            </div>
+            <div>
+                <span class="label">Pixel Ratio:</span>
+                <span class="value" id="pixelRatio">Calculando...</span>
+            </div>
+            <div>
+                <span class="label">Breakpoint:</span>
+                <span class="value" id="currentBreakpoint">Calculando...</span>
+            </div>
+            <div>
+                <span class="label">Image Loading:</span>
+                <span class="value" id="imageLoading">Lazy</span>
+            </div>
+            <div>
+                <span class="label">Current Src:</span>
+                <span class="value" id="currentSrc">-</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Debug tool toggle
+        const debugToggle = document.getElementById('debugToggle');
+        const debugPanel = document.getElementById('debugPanel');
+        
+        debugToggle.addEventListener('click', () => {
+            debugPanel.classList.toggle('active');
+        });
+        
+        // Cerrar debug panel al hacer clic fuera
+        document.addEventListener('click', (e) => {
+            if (!debugToggle.contains(e.target) && !debugPanel.contains(e.target)) {
+                debugPanel.classList.remove('active');
+            }
+        });
+        
+        // Actualizar información de debug
+        function updateDebugInfo() {
+            // Viewport size
+            const viewportSize = document.getElementById('viewportSize');
+            viewportSize.textContent = `${window.innerWidth} × ${window.innerHeight}px`;
+            
+            // Pixel ratio
+            const pixelRatio = document.getElementById('pixelRatio');
+            pixelRatio.textContent = window.devicePixelRatio + 'x';
+            
+            // Current breakpoint
+            const breakpointEl = document.getElementById('currentBreakpoint');
+            const width = window.innerWidth;
+            
+            if (width < 480) {
+                breakpointEl.textContent = 'Móvil Pequeño (<480px)';
+                breakpointEl.style.color = '#ef4444';
+            } else if (width < 768) {
+                breakpointEl.textContent = 'Móvil (480-768px)';
+                breakpointEl.style.color = '#ef4444';
+            } else if (width < 1024) {
+                breakpointEl.textContent = 'Tablet (768-1024px)';
+                breakpointEl.style.color = '#3b82f6';
+            } else if (width < 1200) {
+                breakpointEl.textContent = 'Desktop (1024-1200px)';
+                breakpointEl.style.color = '#10b981';
+            } else {
+                breakpointEl.textContent = 'Desktop Grande (>1200px)';
+                breakpointEl.style.color = '#8b5cf6';
+            }
+            
+            // Detect current image src
+            const img = document.querySelector('img[srcset]');
+            if (img && img.currentSrc) {
+                const currentSrcEl = document.getElementById('currentSrc');
+                // Extraer solo el nombre del archivo o parte relevante
+                const url = new URL(img.currentSrc);
+                const path = url.pathname.split('/').pop();
+                currentSrcEl.textContent = path || 'Cargando...';
+                
+                // Resaltar visualmente el breakpoint correspondiente
+                document.querySelectorAll('.breakpoint').forEach(bp => {
+                    bp.classList.remove('active');
+                });
+                
+                if (width < 768) {
+                    document.querySelector('.breakpoint.mobile').classList.add('active');
+                } else if (width < 1024) {
+                    document.querySelector('.breakpoint.tablet').classList.add('active');
+                } else {
+                    document.querySelector('.breakpoint.desktop').classList.add('active');
+                }
+            }
+        }
+        
+        // Actualizar al cargar y redimensionar
+        window.addEventListener('load', updateDebugInfo);
+        window.addEventListener('resize', updateDebugInfo);
+        
+        // Actualizar cada 2 segundos para capturar cambios
+        setInterval(updateDebugInfo, 2000);
+        
+        // Simular carga de imágenes
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', function() {
+                console.log(`Imagen cargada: ${this.currentSrc || this.src}`);
+                
+                // Efecto visual de carga completa
+                this.style.borderColor = '#10b981';
+                setTimeout(() => {
+                    this.style.borderColor = '';
+                }, 1000);
+            });
+            
+            img.addEventListener('error', function() {
+                console.error(`Error cargando imagen: ${this.src}`);
+                this.style.borderColor = '#ef4444';
+                this.style.opacity = '0.7';
+            });
+        });
+        
+        // Cambiar imagen de fondo según el tamaño
+        function updateBackgroundImage() {
+            const hero = document.querySelector('.hero-background');
+            const width = window.innerWidth;
+            
+            if (width < 768) {
+                hero.style.backgroundImage = 'url(https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop)';
+            } else if (width < 1024) {
+                hero.style.backgroundImage = 'url(https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop)';
+            } else {
+                hero.style.backgroundImage = 'url(https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=400&fit=crop)';
+            }
+        }
+        
+        window.addEventListener('load', updateBackgroundImage);
+        window.addEventListener('resize', updateBackgroundImage);
+        
+        // Efectos interactivos
+        document.querySelectorAll('section').forEach(section => {
+            section.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('h2 i');
+                if (icon) {
+                    icon.style.transform = 'rotate(15deg) scale(1.2)';
+                    icon.style.transition = 'transform 0.3s ease';
+                }
+            });
+            
+            section.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('h2 i');
+                if (icon) {
+                    icon.style.transform = '';
+                }
+            });
+        });
+        
+        // Copiar código al hacer clic
+        document.querySelectorAll('code').forEach(code => {
+            code.addEventListener('click', function() {
+                const text = this.textContent;
+                navigator.clipboard.writeText(text).then(() => {
+                    const original = this.textContent;
+                    this.textContent = '¡Copiado!';
+                    this.style.background = '#10b981';
+                    this.style.color = 'white';
+                    
+                    setTimeout(() => {
+                        this.textContent = original;
+                        this.style.background = '';
+                        this.style.color = '';
+                    }, 1500);
+                });
+            });
+        });
+        
+        // Inicializar
+        updateDebugInfo();
+        updateBackgroundImage();
+    </script>
 </body>
 </html>
