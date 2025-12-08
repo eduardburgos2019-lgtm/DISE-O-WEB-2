@@ -3,55 +3,787 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solución: Dashboard Admin</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>NeoAdmin - Dashboard Moderno</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --dark-bg: #0f172a;
+            --dark-card: #1e293b;
+            --dark-card-hover: #334155;
+            --dark-text: #f8fafc;
+            --dark-text-secondary: #cbd5e1;
+            --dark-border: #475569;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--dark-text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            grid-template-rows: 80px 1fr;
+            grid-template-areas: 
+                "sidebar header"
+                "sidebar main";
+            min-height: 100vh;
+        }
+
+        /* Sidebar estilizada */
+        .sidebar {
+            grid-area: sidebar;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid var(--dark-border);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            z-index: 50;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding: 0 0.5rem;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            flex: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            color: var(--dark-text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-item:hover {
+            background: var(--glass-bg);
+            color: var(--dark-text);
+            transform: translateX(5px);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: white;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .nav-icon {
+            font-size: 1.25rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Header moderno */
+        .header {
+            grid-area: header;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--dark-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 40;
+        }
+
+        .header-search {
+            position: relative;
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .header-search input {
+            width: 100%;
+            padding: 0.875rem 1rem 0.875rem 3rem;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            color: var(--dark-text);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .header-search input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        .header-search::before {
+            content: '\f002';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--dark-text-secondary);
+            z-index: 10;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .icon-btn {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid var(--dark-border);
+            color: var(--dark-text);
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .icon-btn:hover {
+            background: var(--dark-card);
+            transform: translateY(-3px);
+        }
+
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--danger);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .user-profile:hover {
+            background: rgba(15, 23, 42, 0.7);
+        }
+
+        .user-profile img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            object-fit: cover;
+        }
+
+        .user-profile span {
+            font-weight: 600;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            grid-area: main;
+            padding: 2.5rem;
+            overflow-y: auto;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark-text);
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            border-radius: 2px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 0.875rem 1.75rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--dark-card) 0%, rgba(30, 41, 59, 0.9) 100%);
+            border-radius: 20px;
+            padding: 1.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            border: 1px solid var(--dark-border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        }
+
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+        }
+
+        .stat-blue .stat-icon { background: rgba(59, 130, 246, 0.1); color: var(--info); }
+        .stat-green .stat-icon { background: rgba(16, 185, 129, 0.1); color: var(--secondary); }
+        .stat-orange .stat-icon { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
+        .stat-purple .stat-icon { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
+
+        .stat-info h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-info p {
+            color: var(--dark-text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-change {
+            font-size: 0.875rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+        }
+
+        .positive {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--secondary);
+        }
+
+        .negative {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+        }
+
+        /* Grid de contenido */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1.75rem;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card h3::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .card-full {
+            grid-column: 1 / -1;
+        }
+
+        /* Lista de actividad */
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.5);
+            transition: var(--transition);
+        }
+
+        .activity-item:hover {
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .activity-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+        }
+
+        .activity-content p {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-content span {
+            font-size: 0.875rem;
+            color: var(--dark-text-secondary);
+        }
+
+        /* Tabla de datos */
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .data-table thead {
+            background: rgba(15, 23, 42, 0.7);
+        }
+
+        .data-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--dark-text-secondary);
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        .data-table tbody tr {
+            transition: var(--transition);
+        }
+
+        .data-table tbody tr:hover {
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        /* Gráfico de barras */
+        .chart-container {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 12px;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 250px;
+            gap: 0.75rem;
+            padding-top: 1rem;
+        }
+
+        .bar {
+            flex: 1;
+            background: linear-gradient(to top, var(--primary), var(--primary-light));
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            transition: var(--transition);
+            min-height: 10px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .bar:hover {
+            transform: scaleY(1.05);
+            opacity: 0.9;
+        }
+
+        .bar span {
+            position: absolute;
+            bottom: -30px;
+            color: var(--dark-text-secondary);
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "header"
+                    "main";
+            }
+            
+            .sidebar {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                height: 100%;
+                transition: left 0.3s ease;
+                z-index: 100;
+                width: 280px;
+            }
+            
+            .sidebar.active {
+                left: 0;
+            }
+            
+            .header {
+                padding: 0 1.5rem;
+            }
+            
+            .main-content {
+                padding: 1.5rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                background: transparent;
+                border: none;
+                color: var(--dark-text);
+                font-size: 1.5rem;
+                cursor: pointer;
+                z-index: 101;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-actions .user-profile span {
+                display: none;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .bar-chart {
+                gap: 0.5rem;
+            }
+            
+            .bar span {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .page-header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .stat-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .stat-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .header-search {
+                max-width: 200px;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stat-card, .card {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Botón de menú móvil */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--dark-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Estilos adicionales para mejor UX */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-light);
+        }
+
+        /* Mejoras de accesibilidad */
+        .btn-primary:focus, 
+        .icon-btn:focus,
+        .nav-item:focus,
+        .header-search input:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Overlay para sidebar en móvil */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(3px);
+            z-index: 99;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <div class="dashboard">
         <!-- Sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <h2>📊 AdminPro</h2>
+                <h2><i class="fas fa-chart-network"></i> NeoAdmin</h2>
             </div>
             <nav class="sidebar-nav">
                 <a href="#" class="nav-item active">
-                    <span class="nav-icon">🏠</span>
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
                     <span>Dashboard</span>
                 </a>
                 <a href="#" class="nav-item">
-                    <span class="nav-icon">📈</span>
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
                     <span>Analíticas</span>
                 </a>
                 <a href="#" class="nav-item">
-                    <span class="nav-icon">👥</span>
+                    <span class="nav-icon"><i class="fas fa-users"></i></span>
                     <span>Usuarios</span>
                 </a>
                 <a href="#" class="nav-item">
-                    <span class="nav-icon">📦</span>
+                    <span class="nav-icon"><i class="fas fa-box-open"></i></span>
                     <span>Productos</span>
                 </a>
                 <a href="#" class="nav-item">
-                    <span class="nav-icon">💰</span>
+                    <span class="nav-icon"><i class="fas fa-shopping-cart"></i></span>
                     <span>Ventas</span>
                 </a>
                 <a href="#" class="nav-item">
-                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-icon"><i class="fas fa-cog"></i></span>
                     <span>Configuración</span>
+                </a>
+                <a href="#" class="nav-item" style="margin-top: auto;">
+                    <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span>
+                    <span>Cerrar Sesión</span>
                 </a>
             </nav>
         </aside>
 
+        <!-- Overlay para sidebar móvil -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
         <!-- Header -->
         <header class="header">
+            <button class="mobile-menu-btn" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
             <div class="header-search">
-                <input type="search" placeholder="Buscar...">
+                <input type="search" placeholder="Buscar reportes, usuarios, productos...">
             </div>
             <div class="header-actions">
-                <button class="icon-btn">🔔<span class="badge">3</span></button>
-                <button class="icon-btn">✉️<span class="badge">5</span></button>
+                <button class="icon-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </button>
+                <button class="icon-btn">
+                    <i class="fas fa-envelope"></i>
+                    <span class="badge">5</span>
+                </button>
                 <div class="user-profile">
-                    <img src="https://i.pravatar.cc/40" alt="Usuario">
-                    <span>Admin User</span>
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="Usuario">
+                    <span>Alex Morgan</span>
                 </div>
             </div>
         </header>
@@ -59,14 +791,16 @@
         <!-- Main Content -->
         <main class="main-content">
             <div class="page-header">
-                <h1>Dashboard</h1>
-                <button class="btn-primary">+ Nuevo</button>
+                <h1>Dashboard Principal</h1>
+                <button class="btn-primary">
+                    <i class="fas fa-plus"></i> Nuevo Reporte
+                </button>
             </div>
 
             <!-- Stats Cards -->
             <div class="stats-grid">
                 <div class="stat-card stat-blue">
-                    <div class="stat-icon">👥</div>
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
                     <div class="stat-info">
                         <h3>2,543</h3>
                         <p>Total Usuarios</p>
@@ -74,26 +808,26 @@
                     </div>
                 </div>
                 <div class="stat-card stat-green">
-                    <div class="stat-icon">💰</div>
+                    <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
                     <div class="stat-info">
                         <h3>$45,678</h3>
-                        <p>Ingresos</p>
+                        <p>Ingresos Totales</p>
                         <span class="stat-change positive">+8.2%</span>
                     </div>
                 </div>
                 <div class="stat-card stat-orange">
-                    <div class="stat-icon">📦</div>
+                    <div class="stat-icon"><i class="fas fa-shopping-cart"></i></div>
                     <div class="stat-info">
                         <h3>1,234</h3>
-                        <p>Pedidos</p>
+                        <p>Pedidos Activos</p>
                         <span class="stat-change negative">-3.1%</span>
                     </div>
                 </div>
                 <div class="stat-card stat-purple">
-                    <div class="stat-icon">⭐</div>
+                    <div class="stat-icon"><i class="fas fa-star"></i></div>
                     <div class="stat-info">
-                        <h3>4.8</h3>
-                        <p>Satisfacción</p>
+                        <h3>4.8/5.0</h3>
+                        <p>Satisfacción Clientes</p>
                         <span class="stat-change positive">+0.3</span>
                     </div>
                 </div>
@@ -106,31 +840,38 @@
                     <h3>Actividad Reciente</h3>
                     <div class="activity-list">
                         <div class="activity-item">
-                            <div class="activity-icon">💙</div>
+                            <div class="activity-icon"><i class="fas fa-user-plus"></i></div>
                             <div class="activity-content">
                                 <p><strong>Nuevo usuario registrado</strong></p>
                                 <span>Hace 5 minutos</span>
                             </div>
                         </div>
                         <div class="activity-item">
-                            <div class="activity-icon">💰</div>
+                            <div class="activity-icon"><i class="fas fa-credit-card"></i></div>
                             <div class="activity-content">
-                                <p><strong>Venta completada: $234</strong></p>
+                                <p><strong>Venta completada: $234.50</strong></p>
                                 <span>Hace 15 minutos</span>
                             </div>
                         </div>
                         <div class="activity-item">
-                            <div class="activity-icon">📦</div>
+                            <div class="activity-icon"><i class="fas fa-shipping-fast"></i></div>
                             <div class="activity-content">
                                 <p><strong>Pedido #1234 enviado</strong></p>
                                 <span>Hace 1 hora</span>
                             </div>
                         </div>
                         <div class="activity-item">
-                            <div class="activity-icon">⭐</div>
+                            <div class="activity-icon"><i class="fas fa-comment-alt"></i></div>
                             <div class="activity-content">
                                 <p><strong>Nueva reseña 5 estrellas</strong></p>
                                 <span>Hace 2 horas</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="activity-content">
+                                <p><strong>Reporte mensual generado</strong></p>
+                                <span>Hace 4 horas</span>
                             </div>
                         </div>
                     </div>
@@ -149,32 +890,37 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Producto A</td>
+                                <td><strong>Laptop Pro X1</strong></td>
                                 <td>234</td>
                                 <td>$12,340</td>
                             </tr>
                             <tr>
-                                <td>Producto B</td>
+                                <td><strong>Smartphone Alpha 12</strong></td>
                                 <td>189</td>
                                 <td>$9,450</td>
                             </tr>
                             <tr>
-                                <td>Producto C</td>
+                                <td><strong>Auriculares SoundMax</strong></td>
                                 <td>156</td>
                                 <td>$7,800</td>
                             </tr>
                             <tr>
-                                <td>Producto D</td>
+                                <td><strong>Tablet VisionPad</strong></td>
                                 <td>143</td>
                                 <td>$7,150</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Smartwatch FitPro</strong></td>
+                                <td>128</td>
+                                <td>$6,400</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <!-- Sales Chart (simulated) -->
+                <!-- Sales Chart -->
                 <div class="card card-full">
-                    <h3>Ventas Mensuales</h3>
+                    <h3>Ventas Mensuales 2023</h3>
                     <div class="chart-container">
                         <div class="bar-chart">
                             <div class="bar" style="height: 60%"><span>Ene</span></div>
@@ -183,11 +929,123 @@
                             <div class="bar" style="height: 85%"><span>Abr</span></div>
                             <div class="bar" style="height: 70%"><span>May</span></div>
                             <div class="bar" style="height: 90%"><span>Jun</span></div>
+                            <div class="bar" style="height: 80%"><span>Jul</span></div>
+                            <div class="bar" style="height: 95%"><span>Ago</span></div>
+                            <div class="bar" style="height: 65%"><span>Sep</span></div>
+                            <div class="bar" style="height: 75%"><span>Oct</span></div>
+                            <div class="bar" style="height: 88%"><span>Nov</span></div>
+                            <div class="bar" style="height: 100%"><span>Dic</span></div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
+
+    <script>
+        // Toggle sidebar en móviles
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
+            document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Cerrar sidebar al hacer clic en el overlay
+        sidebarOverlay.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Cerrar sidebar al hacer clic en un enlace (en móviles)
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                if (window.innerWidth <= 1024) {
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Simular notificaciones
+        document.querySelectorAll('.icon-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const badge = this.querySelector('.badge');
+                if (badge) {
+                    const count = parseInt(badge.textContent);
+                    if (count > 0) {
+                        badge.textContent = '0';
+                        badge.style.backgroundColor = '#10b981';
+                        
+                        // Efecto visual
+                        this.style.transform = 'scale(0.9)';
+                        setTimeout(() => {
+                            this.style.transform = '';
+                        }, 150);
+                    }
+                }
+            });
+        });
+
+        // Efecto hover en las tarjetas de estadísticas
+        document.querySelectorAll('.stat-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Efecto hover en las barras del gráfico
+        document.querySelectorAll('.bar').forEach(bar => {
+            bar.addEventListener('mouseenter', function() {
+                const height = this.style.height;
+                this.style.height = 'calc(' + height + ' * 1.05)';
+            });
+            
+            bar.addEventListener('mouseleave', function() {
+                const height = this.style.height;
+                this.style.height = 'calc(' + height + ' / 1.05)';
+            });
+        });
+
+        // Actualizar hora en tiempo real (simulación)
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('es-ES', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                hour12: false 
+            });
+            const dateString = now.toLocaleDateString('es-ES', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            // Si quisieras mostrar la fecha/hora en algún lugar
+            // document.getElementById('currentTime').textContent = `${dateString} - ${timeString}`;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Cerrar sidebar cuando la ventana se redimensiona a un tamaño mayor
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 1024 && sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
 </body>
 </html>
