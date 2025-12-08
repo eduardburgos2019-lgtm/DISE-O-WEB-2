@@ -3,8 +3,537 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio 4: Tipografía Fluid con Clamp</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Tipografía Fluid con Clamp - Sistema Moderno</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Source+Code+Pro:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Sistema de tipografía fluida */
+            --fluid-min-width: 320px;
+            --fluid-max-width: 1440px;
+            --fluid-viewport: 100vw;
+            
+            /* Escala tipográfica modular */
+            --text-xs: clamp(0.75rem, 0.85rem + 0.2vw, 0.85rem);
+            --text-sm: clamp(0.875rem, 0.95rem + 0.3vw, 1rem);
+            --text-base: clamp(1rem, 1.05rem + 0.4vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 1.2rem + 0.5vw, 1.25rem);
+            --text-xl: clamp(1.25rem, 1.4rem + 0.8vw, 1.5rem);
+            --text-2xl: clamp(1.5rem, 1.7rem + 1vw, 2rem);
+            --text-3xl: clamp(1.875rem, 2.1rem + 1.5vw, 2.5rem);
+            --text-4xl: clamp(2.25rem, 2.6rem + 2vw, 3rem);
+            --text-5xl: clamp(2.5rem, 3rem + 2.5vw, 3.5rem);
+            --text-6xl: clamp(3rem, 3.5rem + 3vw, 4rem);
+            --text-hero: clamp(3.5rem, 4rem + 4vw, 5rem);
+            
+            /* Colores */
+            --primary: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --accent: #10b981;
+            --dark-bg: #0f172a;
+            --dark-card: #1e293b;
+            --light-bg: #f8fafc;
+            --light-card: #ffffff;
+            --text-dark: #1e293b;
+            --text-light: #f1f5f9;
+            --code-bg: #1e1e2e;
+            --quote-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            
+            /* Espaciado fluido */
+            --space-xs: clamp(0.5rem, 0.5rem + 0.5vw, 0.75rem);
+            --space-sm: clamp(0.75rem, 0.75rem + 0.75vw, 1rem);
+            --space-md: clamp(1rem, 1rem + 1vw, 1.5rem);
+            --space-lg: clamp(1.5rem, 1.5rem + 1.5vw, 2rem);
+            --space-xl: clamp(2rem, 2rem + 2vw, 3rem);
+            --space-2xl: clamp(2.5rem, 2.5rem + 2.5vw, 4rem);
+            
+            /* Bordes y sombras */
+            --border-radius: clamp(8px, 0.5rem + 0.5vw, 12px);
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+            
+            /* Transiciones */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: var(--text-base);
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: var(--space-md);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            max-width: min(90%, 1200px);
+            background: var(--light-card);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            padding: var(--space-xl);
+            margin: var(--space-xl) auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+
+        /* Header estilizado */
+        header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-lg);
+            border-bottom: 2px solid #e2e8f0;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-hero);
+            font-weight: 900;
+            line-height: 1.2;
+            color: var(--text-dark);
+            margin-bottom: var(--space-sm);
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::before {
+            content: 'H1';
+            position: absolute;
+            top: -30px;
+            left: 0;
+            font-family: 'Source Code Pro', monospace;
+            font-size: var(--text-xs);
+            color: var(--primary);
+            font-weight: 600;
+            background: rgba(59, 130, 246, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .subtitle {
+            font-size: var(--text-xl);
+            color: #64748b;
+            font-weight: 400;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* Separador estilizado */
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+            margin: var(--space-xl) 0;
+            position: relative;
+        }
+
+        hr::after {
+            content: '📐';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--light-card);
+            padding: 0 20px;
+            font-size: var(--text-lg);
+        }
+
+        /* Contenido del artículo */
+        article {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: var(--space-xl) 0 var(--space-md);
+            position: relative;
+            padding-left: var(--space-md);
+        }
+
+        h2::before {
+            content: 'H2';
+            position: absolute;
+            top: 0;
+            left: -70px;
+            font-family: 'Source Code Pro', monospace;
+            font-size: var(--text-sm);
+            color: var(--secondary);
+            font-weight: 600;
+            background: rgba(139, 92, 246, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-3xl);
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: var(--space-lg) 0 var(--space-sm);
+            position: relative;
+            padding-left: var(--space-sm);
+        }
+
+        h3::before {
+            content: 'H3';
+            position: absolute;
+            top: 0;
+            left: -60px;
+            font-family: 'Source Code Pro', monospace;
+            font-size: var(--text-xs);
+            color: var(--accent);
+            font-weight: 600;
+            background: rgba(16, 185, 129, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-2xl);
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: var(--space-lg) 0 var(--space-sm);
+            position: relative;
+            padding-left: var(--space-sm);
+        }
+
+        h4::before {
+            content: 'H4';
+            position: absolute;
+            top: 0;
+            left: -50px;
+            font-family: 'Source Code Pro', monospace;
+            font-size: var(--text-xs);
+            color: #f59e0b;
+            font-weight: 600;
+            background: rgba(245, 158, 11, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        p {
+            margin-bottom: var(--space-md);
+            font-size: var(--text-base);
+            line-height: 1.8;
+            color: #475569;
+        }
+
+        strong {
+            color: var(--primary-dark);
+            font-weight: 700;
+            background: linear-gradient(120deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        /* Blockquote estilizado */
+        blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-xl);
+            font-weight: 500;
+            font-style: italic;
+            color: white;
+            background: var(--quote-bg);
+            padding: var(--space-lg) var(--space-xl);
+            margin: var(--space-xl) 0;
+            border-radius: var(--border-radius);
+            position: relative;
+            box-shadow: var(--shadow);
+            border-left: 6px solid var(--primary);
+        }
+
+        blockquote::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-5xl);
+            position: absolute;
+            top: var(--space-sm);
+            left: var(--space-md);
+            opacity: 0.3;
+            color: white;
+        }
+
+        blockquote::after {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-5xl);
+            position: absolute;
+            bottom: var(--space-sm);
+            right: var(--space-md);
+            opacity: 0.3;
+            color: white;
+        }
+
+        /* Código estilizado */
+        code {
+            font-family: 'Source Code Pro', monospace;
+            font-size: var(--text-sm);
+            background: var(--code-bg);
+            color: #f8fafc;
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid #334155;
+            font-weight: 500;
+            position: relative;
+            display: inline-block;
+            margin: 0 2px;
+        }
+
+        code::before {
+            content: '</>';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            font-size: var(--text-xs);
+            background: var(--primary);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Panel de demostración de tipografía */
+        .typography-demo {
+            background: var(--light-bg);
+            border-radius: var(--border-radius);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        .demo-title {
+            font-family: 'Source Code Pro', monospace;
+            font-size: var(--text-lg);
+            color: var(--primary-dark);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .demo-title i {
+            color: var(--secondary);
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+
+        .demo-item {
+            background: white;
+            padding: var(--space-md);
+            border-radius: var(--border-radius);
+            border: 1px solid #e2e8f0;
+            transition: var(--transition);
+        }
+
+        .demo-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .demo-item h5 {
+            font-family: 'Source Code Pro', monospace;
+            font-size: var(--text-sm);
+            color: #64748b;
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .demo-item h5 i {
+            color: var(--accent);
+        }
+
+        .demo-text {
+            font-size: var(--text-base);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .demo-size {
+            font-family: 'Source Code Pro', monospace;
+            font-size: var(--text-xs);
+            color: var(--primary);
+            background: rgba(59, 130, 246, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: var(--space-sm);
+        }
+
+        /* Footer informativo */
+        .info-footer {
+            background: var(--dark-card);
+            color: white;
+            padding: var(--space-lg);
+            border-radius: var(--border-radius);
+            margin-top: var(--space-2xl);
+            border-left: 6px solid var(--accent);
+        }
+
+        .info-footer h3 {
+            color: white;
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .info-footer h3 i {
+            color: var(--accent);
+        }
+
+        .info-footer p {
+            color: #cbd5e1;
+            font-size: var(--text-base);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--space-lg);
+                margin: var(--space-md) auto;
+            }
+            
+            h1::before,
+            h2::before,
+            h3::before,
+            h4::before {
+                display: none;
+            }
+            
+            h2, h3, h4 {
+                padding-left: 0;
+            }
+            
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: var(--space-sm);
+            }
+            
+            .container {
+                padding: var(--space-md);
+                max-width: 100%;
+            }
+            
+            blockquote {
+                padding: var(--space-md);
+            }
+            
+            .info-footer {
+                padding: var(--space-md);
+            }
+        }
+
+        /* Indicador de tamaño de ventana (para demostración) */
+        .viewport-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-family: 'Source Code Pro', monospace;
+            font-size: var(--text-sm);
+            box-shadow: var(--shadow);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .viewport-indicator i {
+            color: var(--accent);
+        }
+
+        /* Animación de entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 <body>
 
@@ -41,8 +570,160 @@
                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
                 eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
             </p>
+
+            <!-- Panel de demostración de tipografía -->
+            <div class="typography-demo">
+                <div class="demo-title">
+                    <i class="fas fa-font"></i>
+                    <span>Demostración del Sistema Tipográfico Fluido</span>
+                </div>
+                <p>Este panel muestra cómo se comportan los diferentes tamaños de texto usando <code>clamp()</code>. Redimensiona la ventana para ver la fluidez en acción.</p>
+                
+                <div class="demo-grid">
+                    <div class="demo-item">
+                        <h5><i class="fas fa-heading"></i> Título H1</h5>
+                        <div class="demo-text" style="font-size: var(--text-hero); font-weight: 900;">Título Principal</div>
+                        <div class="demo-size">clamp(3.5rem, 4rem + 4vw, 5rem)</div>
+                    </div>
+                    
+                    <div class="demo-item">
+                        <h5><i class="fas fa-heading"></i> Título H2</h5>
+                        <div class="demo-text" style="font-size: var(--text-4xl); font-weight: 700;">Subtítulo Importante</div>
+                        <div class="demo-size">clamp(2.25rem, 2.6rem + 2vw, 3rem)</div>
+                    </div>
+                    
+                    <div class="demo-item">
+                        <h5><i class="fas fa-text-height"></i> Texto Base</h5>
+                        <div class="demo-text" style="font-size: var(--text-base);">Este es el tamaño de texto base para párrafos.</div>
+                        <div class="demo-size">clamp(1rem, 1.05rem + 0.4vw, 1.125rem)</div>
+                    </div>
+                    
+                    <div class="demo-item">
+                        <h5><i class="fas fa-text-width"></i> Texto Pequeño</h5>
+                        <div class="demo-text" style="font-size: var(--text-sm);">Texto para notas al pie o elementos secundarios.</div>
+                        <div class="demo-size">clamp(0.875rem, 0.95rem + 0.3vw, 1rem)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <p>
+                La función <code>clamp()</code> toma tres valores: un tamaño mínimo, un tamaño preferido (que usa viewport units), y un tamaño máximo. Esto crea un rango fluido entre los puntos de ruptura.
+            </p>
+            
+            <p>
+                Por ejemplo, <code>clamp(1rem, 1.05rem + 0.4vw, 1.125rem)</code> significa:
+                <ul style="margin-left: var(--space-lg); margin-bottom: var(--space-md);">
+                    <li><strong>Mínimo:</strong> 1rem (16px)</li>
+                    <li><strong>Preferido:</strong> 1.05rem + 0.4% del ancho de la ventana</li>
+                    <li><strong>Máximo:</strong> 1.125rem (18px)</li>
+                </ul>
+            </p>
         </article>
+
+        <div class="info-footer">
+            <h3><i class="fas fa-lightbulb"></i> ¿Cómo funciona?</h3>
+            <p>Este diseño utiliza variables CSS (<code>--text-*</code>) para definir un sistema tipográfico completo que se escala fluidamente entre los anchos de pantalla mínimo y máximo. Los tamaños se calculan dinámicamente usando la función <code>clamp()</code>.</p>
+            <p style="margin-top: var(--space-sm);"><strong>Consejo:</strong> Intenta cambiar el tamaño de la ventana del navegador lentamente y observa cómo todos los elementos de texto se escalan suavemente sin saltos abruptos.</p>
+        </div>
     </main>
 
+    <!-- Indicador de tamaño de ventana -->
+    <div class="viewport-indicator" id="viewportIndicator">
+        <i class="fas fa-desktop"></i>
+        <span id="viewportSize">Cargando...</span>
+    </div>
+
+    <script>
+        // Actualizar indicador de tamaño de ventana
+        function updateViewportSize() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const indicator = document.getElementById('viewportSize');
+            
+            indicator.textContent = `${width} × ${height}px`;
+            
+            // Cambiar color según el tamaño
+            const indicatorElement = document.getElementById('viewportIndicator');
+            if (width < 480) {
+                indicatorElement.style.background = '#ef4444'; // Rojo para móvil pequeño
+            } else if (width < 768) {
+                indicatorElement.style.background = '#f59e0b'; // Naranja para móvil
+            } else if (width < 1024) {
+                indicatorElement.style.background = '#10b981'; // Verde para tablet
+            } else if (width < 1440) {
+                indicatorElement.style.background = '#3b82f6'; // Azul para desktop
+            } else {
+                indicatorElement.style.background = '#8b5cf6'; // Púrpura para pantallas grandes
+            }
+        }
+        
+        // Actualizar al cargar y al redimensionar
+        window.addEventListener('load', updateViewportSize);
+        window.addEventListener('resize', updateViewportSize);
+        
+        // Mostrar información sobre el sistema tipográfico
+        document.addEventListener('DOMContentLoaded', () => {
+            // Agregar tooltips a los elementos de código
+            const codeElements = document.querySelectorAll('code');
+            codeElements.forEach(code => {
+                code.title = 'Clic para copiar el valor CSS';
+                
+                code.addEventListener('click', () => {
+                    const text = code.textContent;
+                    navigator.clipboard.writeText(text).then(() => {
+                        const originalText = code.textContent;
+                        code.textContent = '¡Copiado!';
+                        code.style.background = '#10b981';
+                        
+                        setTimeout(() => {
+                            code.textContent = originalText;
+                            code.style.background = '';
+                        }, 1500);
+                    });
+                });
+            });
+            
+            // Efecto de resaltado en los títulos
+            const headings = document.querySelectorAll('h1, h2, h3, h4');
+            headings.forEach(heading => {
+                heading.addEventListener('mouseenter', () => {
+                    heading.style.transform = 'translateX(5px)';
+                    heading.style.transition = 'transform 0.3s ease';
+                });
+                
+                heading.addEventListener('mouseleave', () => {
+                    heading.style.transform = '';
+                });
+            });
+            
+            // Actualizar información de tipografía en tiempo real
+            const demoItems = document.querySelectorAll('.demo-item');
+            demoItems.forEach(item => {
+                const demoText = item.querySelector('.demo-text');
+                
+                item.addEventListener('mouseenter', () => {
+                    const computedStyle = window.getComputedStyle(demoText);
+                    const fontSize = computedStyle.fontSize;
+                    const lineHeight = computedStyle.lineHeight;
+                    
+                    item.setAttribute('title', `Tamaño: ${fontSize}\nAltura de línea: ${lineHeight}`);
+                });
+            });
+        });
+        
+        // Efecto de scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
