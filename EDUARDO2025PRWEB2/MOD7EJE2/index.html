@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Switcher | Elegante</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Barra superior -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-palette"></i>
+                <span>ThemeSwitcher</span>
+            </div>
+            <div class="nav-controls">
+                <div class="theme-indicator">
+                    <i class="fas fa-sun"></i>
+                    <span id="current-theme">Claro</span>
+                </div>
+                <button class="btn btn-icon" id="settings-btn" title="Configuración">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container main-container">
+        <!-- Panel de controles de tema -->
+        <div class="theme-controls">
+            <h1><i class="fas fa-magic"></i> Selector de Temas</h1>
+            <p class="subtitle">Personaliza la apariencia de la aplicación</p>
+            
+            <!-- Selector principal -->
+            <div class="theme-switch-wrapper">
+                <div class="theme-switch-header">
+                    <h3><i class="fas fa-toggle-on"></i> Modo Oscuro/Claro</h3>
+                    <span class="status-badge" id="theme-status">Activado</span>
+                </div>
+                <label class="theme-switch" for="theme-checkbox">
+                    <input type="checkbox" id="theme-checkbox" checked />
+                    <div class="slider round">
+                        <div class="icons">
+                            <i class="fas fa-sun"></i>
+                            <i class="fas fa-moon"></i>
+                        </div>
+                    </div>
+                </label>
+                <p class="helper-text">Activa o desactiva el modo oscuro</p>
+            </div>
+
+            <!-- Selector de temas de color -->
+            <div class="color-themes">
+                <h3><i class="fas fa-fill-drip"></i> Temas de Color</h3>
+                <p class="helper-text">Elige un esquema de colores</p>
+                <div class="color-options">
+                    <div class="color-option" data-color="blue" style="--color: #3b82f6;">
+                        <div class="color-preview"></div>
+                        <span>Azul</span>
+                    </div>
+                    <div class="color-option active" data-color="purple" style="--color: #8b5cf6;">
+                        <div class="color-preview"></div>
+                        <span>Morado</span>
+                    </div>
+                    <div class="color-option" data-color="green" style="--color: #10b981;">
+                        <div class="color-preview"></div>
+                        <span>Verde</span>
+                    </div>
+                    <div class="color-option" data-color="orange" style="--color: #f59e0b;">
+                        <div class="color-preview"></div>
+                        <span>Naranja</span>
+                    </div>
+                    <div class="color-option" data-color="pink" style="--color: #ec4899;">
+                        <div class="color-preview"></div>
+                        <span>Rosa</span>
+                    </div>
+                    <div class="color-option" data-color="red" style="--color: #ef4444;">
+                        <div class="color-preview"></div>
+                        <span>Rojo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Opciones avanzadas -->
+            <div class="advanced-options">
+                <h3><i class="fas fa-sliders-h"></i> Opciones Avanzadas</h3>
+                <div class="option">
+                    <div class="option-info">
+                        <span class="option-title">Animaciones Suaves</span>
+                        <span class="option-desc">Transiciones suaves entre temas</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="animations-toggle" checked>
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+                <div class="option">
+                    <div class="option-info">
+                        <span class="option-title">Auto-detect Theme</span>
+                        <span class="option-desc">Usar preferencia del sistema</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="auto-detect-toggle">
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+                <div class="option">
+                    <div class="option-info">
+                        <span class="option-title">Reducir Animaciones</span>
+                        <span class="option-desc">Para mejor rendimiento</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="reduce-motion-toggle">
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="apply-btn">
+                    <i class="fas fa-check-circle"></i> Aplicar Cambios
+                </button>
+                <button class="btn btn-secondary" id="reset-btn">
+                    <i class="fas fa-undo"></i> Restablecer
+                </button>
+            </div>
+        </div>
+
+        <!-- Vista previa -->
+        <div class="preview-section">
+            <h2><i class="fas fa-eye"></i> Vista Previa</h2>
+            <p class="subtitle">Así se verá tu tema</p>
+            
+            <div class="preview-grid">
+                <!-- Card de perfil -->
+                <div class="card preview-card">
+                    <div class="card-header">
+                        <div class="avatar-container">
+                            <img src="510651465_9896845210427606_6102459332293444094_n.jpg" alt="Jane Doe" class="avatar">
+                            <div class="online-indicator"></div>
+                        </div>
+                        <div class="user-info">
+                            <h3>Jose Eduardo Carazas Burgos</h3>
+                            <p class="role">Frontend Developer</p>
+                        </div>
+                        <button class="btn-icon btn-favorite">
+                            <i class="fas fa-star"></i>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <p class="desc">Apasionada por el código limpio y diseños centrados en el usuario. Especializada en React y Vue.js.</p>
+                        <div class="skills">
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">UI/UX</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <div class="stat">
+                                <span class="stat-value">128</span>
+                                <span class="stat-label">Proyectos</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">2.4K</span>
+                                <span class="stat-label">Seguidores</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">4.8</span>
+                                <span class="stat-label">Rating</span>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-user-plus"></i> Seguir
+                            </button>
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-envelope"></i> Mensaje
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card de estadísticas -->
+                <div class="card stats-card">
+                    <h3><i class="fas fa-chart-bar"></i> Estadísticas del Tema</h3>
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="theme-usage">75%</span>
+                                <span class="stat-label">Usan Modo Oscuro</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="preferred-color">Morado</span>
+                                <span class="stat-label">Color preferido</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="time-saved">3.2h</span>
+                                <span class="stat-label">Tiempo ahorrado</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Satisfacción con el tema</span>
+                            <span>92%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 92%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notificación -->
+                <div class="card notification-card">
+                    <div class="notification-header">
+                        <i class="fas fa-bell"></i>
+                        <h3>Notificación de Tema</h3>
+                        <span class="notification-time">Ahora</span>
+                    </div>
+                    <p>Tu tema personalizado ha sido aplicado exitosamente. Los cambios se verán reflejados en toda la aplicación.</p>
+                    <div class="notification-actions">
+                        <button class="btn btn-sm btn-outline">Entendido</button>
+                        <button class="btn btn-sm btn-primary">Ver detalles</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Información adicional -->
+            <div class="info-box">
+                <div class="info-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="info-content">
+                    <h4>Consejo de Accesibilidad</h4>
+                    <p>El modo oscuro puede reducir la fatiga visual en entornos con poca luz. Asegúrate de que el contraste sea suficiente para una lectura cómoda.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de configuración -->
+    <div class="modal" id="settings-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-cog"></i> Configuración Avanzada</h2>
+                <button class="btn-icon close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="setting">
+                    <h4>Guardar preferencias</h4>
+                    <p>Almacena tu tema preferido para futuras visitas.</p>
+                    <label class="switch">
+                        <input type="checkbox" id="save-preferences-toggle" checked>
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+                <div class="setting">
+                    <h4>Programar cambios de tema</h4>
+                    <p>Cambiar automáticamente al modo oscuro al anochecer.</p>
+                    <label class="switch">
+                        <input type="checkbox" id="schedule-toggle">
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+                <div class="setting">
+                    <h4>Intensidad del modo oscuro</h4>
+                    <div class="slider-container">
+                        <input type="range" min="1" max="10" value="5" class="intensity-slider" id="dark-intensity">
+                        <div class="slider-labels">
+                            <span>Suave</span>
+                            <span>Media</span>
+                            <span>Intenso</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="close-settings">Cancelar</button>
+                <button class="btn btn-primary" id="save-settings">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Theme Switcher v2.0 • Diseñado con <i class="fas fa-heart"></i> para desarrolladores</p>
+            <div class="footer-links">
+                <a href="#"><i class="fas fa-code"></i> GitHub</a>
+                <a href="#"><i class="fas fa-book"></i> Documentación</a>
+                <a href="#"><i class="fas fa-bug"></i> Reportar bug</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
