@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería Masonry | Videojuegos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header con navegación -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-gamepad"></i>
+                <span>GameGallery</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active"><i class="fas fa-th-large"></i> Galería</a>
+                <a href="#" class="nav-link"><i class="fas fa-star"></i> Favoritos</a>
+                <a href="#" class="nav-link"><i class="fas fa-tags"></i> Categorías</a>
+                <a href="#" class="nav-link"><i class="fas fa-cog"></i> Configuración</a>
+            </div>
+            <div class="nav-controls">
+                <button class="btn-icon" id="theme-toggle" title="Cambiar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="btn-icon" id="filter-toggle" title="Filtros">
+                    <i class="fas fa-filter"></i>
+                </button>
+                <button class="btn btn-primary" id="upload-btn">
+                    <i class="fas fa-upload"></i> Subir
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Filtros -->
+        <div class="filters-container" id="filters-container">
+            <div class="filters">
+                <div class="filter-group">
+                    <h4><i class="fas fa-gamepad"></i> Género</h4>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-filter="all">Todos</button>
+                        <button class="filter-btn" data-filter="rpg">RPG</button>
+                        <button class="filter-btn" data-filter="action">Acción</button>
+                        <button class="filter-btn" data-filter="fantasy">Fantasía</button>
+                        <button class="filter-btn" data-filter="scifi">Sci-Fi</button>
+                        <button class="filter-btn" data-filter="horror">Horror</button>
+                        <button class="filter-btn" data-filter="sports">Deportes</button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h4><i class="fas fa-sliders-h"></i> Efectos</h4>
+                    <div class="filter-options">
+                        <button class="filter-btn" data-effect="zoom">Zoom</button>
+                        <button class="filter-btn" data-effect="tilt">3D Tilt</button>
+                        <button class="filter-btn" data-effect="glitch">Glitch</button>
+                        <button class="filter-btn" data-effect="neon">Neón</button>
+                        <button class="filter-btn" data-effect="grayscale">B/N</button>
+                        <button class="filter-btn" data-effect="none">Sin efectos</button>
+                    </div>
+                </div>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-value" id="image-count">24</span>
+                    <span class="stat-label">Imágenes</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="selected-count">0</span>
+                    <span class="stat-label">Seleccionadas</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Galería masonry -->
+        <div class="gallery-controls">
+            <div class="view-options">
+                <button class="view-btn active" data-view="masonry" title="Vista Masonry">
+                    <i class="fas fa-th"></i>
+                </button>
+                <button class="view-btn" data-view="grid" title="Vista Grid">
+                    <i class="fas fa-th-large"></i>
+                </button>
+                <button class="view-btn" data-view="list" title="Vista Lista">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Buscar juegos..." id="search-input">
+            </div>
+        </div>
+
+        <div class="gallery-grid" id="gallery-grid">
+            <!-- Cards generadas dinámicamente -->
+        </div>
+
+        <!-- Modal de imagen -->
+        <div class="modal" id="image-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Título del Juego</h2>
+                    <button class="btn-icon close-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-image-container">
+                        <img id="modal-image" src="" alt="">
+                        <div class="image-effects">
+                            <button class="effect-btn" data-effect="original">Original</button>
+                            <button class="effect-btn" data-effect="vintage">Vintage</button>
+                            <button class="effect-btn" data-effect="crisp">Crisp</button>
+                            <button class="effect-btn" data-effect="warm">Warm</button>
+                        </div>
+                    </div>
+                    <div class="modal-info">
+                        <div class="game-info">
+                            <h3>Información del Juego</h3>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-calendar"></i> Lanzamiento:</span>
+                                    <span class="info-value">2023</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-gamepad"></i> Género:</span>
+                                    <span class="info-value">RPG</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-star"></i> Rating:</span>
+                                    <span class="info-value">4.8/5</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-user"></i> Desarrollador:</span>
+                                    <span class="info-value">Studio Name</span>
+                                </div>
+                            </div>
+                            <p class="game-description">Descripción detallada del juego. Un RPG de fantasía con gráficos impresionantes y una historia envolvente.</p>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-heart"></i> Favorito
+                            </button>
+                            <button class="btn btn-outline">
+                                <i class="fas fa-share"></i> Compartir
+                            </button>
+                            <button class="btn btn-outline">
+                                <i class="fas fa-download"></i> Descargar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><i class="fas fa-gamepad"></i> GameGallery</h4>
+                    <p>La mejor colección de imágenes de videojuegos con efectos especiales.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="fas fa-link"></i> Enlaces</h4>
+                    <a href="#">Inicio</a>
+                    <a href="#">Galería</a>
+                    <a href="#">Favoritos</a>
+                    <a href="#">Contacto</a>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="fas fa-info-circle"></i> Info</h4>
+                    <p>© 2024 GameGallery. Todas las imágenes son propiedad de sus respectivos dueños.</p>
+                    <p>Diseñado con <i class="fas fa-heart"></i> para gamers.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón flotante -->
+    <button class="floating-btn" id="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="app.js"></script>
+</body>
+</html>
