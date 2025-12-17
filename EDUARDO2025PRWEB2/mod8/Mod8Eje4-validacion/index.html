@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de Formulario</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <div class="header">
+                <h1><i class="fas fa-edit"></i> Formulario de Registro</h1>
+                <p class="subtitle">Validación en tiempo real con JavaScript</p>
+            </div>
+            
+            <form id="registrationForm" novalidate>
+                <div class="form-group">
+                    <label for="username">
+                        Nombre de Usuario <span class="required">*</span>
+                    </label>
+                    <div class="input-container">
+                        <input type="text" id="username" name="username" placeholder="Mínimo 3 caracteres">
+                        <span class="success-icon"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <span class="error-message" id="username-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">
+                        Correo Electrónico <span class="required">*</span>
+                    </label>
+                    <div class="input-container">
+                        <input type="email" id="email" name="email" placeholder="ejemplo@correo.com">
+                        <span class="success-icon"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <span class="error-message" id="email-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">
+                        Contraseña <span class="required">*</span>
+                    </label>
+                    <div class="input-container">
+                        <input type="password" id="password" name="password" placeholder="Mínimo 8 caracteres">
+                        <button type="button" class="toggle-password" id="togglePassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <span class="success-icon"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <span class="error-message" id="password-error"></span>
+                    
+                    <div class="password-requirements">
+                        <h4>Requisitos de contraseña:</h4>
+                        <div class="requirements-list">
+                            <p class="requirement" id="req-length">
+                                <span class="req-icon"><i class="fas fa-circle"></i></span>
+                                <span class="req-text">Mínimo 8 caracteres</span>
+                            </p>
+                            <p class="requirement" id="req-uppercase">
+                                <span class="req-icon"><i class="fas fa-circle"></i></span>
+                                <span class="req-text">Al menos una mayúscula</span>
+                            </p>
+                            <p class="requirement" id="req-number">
+                                <span class="req-icon"><i class="fas fa-circle"></i></span>
+                                <span class="req-text">Al menos un número</span>
+                            </p>
+                            <p class="requirement" id="req-special">
+                                <span class="req-icon"><i class="fas fa-circle"></i></span>
+                                <span class="req-text">Al menos un carácter especial</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">
+                        Confirmar Contraseña <span class="required">*</span>
+                    </label>
+                    <div class="input-container">
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repite la contraseña">
+                        <button type="button" class="toggle-password" id="toggleConfirmPassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <span class="success-icon"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <span class="error-message" id="confirmPassword-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="age">
+                        Edad <span class="required">*</span>
+                    </label>
+                    <div class="input-container">
+                        <input type="number" id="age" name="age" placeholder="Debes ser mayor de 18" min="18" max="120">
+                        <span class="success-icon"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <span class="error-message" id="age-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">
+                        Teléfono (Opcional)
+                    </label>
+                    <div class="input-container">
+                        <input type="tel" id="phone" name="phone" placeholder="Ej: +34 123 456 789">
+                        <span class="success-icon"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <span class="error-message" id="phone-error"></span>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="terms" name="terms">
+                        <label for="terms" class="checkbox-label">
+                            <span class="custom-checkbox"></span>
+                            Acepto los <a href="#" class="terms-link">términos y condiciones</a> <span class="required">*</span>
+                        </label>
+                    </div>
+                    <span class="error-message" id="terms-error"></span>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="newsletter" name="newsletter" checked>
+                        <label for="newsletter" class="checkbox-label">
+                            <span class="custom-checkbox"></span>
+                            Deseo recibir novedades y ofertas por correo
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn" id="submitBtn" disabled>
+                        <i class="fas fa-user-plus"></i> Registrarse
+                    </button>
+                    
+                    <button type="button" class="clear-btn" id="clearBtn">
+                        <i class="fas fa-broom"></i> Limpiar Formulario
+                    </button>
+                </div>
+
+                <div class="form-summary" id="formSummary">
+                    <h3><i class="fas fa-info-circle"></i> Información del Formulario</h3>
+                    <div class="summary-content">
+                        <p>Por favor, completa todos los campos requeridos (*) para habilitar el registro.</p>
+                        <ul id="validationList"></ul>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="form-footer">
+                <p>¿Ya tienes una cuenta? <a href="#" class="login-link">Inicia sesión aquí</a></p>
+                <p class="disclaimer"><i class="fas fa-shield-alt"></i> Tus datos están protegidos y no serán compartidos con terceros.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

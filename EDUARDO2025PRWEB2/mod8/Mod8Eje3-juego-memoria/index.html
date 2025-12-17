@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎮 Juego de Memoria</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1><i class="fas fa-brain"></i> Juego de Memoria</h1>
+      <p class="subtitle">Encuentra todas las parejas de cartas</p>
+    </header>
+
+    <div class="game-info">
+      <div class="stats">
+        <div class="stat-box">
+          <i class="fas fa-clock"></i>
+          <div>
+            <p class="stat-label">Tiempo</p>
+            <p class="stat-value" id="timer">00:00</p>
+          </div>
+        </div>
+        
+        <div class="stat-box">
+          <i class="fas fa-sync-alt"></i>
+          <div>
+            <p class="stat-label">Movimientos</p>
+            <p class="stat-value" id="moves">0</p>
+          </div>
+        </div>
+        
+        <div class="stat-box">
+          <i class="fas fa-star"></i>
+          <div>
+            <p class="stat-label">Puntuación</p>
+            <p class="stat-value" id="score">0</p>
+          </div>
+        </div>
+        
+        <div class="stat-box">
+          <i class="fas fa-layer-group"></i>
+          <div>
+            <p class="stat-label">Nivel</p>
+            <p class="stat-value" id="level">Fácil</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="controls">
+        <button id="resetBtn" class="btn reset-btn">
+          <i class="fas fa-redo"></i> Reiniciar Juego
+        </button>
+        <button id="hintBtn" class="btn hint-btn">
+          <i class="fas fa-lightbulb"></i> Pista
+        </button>
+        <select id="difficulty" class="difficulty-select">
+          <option value="easy">Fácil (4x4)</option>
+          <option value="medium" selected>Medio (4x5)</option>
+          <option value="hard">Difícil (5x6)</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="gameBoard" class="board"></div>
+
+    <div class="message-container" id="messageContainer">
+      <div class="message" id="message">
+        <h2 id="messageTitle">¡Excelente!</h2>
+        <p id="messageText">Has completado el juego</p>
+        <div class="message-stats">
+          <p><i class="fas fa-clock"></i> Tiempo: <span id="finalTime">00:00</span></p>
+          <p><i class="fas fa-sync-alt"></i> Movimientos: <span id="finalMoves">0</span></p>
+          <p><i class="fas fa-star"></i> Puntuación: <span id="finalScore">0</span></p>
+        </div>
+        <button id="playAgainBtn" class="btn play-again-btn">
+          <i class="fas fa-play"></i> Jugar Otra Vez
+        </button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>¡Desafía tu memoria! Encuentra todas las parejas en el menor tiempo posible.</p>
+      <p class="hint-text">💡 <em>Consejo: Intenta recordar la posición de las cartas</em></p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
