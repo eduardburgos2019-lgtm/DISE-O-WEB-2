@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Galería de Videojuegos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-gamepad"></i> Galería de Videojuegos</h1>
+                <p>Explora los mejores juegos con efectos interactivos</p>
+            </div>
+            <div class="header-bg"></div>
+        </header>
+
+        <!-- Controles -->
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🎮 Buscar juegos...">
+                <button id="randomBtn" class="random-btn">
+                    <i class="fas fa-random"></i> Aleatorio
+                </button>
+            </div>
+
+            <div class="filters-section">
+                <h3><i class="fas fa-filter"></i> Categorías:</h3>
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-globe"></i> Todos
+                    </button>
+                    <button class="filter-btn" data-filter="aventura">
+                        <i class="fas fa-mountain"></i> Aventura
+                    </button>
+                    <button class="filter-btn" data-filter="accion">
+                        <i class="fas fa-fist-raised"></i> Acción
+                    </button>
+                    <button class="filter-btn" data-filter="rpg">
+                        <i class="fas fa-dragon"></i> RPG
+                    </button>
+                    <button class="filter-btn" data-filter="estrategia">
+                        <i class="fas fa-chess"></i> Estrategia
+                    </button>
+                    <button class="filter-btn" data-filter="deportes">
+                        <i class="fas fa-futbol"></i> Deportes
+                    </button>
+                    <button class="filter-btn" data-filter="favoritos">
+                        <i class="fas fa-heart"></i> Favoritos
+                    </button>
+                </div>
+            </div>
+
+            <div class="view-options">
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid" title="Vista de cuadrícula">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                    <button class="view-btn" data-view="list" title="Vista de lista">
+                        <i class="fas fa-list"></i>
+                    </button>
+                    <button class="view-btn" data-view="carousel" title="Carrusel">
+                        <i class="fas fa-images"></i>
+                    </button>
+                </div>
+                
+                <div class="animation-controls">
+                    <button id="toggleAnimations" class="animation-btn">
+                        <i class="fas fa-play"></i> Animaciones
+                    </button>
+                    <button id="shuffleBtn" class="shuffle-btn">
+                        <i class="fas fa-random"></i> Mezclar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-item">
+                <i class="fas fa-images"></i>
+                <span>Mostrando <strong id="imageCount">0</strong> juegos</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-heart"></i>
+                <span>Favoritos: <strong id="favCount">0</strong></span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-fire"></i>
+                <span>Populares: <strong id="popularCount">0</strong></span>
+            </div>
+        </div>
+
+        <!-- Carrusel (solo visible en modo carrusel) -->
+        <div class="carousel-container" id="carouselContainer">
+            <button class="carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <div class="carousel-track" id="carouselTrack"></div>
+            <button class="carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-indicators" id="carouselIndicators"></div>
+        </div>
+
+        <!-- Galería -->
+        <div class="gallery" id="gallery"></div>
+
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox">
+            <button class="lightbox-close"><i class="fas fa-times"></i></button>
+            <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="lightbox-content">
+                <img src="" alt="" id="lightboxImg">
+                <div class="lightbox-info">
+                    <div class="lightbox-header">
+                        <h3 id="lightboxTitle"></h3>
+                        <div class="lightbox-actions">
+                            <button class="fav-btn" id="lightboxFavBtn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <span class="lightbox-rating">
+                                <i class="fas fa-star"></i> 
+                                <span id="lightboxRating"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="lightbox-category">
+                        <span id="lightboxCategory"></span>
+                        <span class="lightbox-year" id="lightboxYear"></span>
+                    </div>
+                    <p id="lightboxDescription"></p>
+                    <div class="lightbox-tags" id="lightboxTags"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón flotante para favoritos -->
+        <button class="floating-fav-btn" id="floatingFavBtn">
+            <i class="fas fa-heart"></i>
+            <span class="fav-badge" id="favBadge">0</span>
+        </button>
+
+        <!-- Botón para subir -->
+        <button class="scroll-top-btn" id="scrollTopBtn">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

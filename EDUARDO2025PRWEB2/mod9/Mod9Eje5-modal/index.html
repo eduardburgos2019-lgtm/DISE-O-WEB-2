@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Modal Dialog Interactivo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-theme">
+    <div class="page-container">
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-window-restore"></i> Modal Dialog con JavaScript</h1>
+                <p>Ventanas emergentes dinámicas con múltiples efectos</p>
+            </div>
+            <button class="theme-toggle" id="themeToggle" title="Cambiar tema">
+                <i class="fas fa-moon"></i>
+            </button>
+        </header>
+
+        <main class="content">
+            <section class="intro">
+                <h2><i class="fas fa-question-circle"></i> ¿Qué es un Modal?</h2>
+                <p>Un modal es una ventana emergente que aparece sobre el contenido principal y requiere la interacción del usuario antes de continuar. Perfecto para formularios, confirmaciones y más.</p>
+            </section>
+
+            <section class="demo-buttons">
+                <h3><i class="fas fa-flask"></i> Tipos de Modales</h3>
+                <div class="button-grid">
+                    <button class="btn btn-primary" data-modal="modal1">
+                        <div class="btn-content">
+                            <i class="fas fa-edit"></i>
+                            <span>Formulario</span>
+                            <div class="btn-glow"></div>
+                        </div>
+                    </button>
+                    
+                    <button class="btn btn-success" data-modal="modal2">
+                        <div class="btn-content">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Confirmación</span>
+                            <div class="btn-glow"></div>
+                        </div>
+                    </button>
+                    
+                    <button class="btn btn-info" data-modal="modal3">
+                        <div class="btn-content">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Información</span>
+                            <div class="btn-glow"></div>
+                        </div>
+                    </button>
+                    
+                    <button class="btn btn-warning" data-modal="modal4">
+                        <div class="btn-content">
+                            <i class="fas fa-images"></i>
+                            <span>Galería</span>
+                            <div class="btn-glow"></div>
+                        </div>
+                    </button>
+                    
+                    <button class="btn btn-danger" data-modal="modal5">
+                        <div class="btn-content">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Advertencia</span>
+                            <div class="btn-glow"></div>
+                        </div>
+                    </button>
+                    
+                    <button class="btn btn-purple" data-modal="modal6">
+                        <div class="btn-content">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Pago</span>
+                            <div class="btn-glow"></div>
+                        </div>
+                    </button>
+                </div>
+            </section>
+
+            <section class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>Animaciones</h3>
+                    <p>Transiciones suaves y efectos visuales</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-keyboard"></i>
+                    </div>
+                    <h3>Teclado</h3>
+                    <p>Cierra con ESC y navegación por tab</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Temas</h3>
+                    <p>Cambia entre claro y oscuro</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Responsive</h3>
+                    <p>Se adapta a cualquier pantalla</p>
+                </div>
+            </section>
+
+            <section class="instructions">
+                <h3><i class="fas fa-lightbulb"></i> Instrucciones</h3>
+                <ul class="instruction-list">
+                    <li><i class="fas fa-mouse-pointer"></i> Haz clic en cualquier botón para abrir su modal</li>
+                    <li><i class="fas fa-times"></i> Cierra haciendo clic en la X o fuera del modal</li>
+                    <li><i class="fas fa-keyboard"></i> Presiona ESC para cerrar rápidamente</li>
+                    <li><i class="fas fa-exchange-alt"></i> Cambia el tema con el botón superior derecho</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal 1: Formulario -->
+    <div class="modal" id="modal1" data-animation="slide-up">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Cerrar">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h2><i class="fas fa-edit"></i> Formulario de Contacto</h2>
+                <p>Envíanos un mensaje y te responderemos pronto</p>
+            </div>
+            <form class="modal-form">
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Tu nombre completo" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="correo@ejemplo.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <i class="fas fa-tag"></i>
+                        <select required>
+                            <option value="" disabled selected>Selecciona un asunto</option>
+                            <option value="consulta">Consulta General</option>
+                            <option value="soporte">Soporte Técnico</option>
+                            <option value="ventas">Información de Ventas</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <i class="fas fa-comment"></i>
+                        <textarea placeholder="Escribe tu mensaje aquí..." rows="4" required></textarea>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                    </button>
+                    <div class="form-note">
+                        <i class="fas fa-shield-alt"></i> Tus datos están protegidos
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 2: Confirmación -->
+    <div class="modal" id="modal2" data-animation="scale">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-confirm">
+            <button class="modal-close" aria-label="Cerrar">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-icon success">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="modal-body">
+                <h2>¿Confirmar acción?</h2>
+                <p>Esta acción no se puede deshacer. ¿Estás seguro de que deseas continuar?</p>
+                <div class="modal-actions">
+                    <button class="btn-cancel">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                    <button class="btn-confirm">
+                        <i class="fas fa-check"></i> Confirmar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Información -->
+    <div class="modal" id="modal3" data-animation="fade">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Cerrar">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-icon info">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="modal-body">
+                <h2><i class="fas fa-star"></i> Información Importante</h2>
+                <p>Los modales son herramientas esenciales en el desarrollo web moderno:</p>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <i class="fas fa-comment-alt"></i>
+                        <h4>Solicitar Información</h4>
+                        <p>Perfectos para formularios y encuestas</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h4>Alertas</h4>
+                        <p>Mensajes importantes y advertencias</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-check-double"></i>
+                        <h4>Confirmaciones</h4>
+                        <p>Validar acciones críticas</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-images"></i>
+                        <h4>Multimedia</h4>
+                        <p>Galerías y reproductores de video</p>
+                    </div>
+                </div>
+                <div class="features-list">
+                    <h4><i class="fas fa-cogs"></i> Características:</h4>
+                    <ul>
+                        <li><i class="fas fa-check success"></i> Cerrar haciendo clic fuera del modal</li>
+                        <li><i class="fas fa-check success"></i> Cerrar con tecla ESC</li>
+                        <li><i class="fas fa-check success"></i> Previene scroll del fondo</li>
+                        <li><i class="fas fa-check success"></i> Animaciones personalizables</li>
+                        <li><i class="fas fa-check success"></i> Tema claro/oscuro</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4: Galería -->
+    <div class="modal" id="modal4" data-animation="slide-left">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-gallery">
+            <button class="modal-close" aria-label="Cerrar">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h2><i class="fas fa-camera-retro"></i> Galería de Imágenes</h2>
+                <p>Haz clic en cualquier imagen para ampliarla</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&auto=format&fit=crop" alt="Montañas">
+                    <div class="gallery-overlay">
+                        <span>Paisaje de montaña</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&auto=format&fit=crop" alt="Bosque">
+                    <div class="gallery-overlay">
+                        <span>Bosque encantado</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600&auto=format&fit=crop" alt="Playa">
+                    <div class="gallery-overlay">
+                        <span>Playa al atardecer</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&auto=format&fit=crop" alt="Ciudad">
+                    <div class="gallery-overlay">
+                        <span>Ciudad moderna</span>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-navigation">
+                <button class="nav-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <div class="gallery-counter">
+                    <span class="current">1</span> / <span class="total">4</span>
+                </div>
+                <button class="nav-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 5: Advertencia -->
+    <div class="modal" id="modal5" data-animation="slide-down">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-warning">
+            <button class="modal-close" aria-label="Cerrar">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-icon warning">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="modal-body">
+                <h2>¡Advertencia!</h2>
+                <p>Estás a punto de realizar una acción que podría tener consecuencias importantes:</p>
+                <div class="warning-content">
+                    <ul>
+                        <li><i class="fas fa-times-circle danger"></i> Se eliminarán datos permanentemente</li>
+                        <li><i class="fas fa-times-circle danger"></i> No podrás recuperar la información</li>
+                        <li><i class="fas fa-times-circle danger"></i> Se afectarán otros usuarios del sistema</li>
+                    </ul>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-cancel">
+                        <i class="fas fa-arrow-left"></i> Volver atrás
+                    </button>
+                    <button class="btn-confirm danger">
+                        <i class="fas fa-trash"></i> Entiendo, continuar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 6: Pago -->
+    <div class="modal" id="modal6" data-animation="scale">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-payment">
+            <button class="modal-close" aria-label="Cerrar">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h2><i class="fas fa-credit-card"></i> Proceso de Pago</h2>
+                <p>Completa los datos para finalizar tu compra</p>
+            </div>
+            <div class="payment-steps">
+                <div class="step active">
+                    <div class="step-number">1</div>
+                    <span>Información</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <span>Pago</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <span>Confirmación</span>
+                </div>
+            </div>
+            <form class="payment-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Número de tarjeta</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-credit-card"></i>
+                            <input type="text" placeholder="1234 5678 9012 3456" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fecha de vencimiento</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-calendar-alt"></i>
+                            <input type="text" placeholder="MM/AA" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>CVV</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="text" placeholder="123" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Nombre en la tarjeta</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="JUAN PEREZ" required>
+                    </div>
+                </div>
+                <div class="payment-methods">
+                    <span>Métodos aceptados:</span>
+                    <div class="methods">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-amex"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-pay">
+                        <i class="fas fa-lock"></i> Pagar $99.99
+                    </button>
+                    <div class="secure-note">
+                        <i class="fas fa-shield-alt"></i> Pago 100% seguro SSL
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

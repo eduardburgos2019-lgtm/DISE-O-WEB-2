@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Items Interactiva</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            transition: background 0.5s ease;
+        }
+
+        /* Tema claro (por defecto) */
+        body.light-mode {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        /* Tema oscuro */
+        body.dark-mode {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a1a2e 100%);
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .card {
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* Tema claro para card */
+        body.light-mode .card {
+            background: white;
+        }
+
+        /* Tema oscuro para card */
+        body.dark-mode .card {
+            background: #2d3748;
+            color: #e2e8f0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            margin-bottom: 0.5rem;
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+
+        /* Tema claro para h1 */
+        body.light-mode h1 {
+            color: #333;
+        }
+
+        /* Tema oscuro para h1 */
+        body.dark-mode h1 {
+            color: #f7fafc;
+        }
+
+        .subtitle {
+            text-align: center;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        /* Tema claro para subtítulo */
+        body.light-mode .subtitle {
+            color: #666;
+        }
+
+        /* Tema oscuro para subtítulo */
+        body.dark-mode .subtitle {
+            color: #cbd5e0;
+        }
+
+        .theme-toggle {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        /* Tema claro para botón de tema */
+        body.light-mode .theme-toggle {
+            background: #f1f5f9;
+            color: #4a5568;
+        }
+
+        body.light-mode .theme-toggle:hover {
+            background: #e2e8f0;
+        }
+
+        /* Tema oscuro para botón de tema */
+        body.dark-mode .theme-toggle {
+            background: #4a5568;
+            color: #f7fafc;
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: #718096;
+        }
+
+        .input-section {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #itemInput {
+            flex: 1;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s, background 0.3s, color 0.3s;
+        }
+
+        /* Tema claro para input */
+        body.light-mode #itemInput {
+            border: 2px solid #e0e0e0;
+            background: white;
+            color: #333;
+        }
+
+        body.light-mode #itemInput:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Tema oscuro para input */
+        body.dark-mode #itemInput {
+            border: 2px solid #4a5568;
+            background: #4a5568;
+            color: #f7fafc;
+        }
+
+        body.dark-mode #itemInput:focus {
+            outline: none;
+            border-color: #805ad5;
+        }
+
+        body.dark-mode #itemInput::placeholder {
+            color: #a0aec0;
+        }
+
+        .btn {
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-add {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-add:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .stats {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Tema claro para stats */
+        body.light-mode .stats {
+            background: #f8f9fa;
+            color: #666;
+        }
+
+        /* Tema oscuro para stats */
+        body.dark-mode .stats {
+            background: #4a5568;
+            color: #cbd5e0;
+        }
+
+        .stats strong {
+            font-size: 1.2rem;
+        }
+
+        /* Tema claro para strong */
+        body.light-mode .stats strong {
+            color: #667eea;
+        }
+
+        /* Tema oscuro para strong */
+        body.dark-mode .stats strong {
+            color: #9f7aea;
+        }
+
+        .item-list {
+            list-style: none;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .item-list:empty::after {
+            content: 'No hay items aún. ¡Añade uno!';
+            display: block;
+            text-align: center;
+            padding: 2rem;
+            transition: color 0.3s;
+        }
+
+        /* Tema claro para mensaje vacío */
+        body.light-mode .item-list:empty::after {
+            color: #999;
+        }
+
+        /* Tema oscuro para mensaje vacío */
+        body.dark-mode .item-list:empty::after {
+            color: #a0aec0;
+        }
+
+        .list-item {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s;
+            animation: slideIn 0.3s ease;
+        }
+
+        /* Tema claro para items */
+        body.light-mode .list-item {
+            background: #f8f9fa;
+        }
+
+        body.light-mode .list-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        /* Tema oscuro para items */
+        body.dark-mode .list-item {
+            background: #4a5568;
+        }
+
+        body.dark-mode .list-item:hover {
+            background: #5a6578;
+            transform: translateX(5px);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .item-text {
+            flex: 1;
+            transition: color 0.3s;
+        }
+
+        /* Tema claro para texto de item */
+        body.light-mode .item-text {
+            color: #333;
+        }
+
+        /* Tema oscuro para texto de item */
+        body.dark-mode .item-text {
+            color: #f7fafc;
+        }
+
+        .item-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .btn-edit {
+            background: #ffa502;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: #ff8c00;
+            transform: scale(1.05);
+        }
+
+        .btn-delete {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+        }
+
+        .actions {
+            text-align: center;
+        }
+
+        .btn-danger {
+            background: #ff6b6b;
+            color: white;
+            width: 100%;
+        }
+
+        .btn-danger:hover {
+            background: #ff5252;
+        }
+
+        /* Edit mode */
+        .list-item.editing .item-text {
+            display: none;
+        }
+
+        .list-item .edit-input {
+            display: none;
+            flex: 1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: background 0.3s, color 0.3s, border 0.3s;
+        }
+
+        /* Tema claro para input de edición */
+        body.light-mode .list-item .edit-input {
+            border: 2px solid #667eea;
+            background: white;
+            color: #333;
+            padding: 0.5rem;
+        }
+
+        /* Tema oscuro para input de edición */
+        body.dark-mode .list-item .edit-input {
+            border: 2px solid #9f7aea;
+            background: #5a6578;
+            color: #f7fafc;
+            padding: 0.5rem;
+        }
+
+        .list-item.editing .edit-input {
+            display: block;
+        }
+
+        .list-item .btn-save {
+            display: none;
+        }
+
+        .list-item.editing .btn-save {
+            display: flex;
+            background: #4caf50;
+            color: white;
+        }
+
+        .list-item.editing .btn-save:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+
+        .list-item.editing .btn-edit {
+            display: none;
+        }
+
+        /* Estilos para la barra de desplazamiento */
+        .item-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .item-list::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 10px;
+        }
+
+        .item-list::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+        }
+
+        /* Tema claro para scrollbar */
+        body.light-mode .item-list::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+        }
+
+        body.light-mode .item-list::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0;
+        }
+
+        /* Tema oscuro para scrollbar */
+        body.dark-mode .item-list::-webkit-scrollbar-thumb {
+            background: #718096;
+        }
+
+        body.dark-mode .item-list::-webkit-scrollbar-thumb:hover {
+            background: #4a5568;
+        }
+
+        /* Iconos animados */
+        .fa-moon, .fa-sun {
+            animation: rotateIn 0.5s ease;
+        }
+
+        @keyframes rotateIn {
+            from {
+                transform: rotate(-90deg);
+                opacity: 0;
+            }
+            to {
+                transform: rotate(0);
+                opacity: 1;
+            }
+        }
+
+        /* Ajustes para móviles */
+        @media (max-width: 600px) {
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .input-section {
+                flex-direction: column;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .theme-toggle {
+                align-self: flex-end;
+                margin-top: -60px;
+            }
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <div class="container">
+        <div class="card">
+            <div class="header-container">
+                <div class="header-text">
+                    <h1>Lista de Items</h1>
+                    <p class="subtitle">Gestiona tus tareas de forma eficiente</p>
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            
+            <div class="input-section">
+                <input type="text" id="itemInput" placeholder="Escribe un nuevo item...">
+                <button class="btn btn-add" id="addBtn">
+                    <i class="fas fa-plus"></i> Añadir
+                </button>
+            </div>
+            
+            <div class="stats">
+                <p>Total de items: <strong id="totalItems">0</strong> | 
+                Pendientes: <strong id="pendingItems">0</strong></p>
+            </div>
+            
+            <ul class="item-list" id="itemList">
+                <!-- Los items se añadirán aquí dinámicamente -->
+            </ul>
+            
+            <div class="actions">
+                <button class="btn btn-danger" id="clearAllBtn">
+                    <i class="fas fa-trash-alt"></i> Limpiar Todo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del DOM
+            const itemInput = document.getElementById('itemInput');
+            const addBtn = document.getElementById('addBtn');
+            const itemList = document.getElementById('itemList');
+            const clearAllBtn = document.getElementById('clearAllBtn');
+            const themeToggle = document.getElementById('themeToggle');
+            const totalItemsEl = document.getElementById('totalItems');
+            const pendingItemsEl = document.getElementById('pendingItems');
+            
+            // Estado de la aplicación
+            let items = JSON.parse(localStorage.getItem('items')) || [];
+            let isDarkMode = localStorage.getItem('darkMode') === 'true';
+            
+            // Inicializar tema
+            if (isDarkMode) {
+                document.body.classList.remove('light-mode');
+                document.body.classList.add('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            // Actualizar estadísticas
+            function updateStats() {
+                totalItemsEl.textContent = items.length;
+                const pending = items.filter(item => !item.completed).length;
+                pendingItemsEl.textContent = pending;
+            }
+            
+            // Guardar en localStorage
+            function saveItems() {
+                localStorage.setItem('items', JSON.stringify(items));
+                updateStats();
+            }
+            
+            // Renderizar items
+            function renderItems() {
+                itemList.innerHTML = '';
+                
+                items.forEach((item, index) => {
+                    const li = document.createElement('li');
+                    li.className = 'list-item';
+                    li.dataset.index = index;
+                    
+                    li.innerHTML = `
+                        <span class="item-text">${item.text}</span>
+                        <input type="text" class="edit-input" value="${item.text}">
+                        <div class="item-buttons">
+                            <button class="btn-icon btn-edit" title="Editar item">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-icon btn-save" title="Guardar cambios">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="btn-icon btn-delete" title="Eliminar item">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                    
+                    itemList.appendChild(li);
+                    
+                    // Configurar eventos para este item
+                    const editBtn = li.querySelector('.btn-edit');
+                    const saveBtn = li.querySelector('.btn-save');
+                    const deleteBtn = li.querySelector('.btn-delete');
+                    const itemText = li.querySelector('.item-text');
+                    const editInput = li.querySelector('.edit-input');
+                    
+                    // Modo edición
+                    editBtn.addEventListener('click', () => {
+                        li.classList.add('editing');
+                        editInput.focus();
+                        editInput.select();
+                    });
+                    
+                    // Guardar cambios
+                    saveBtn.addEventListener('click', () => {
+                        const newText = editInput.value.trim();
+                        if (newText) {
+                            items[index].text = newText;
+                            itemText.textContent = newText;
+                            li.classList.remove('editing');
+                            saveItems();
+                        }
+                    });
+                    
+                    // Guardar con Enter
+                    editInput.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            saveBtn.click();
+                        }
+                    });
+                    
+                    // Eliminar item
+                    deleteBtn.addEventListener('click', () => {
+                        // Animación de eliminación
+                        li.style.transform = 'translateX(100px)';
+                        li.style.opacity = '0';
+                        
+                        setTimeout(() => {
+                            items.splice(index, 1);
+                            renderItems();
+                            saveItems();
+                        }, 300);
+                    });
+                });
+                
+                updateStats();
+            }
+            
+            // Añadir nuevo item
+            function addItem() {
+                const text = itemInput.value.trim();
+                if (text) {
+                    items.push({ text, completed: false });
+                    itemInput.value = '';
+                    renderItems();
+                    saveItems();
+                    
+                    // Enfocar el input después de agregar
+                    itemInput.focus();
+                }
+            }
+            
+            // Limpiar todos los items
+            function clearAllItems() {
+                if (items.length > 0) {
+                    if (confirm('¿Estás seguro de que quieres eliminar todos los items?')) {
+                        items = [];
+                        renderItems();
+                        saveItems();
+                    }
+                }
+            }
+            
+            // Alternar tema claro/oscuro
+            function toggleTheme() {
+                isDarkMode = !isDarkMode;
+                
+                if (isDarkMode) {
+                    document.body.classList.remove('light-mode');
+                    document.body.classList.add('dark-mode');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                } else {
+                    document.body.classList.remove('dark-mode');
+                    document.body.classList.add('light-mode');
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                }
+                
+                localStorage.setItem('darkMode', isDarkMode);
+            }
+            
+            // Event Listeners
+            addBtn.addEventListener('click', addItem);
+            
+            itemInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    addItem();
+                }
+            });
+            
+            clearAllBtn.addEventListener('click', clearAllItems);
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // Renderizar items al cargar
+            renderItems();
+        });
+    </script>
+</body>
+</html>
