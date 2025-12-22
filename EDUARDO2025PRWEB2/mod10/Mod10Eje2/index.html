@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="calculator-card">
+            <div class="header-section">
+                <h1>⚖️ Calculadora de IMC</h1>
+                <div class="header-buttons">
+                    <button class="btn-theme" id="themeBtn" title="Cambiar tema">
+                        🌙
+                    </button>
+                    <button class="btn-tip" id="tipBtn" title="Consejos de salud">
+                        💡
+                    </button>
+                </div>
+            </div>
+            
+            <p class="subtitle">Calcula tu Índice de Masa Corporal y mejora tu salud</p>
+            
+            <form id="imcForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="peso">Peso (kg)</label>
+                        <div class="input-with-button">
+                            <input 
+                                type="number" 
+                                id="peso" 
+                                name="peso"
+                                placeholder="Ej: 70"
+                                min="1"
+                                max="300"
+                                step="0.1"
+                                required
+                            >
+                            <div class="input-buttons">
+                                <button type="button" class="btn-input" id="quickWeight50">50</button>
+                                <button type="button" class="btn-input" id="quickWeight70">70</button>
+                                <button type="button" class="btn-input" id="quickWeight90">90</button>
+                            </div>
+                        </div>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="altura">Altura (cm)</label>
+                        <div class="input-with-button">
+                            <input 
+                                type="number" 
+                                id="altura" 
+                                name="altura"
+                                placeholder="Ej: 170"
+                                min="50"
+                                max="250"
+                                step="0.1"
+                                required
+                            >
+                            <div class="input-buttons">
+                                <button type="button" class="btn-input" id="quickHeight160">160</button>
+                                <button type="button" class="btn-input" id="quickHeight175">175</button>
+                                <button type="button" class="btn-input" id="quickHeight190">190</button>
+                            </div>
+                        </div>
+                        <span class="error-message"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edad">Edad (años)</label>
+                        <input 
+                            type="number" 
+                            id="edad" 
+                            name="edad"
+                            placeholder="Ej: 25"
+                            min="1"
+                            max="120"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sexo</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="sexo" value="masculino" checked>
+                                <span class="radio-custom">
+                                    <span class="radio-dot"></span>
+                                </span>
+                                Masculino
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="sexo" value="femenino">
+                                <span class="radio-custom">
+                                    <span class="radio-dot"></span>
+                                </span>
+                                Femenino
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="clearFormBtn">
+                        🔄 Limpiar
+                    </button>
+                    <button type="button" class="btn-secondary" id="savePresetBtn">
+                        💾 Guardar Preset
+                    </button>
+                    <button type="button" class="btn-secondary" id="loadPresetBtn">
+                        📂 Cargar Preset
+                    </button>
+                    <button type="submit" class="btn-calculate">
+                        ⚡ Calcular IMC
+                    </button>
+                </div>
+            </form>
+
+            <div class="result-section" id="resultSection" style="display: none;">
+                <div class="result-header">
+                    <h2>📊 Tu Resultado</h2>
+                    <button class="btn-result-action" id="shareResultBtn" title="Compartir resultado">
+                        📤 Compartir
+                    </button>
+                </div>
+                
+                <div class="imc-display">
+                    <div class="imc-value-container">
+                        <div class="imc-value" id="imcValue">0.0</div>
+                        <div class="imc-category" id="imcCategory">-</div>
+                        <button class="btn-details" id="showDetailsBtn">
+                            📈 Ver Detalles
+                        </button>
+                    </div>
+                </div>
+
+                <div class="imc-bar">
+                    <div class="imc-indicator" id="imcIndicator"></div>
+                    <div class="bar-segment bajo-peso">Bajo peso</div>
+                    <div class="bar-segment normal">Normal</div>
+                    <div class="bar-segment sobrepeso">Sobrepeso</div>
+                    <div class="bar-segment obesidad">Obesidad</div>
+                </div>
+
+                <div class="imc-info-grid">
+                    <div class="info-card">
+                        <div class="info-icon">🎯</div>
+                        <h4>Rango Ideal</h4>
+                        <p id="idealRange">18.5 - 24.9</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">📊</div>
+                        <h4>Estado</h4>
+                        <p id="currentStatus">-</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">⚖️</div>
+                        <h4>Peso Ideal</h4>
+                        <p id="idealWeight">- kg</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">📈</div>
+                        <h4>Tendencia</h4>
+                        <p id="trend">-</p>
+                    </div>
+                </div>
+
+                <div class="imc-ranges">
+                    <h3>📋 Rangos de IMC:</h3>
+                    <ul>
+                        <li><span class="dot bajo-peso"></span> Bajo peso: Menor a 18.5</li>
+                        <li><span class="dot normal"></span> Normal: 18.5 - 24.9</li>
+                        <li><span class="dot sobrepeso"></span> Sobrepeso: 25 - 29.9</li>
+                        <li><span class="dot obesidad"></span> Obesidad: 30 o mayor</li>
+                    </ul>
+                </div>
+
+                <div class="recommendations" id="recommendations">
+                    <div class="recommendations-header">
+                        <h3>💡 Recomendaciones:</h3>
+                        <button class="btn-recommendation-action" id="saveRecommendationsBtn">
+                            💾 Guardar
+                        </button>
+                    </div>
+                    <p id="recommendationText"></p>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <div class="history-header">
+                    <h2>📋 Historial</h2>
+                    <div class="history-buttons">
+                        <button class="btn-history-action" id="exportHistoryBtn">
+                            📥 Exportar
+                        </button>
+                        <button class="btn-history-action" id="clearHistoryBtn" style="display: none;">
+                            🗑️ Limpiar
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="historyList">
+                    <p class="empty-history">No hay cálculos previos</p>
+                </div>
+                
+                <div class="stats-summary" id="statsSummary" style="display: none;">
+                    <h4>📊 Estadísticas:</h4>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">Promedio IMC:</span>
+                            <span class="stat-value" id="avgImc">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Mejor IMC:</span>
+                            <span class="stat-value" id="bestImc">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Total cálculos:</span>
+                            <span class="stat-value" id="totalCalculations">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Detalles -->
+    <div class="modal" id="detailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📈 Detalles del Análisis</h2>
+                <button class="close-modal" id="closeDetailsBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="details-content">
+                    <div class="detail-item">
+                        <h3>📊 Tu IMC Actual</h3>
+                        <p class="detail-value" id="detailImcValue">-</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <h3>🎯 Rango Saludable</h3>
+                        <p>Para tu altura de <span id="detailHeight">-</span> cm, el peso saludable debería estar entre:</p>
+                        <p class="detail-value" id="detailHealthyRange">-</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <h3>📈 Progreso Recomendado</h3>
+                        <p id="detailProgress">-</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <h3>⏱️ Tiempo Estimado</h3>
+                        <p id="detailTime">-</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <h3>🏃‍♂️ Acciones Sugeridas</h3>
+                        <ul id="detailActions">
+                            <!-- Se llenará dinámicamente -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="printDetailsBtn">🖨️ Imprimir</button>
+                <button class="btn-secondary" id="closeDetailsBtn2">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Presets -->
+    <div class="modal" id="presetsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📂 Mis Presets Guardados</h2>
+                <button class="close-modal" id="closePresetsBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="presetsList">
+                    <p class="empty-presets">No hay presets guardados</p>
+                </div>
+                <div class="preset-actions">
+                    <input type="text" id="presetName" placeholder="Nombre del preset" class="preset-input">
+                    <button class="btn-primary" id="saveNewPresetBtn">💾 Guardar Nuevo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificación Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Multi-paso</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="wizard-container">
+            <div class="wizard-header">
+                <h1>🎯 Registro por Pasos</h1>
+                <div class="header-actions">
+                    <button class="btn-action" id="helpBtn" title="Ayuda">
+                        ❓
+                    </button>
+                    <button class="btn-action" id="themeBtn" title="Cambiar tema">
+                        🌙
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Barra de progreso -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-bubble">
+                            <span class="step-number">1</span>
+                            <div class="step-checkmark">✓</div>
+                        </div>
+                        <span class="step-label">Personal</span>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-bubble">
+                            <span class="step-number">2</span>
+                            <div class="step-checkmark">✓</div>
+                        </div>
+                        <span class="step-label">Dirección</span>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-bubble">
+                            <span class="step-number">3</span>
+                            <div class="step-checkmark">✓</div>
+                        </div>
+                        <span class="step-label">Preferencias</span>
+                    </div>
+                    <div class="progress-step" data-step="4">
+                        <div class="step-bubble">
+                            <span class="step-number">4</span>
+                            <div class="step-checkmark">✓</div>
+                        </div>
+                        <span class="step-label">Confirmar</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wizard-content">
+                <form id="wizardForm" novalidate>
+                    <!-- Paso 1: Datos Personales -->
+                    <div class="form-step active" data-step="1">
+                        <div class="step-header">
+                            <h2>👤 Datos Personales</h2>
+                            <span class="step-counter">Paso 1 de 4</span>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="firstName">
+                                    Nombre *
+                                    <button type="button" class="input-help" data-help="Ingresa tu nombre real sin apellidos">
+                                        ?
+                                    </button>
+                                </label>
+                                <input type="text" id="firstName" name="firstName" required>
+                                <span class="error-message"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastName">
+                                    Apellido *
+                                    <button type="button" class="input-help" data-help="Ingresa tus apellidos completos">
+                                        ?
+                                    </button>
+                                </label>
+                                <input type="text" id="lastName" name="lastName" required>
+                                <span class="error-message"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="email">
+                                    Email *
+                                    <button type="button" class="input-help" data-help="Usa un email válido y accesible">
+                                        ?
+                                    </button>
+                                </label>
+                                <div class="input-with-action">
+                                    <input type="email" id="email" name="email" required>
+                                    <button type="button" class="btn-input-action" id="validateEmailBtn" title="Validar email">
+                                        ✔️
+                                    </button>
+                                </div>
+                                <span class="error-message"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">
+                                    Teléfono *
+                                    <button type="button" class="input-help" data-help="10 dígitos sin espacios ni guiones">
+                                        ?
+                                    </button>
+                                </label>
+                                <div class="input-with-action">
+                                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+                                    <button type="button" class="btn-input-action" id="formatPhoneBtn" title="Formatear número">
+                                        📞
+                                    </button>
+                                </div>
+                                <span class="error-message"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="birthDate">Fecha de Nacimiento</label>
+                            <input type="date" id="birthDate" name="birthDate" max="">
+                        </div>
+                    </div>
+
+                    <!-- Paso 2: Dirección -->
+                    <div class="form-step" data-step="2">
+                        <div class="step-header">
+                            <h2>🏠 Dirección</h2>
+                            <span class="step-counter">Paso 2 de 4</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="street">Calle *</label>
+                            <input type="text" id="street" name="street" required>
+                            <span class="error-message"></span>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="city">Ciudad *</label>
+                                <input type="text" id="city" name="city" required>
+                                <span class="error-message"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="zipCode">Código Postal *</label>
+                                <input type="text" id="zipCode" name="zipCode" pattern="[0-9]{5}" required>
+                                <span class="error-message"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country">País *</label>
+                            <div class="select-with-action">
+                                <select id="country" name="country" required>
+                                    <option value="">Selecciona un país</option>
+                                    <option value="mx">México 🇲🇽</option>
+                                    <option value="es">España 🇪🇸</option>
+                                    <option value="ar">Argentina 🇦🇷</option>
+                                    <option value="co">Colombia 🇨🇴</option>
+                                    <option value="pe">Perú 🇵🇪</option>
+                                    <option value="cl">Chile 🇨🇱</option>
+                                </select>
+                                <button type="button" class="btn-input-action" id="detectCountryBtn" title="Detectar país">
+                                    🌍
+                                </button>
+                            </div>
+                            <span class="error-message"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="state">Estado / Provincia</label>
+                            <input type="text" id="state" name="state">
+                        </div>
+                    </div>
+
+                    <!-- Paso 3: Preferencias -->
+                    <div class="form-step" data-step="3">
+                        <div class="step-header">
+                            <h2>🎨 Preferencias</h2>
+                            <span class="step-counter">Paso 3 de 4</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Intereses (Selecciona al menos uno) *</label>
+                            <div class="interests-grid">
+                                <label class="interest-card">
+                                    <input type="checkbox" name="interests" value="tecnologia">
+                                    <div class="interest-icon">💻</div>
+                                    <span>Tecnología</span>
+                                </label>
+                                <label class="interest-card">
+                                    <input type="checkbox" name="interests" value="deportes">
+                                    <div class="interest-icon">⚽</div>
+                                    <span>Deportes</span>
+                                </label>
+                                <label class="interest-card">
+                                    <input type="checkbox" name="interests" value="musica">
+                                    <div class="interest-icon">🎵</div>
+                                    <span>Música</span>
+                                </label>
+                                <label class="interest-card">
+                                    <input type="checkbox" name="interests" value="viajes">
+                                    <div class="interest-icon">✈️</div>
+                                    <span>Viajes</span>
+                                </label>
+                                <label class="interest-card">
+                                    <input type="checkbox" name="interests" value="cocina">
+                                    <div class="interest-icon">🍳</div>
+                                    <span>Cocina</span>
+                                </label>
+                                <label class="interest-card">
+                                    <input type="checkbox" name="interests" value="libros">
+                                    <div class="interest-icon">📚</div>
+                                    <span>Libros</span>
+                                </label>
+                            </div>
+                            <span class="error-message"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newsletter" class="checkbox-label">
+                                <input type="checkbox" id="newsletter" name="newsletter">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">📬 Deseo recibir el newsletter semanal</span>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notifications" class="checkbox-label">
+                                <input type="checkbox" id="notifications" name="notifications" checked>
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">🔔 Recibir notificaciones importantes</span>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comments">
+                                Comentarios adicionales
+                                <span class="optional">(Opcional)</span>
+                            </label>
+                            <textarea id="comments" name="comments" rows="4" placeholder="Comparte cualquier información adicional que consideres importante..."></textarea>
+                            <div class="char-counter">
+                                <span id="charCount">0</span>/500 caracteres
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 4: Confirmación -->
+                    <div class="form-step" data-step="4">
+                        <div class="step-header">
+                            <h2>✅ Confirmación</h2>
+                            <span class="step-counter">Paso 4 de 4</span>
+                        </div>
+                        
+                        <div class="confirmation-header">
+                            <div class="confirmation-icon">📋</div>
+                            <p class="confirmation-text">Por favor revisa cuidadosamente tus datos antes de enviar el formulario:</p>
+                        </div>
+                        
+                        <div class="summary-container">
+                            <div class="summary-section">
+                                <h3>👤 Datos Personales</h3>
+                                <div id="summaryPersonal" class="summary-content"></div>
+                            </div>
+
+                            <div class="summary-section">
+                                <h3>🏠 Dirección</h3>
+                                <div id="summaryAddress" class="summary-content"></div>
+                            </div>
+
+                            <div class="summary-section">
+                                <h3>🎨 Preferencias</h3>
+                                <div id="summaryPreferences" class="summary-content"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="terms" class="checkbox-label">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">
+                                    ✅ Acepto los 
+                                    <button type="button" class="btn-link" id="viewTermsBtn">
+                                        términos y condiciones
+                                    </button>
+                                     *
+                                </span>
+                            </label>
+                            <span class="error-message"></span>
+                        </div>
+                    </div>
+
+                    <!-- Botones de navegación -->
+                    <div class="form-navigation">
+                        <div class="nav-left">
+                            <button type="button" class="btn btn-secondary" id="prevBtn">
+                                ← Anterior
+                            </button>
+                            <button type="button" class="btn btn-outline" id="saveDraftBtn" title="Guardar borrador">
+                                💾 Guardar Borrador
+                            </button>
+                        </div>
+                        
+                        <div class="nav-right">
+                            <button type="button" class="btn btn-skip" id="skipBtn" style="display: none;">
+                                ⏭️ Saltar Paso
+                            </button>
+                            <button type="button" class="btn btn-primary" id="nextBtn">
+                                Siguiente →
+                            </button>
+                            <button type="submit" class="btn btn-success" id="submitBtn">
+                                ✨ Enviar Registro
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Términos -->
+    <div class="modal" id="termsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📜 Términos y Condiciones</h2>
+                <button class="close-modal" id="closeTermsBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="terms-content">
+                    <h3>1. Aceptación de Términos</h3>
+                    <p>Al completar este formulario, aceptas nuestros términos y condiciones de uso.</p>
+                    
+                    <h3>2. Protección de Datos</h3>
+                    <p>Tu información será protegida según la Ley de Protección de Datos Personales.</p>
+                    
+                    <h3>3. Uso de la Información</h3>
+                    <p>Los datos proporcionados serán utilizados únicamente para los fines establecidos.</p>
+                    
+                    <h3>4. Responsabilidades</h3>
+                    <p>Eres responsable de la veracidad de la información proporcionada.</p>
+                    
+                    <h3>5. Modificaciones</h3>
+                    <p>Nos reservamos el derecho de modificar estos términos en cualquier momento.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="acceptTermsBtn">Aceptar Términos</button>
+                <button class="btn btn-secondary" id="closeTermsBtn2">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Ayuda -->
+    <div class="modal" id="helpModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>❓ Ayuda del Formulario</h2>
+                <button class="close-modal" id="closeHelpBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="help-content">
+                    <div class="help-item">
+                        <h3>🎯 Cómo Usar</h3>
+                        <p>Completa cada paso del formulario y usa los botones de navegación para avanzar o retroceder.</p>
+                    </div>
+                    
+                    <div class="help-item">
+                        <h3>📱 Campos Obligatorios</h3>
+                        <p>Los campos marcados con * son obligatorios. Debes completarlos para continuar.</p>
+                    </div>
+                    
+                    <div class="help-item">
+                        <h3>💾 Guardar Borrador</h3>
+                        <p>Puedes guardar tu progreso en cualquier momento y continuar después.</p>
+                    </div>
+                    
+                    <div class="help-item">
+                        <h3>🔄 Deshacer Cambios</h3>
+                        <p>Usa los botones de navegación para revisar y modificar información anterior.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="closeHelpBtn2">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Borrador Guardado -->
+    <div class="modal" id="draftModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>💾 Borrador Guardado</h2>
+                <button class="close-modal" id="closeDraftBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Tu progreso ha sido guardado. ¿Qué deseas hacer?</p>
+                <div class="draft-options">
+                    <button class="btn btn-primary" id="loadDraftBtn">Cargar Borrador</button>
+                    <button class="btn btn-secondary" id="newFormBtn">Comenzar Nuevo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificación Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

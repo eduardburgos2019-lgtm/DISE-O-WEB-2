@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔍 Buscador Avanzado con Filtros Reales</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Panel de Filtros -->
+        <aside class="filters-panel">
+            <div class="filters-header">
+                <h2>🎯 Filtros de Búsqueda</h2>
+                <div class="header-actions">
+                    <button class="btn-action" id="toggleFiltersBtn" title="Mostrar/ocultar filtros">
+                        🔍
+                    </button>
+                    <button class="btn-action" id="themeBtn" title="Cambiar tema">
+                        🌙
+                    </button>
+                </div>
+            </div>
+
+            <form id="filterForm">
+                <!-- Búsqueda principal -->
+                <div class="filter-group">
+                    <label for="search">
+                        Palabra clave
+                        <button type="button" class="input-help" data-help="Busca productos por nombre, marca o descripción">
+                            ?
+                        </button>
+                    </label>
+                    <div class="input-with-action">
+                        <input type="text" id="search" name="q" placeholder="Ej: Laptop, Camisa, Mueble...">
+                        <button type="button" class="btn-input-action" id="clearSearchBtn" title="Limpiar búsqueda">
+                            ×
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filtros rápidos -->
+                <div class="quick-filters">
+                    <h3>⚡ Filtros Rápidos</h3>
+                    <div class="quick-filter-buttons">
+                        <button type="button" class="btn-quick-filter" data-filter="discount">
+                            🔥 En Oferta
+                        </button>
+                        <button type="button" class="btn-quick-filter" data-filter="popular">
+                            ⭐ Más Populares
+                        </button>
+                        <button type="button" class="btn-quick-filter" data-filter="new">
+                            🆕 Más Nuevos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Categorías -->
+                <div class="filter-group">
+                    <label for="category">📁 Categoría</label>
+                    <div class="select-with-action">
+                        <select name="category" id="category">
+                            <option value="">Todas las categorías</option>
+                            <option value="electronics">💻 Electrónica</option>
+                            <option value="clothing">👕 Ropa y Accesorios</option>
+                            <option value="home">🏠 Hogar y Jardín</option>
+                            <option value="books">📚 Libros</option>
+                            <option value="sports">⚽ Deportes</option>
+                            <option value="beauty">💄 Belleza</option>
+                        </select>
+                        <button type="button" class="btn-input-action" id="randomCategoryBtn" title="Categoría aleatoria">
+                            🎲
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Rango de precios -->
+                <div class="filter-group">
+                    <label for="priceRange">
+                        💰 Rango de Precio
+                        <span class="price-display" id="priceDisplay">$0 - $1000</span>
+                    </label>
+                    <div class="range-slider">
+                        <div class="range-values">
+                            <input type="number" id="minPrice" name="minPrice" min="0" max="1000" value="0" placeholder="Mín">
+                            <span>-</span>
+                            <input type="number" id="maxPrice" name="maxPrice" min="0" max="1000" value="1000" placeholder="Máx">
+                        </div>
+                        <div class="range-track">
+                            <div class="range-fill" id="rangeFill"></div>
+                            <input type="range" id="priceRangeMin" min="0" max="1000" value="0" step="10">
+                            <input type="range" id="priceRangeMax" min="0" max="1000" value="1000" step="10">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calificación -->
+                <div class="filter-group">
+                    <label>⭐ Calificación Mínima</label>
+                    <div class="rating-options">
+                        <button type="button" class="btn-rating" data-rating="5">★★★★★ 5+</button>
+                        <button type="button" class="btn-rating" data-rating="4">★★★★☆ 4+</button>
+                        <button type="button" class="btn-rating" data-rating="3">★★★☆☆ 3+</button>
+                        <button type="button" class="btn-rating active" data-rating="0">Todas</button>
+                    </div>
+                </div>
+
+                <!-- Estado del producto -->
+                <div class="filter-group">
+                    <label>📦 Estado</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="new" id="newCheckbox">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">🆕 Nuevo</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="used" id="usedCheckbox">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">🔄 Usado</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="refurbished" id="refurbishedCheckbox">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">🔧 Reacondicionado</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Envío -->
+                <div class="filter-group">
+                    <label for="shipping">🚚 Envío</label>
+                    <div class="select-with-action">
+                        <select name="shipping" id="shipping">
+                            <option value="">Todos los tipos</option>
+                            <option value="free">🎁 Envío Gratis</option>
+                            <option value="fast">⚡ Envío Rápido</option>
+                            <option value="pickup">🏪 Recoger en Tienda</option>
+                        </select>
+                        <button type="button" class="btn-input-action" id="toggleShippingBtn" title="Alternar envío gratis">
+                            🎁
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="filter-actions">
+                    <button type="submit" class="btn-primary">
+                        🔍 Aplicar Filtros
+                    </button>
+                    <button type="button" class="btn-secondary" id="clearAllBtn">
+                        🔄 Limpiar Todo
+                    </button>
+                    <button type="button" class="btn-outline" id="saveFiltersBtn">
+                        💾 Guardar Filtros
+                    </button>
+                </div>
+
+                <!-- Contador de filtros activos -->
+                <div class="active-filters">
+                    <span id="activeFiltersCount">0</span> filtros activos
+                    <button type="button" class="btn-link" id="clearActiveBtn">
+                        Limpiar
+                    </button>
+                </div>
+            </form>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="content">
+            <!-- Cabecera de resultados -->
+            <header class="results-header">
+                <div class="header-left">
+                    <h1 id="resultsTitle">🔍 Resultados de Búsqueda</h1>
+                    <div class="results-info">
+                        <span id="resultsCount" class="loading">Cargando productos...</span>
+                        <span class="results-time" id="resultsTime"></span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="view-options">
+                        <button class="btn-view active" id="gridViewBtn" title="Vista de cuadrícula">
+                            🔲
+                        </button>
+                        <button class="btn-view" id="listViewBtn" title="Vista de lista">
+                            📋
+                        </button>
+                    </div>
+                    <div class="sort-options">
+                        <label for="sort">Ordenar por:</label>
+                        <div class="select-with-action">
+                            <select name="sort" id="sort">
+                                <option value="relevance">🎯 Relevancia</option>
+                                <option value="price_asc">💰 Precio: Menor a Mayor</option>
+                                <option value="price_desc">💰 Precio: Mayor a Menor</option>
+                                <option value="rating">⭐ Mejor Calificados</option>
+                                <option value="newest">🆕 Más Recientes</option>
+                            </select>
+                            <button type="button" class="btn-input-action" id="toggleSortBtn" title="Cambiar orden">
+                                🔄
+                            </button>
+                        </div>
+                    </div>
+                    <button class="btn-action" id="exportResultsBtn" title="Exportar resultados">
+                        📥 Exportar
+                    </button>
+                </div>
+            </header>
+
+            <!-- Resultados -->
+            <div id="resultsContainer" class="results-grid">
+                <!-- Los productos se cargarán aquí -->
+                <div class="loading-results">
+                    <div class="loader"></div>
+                    <p>Buscando productos...</p>
+                </div>
+            </div>
+
+            <!-- Paginación -->
+            <footer class="pagination">
+                <div class="pagination-info">
+                    <span id="pageInfo">Página 1 de 1</span>
+                    <span class="items-per-page">
+                        <label for="perPage">Productos por página:</label>
+                        <select id="perPage" name="perPage">
+                            <option value="12">12</option>
+                            <option value="24">24</option>
+                            <option value="48">48</option>
+                        </select>
+                    </span>
+                </div>
+                
+                <div class="pagination-controls">
+                    <button id="firstPageBtn" class="btn-page" title="Primera página">
+                        ⏮️
+                    </button>
+                    <button id="prevBtn" class="btn-page" title="Página anterior">
+                        ◀️ Anterior
+                    </button>
+                    
+                    <div class="page-numbers" id="pageNumbers">
+                        <!-- Los números de página se generarán aquí -->
+                    </div>
+                    
+                    <button id="nextBtn" class="btn-page" title="Siguiente página">
+                        Siguiente ▶️
+                    </button>
+                    <button id="lastPageBtn" class="btn-page" title="Última página">
+                        ⏭️
+                    </button>
+                </div>
+                
+                <button class="btn-outline" id="scrollTopBtn" title="Volver arriba">
+                    ⬆️
+                </button>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Modal de filtros guardados -->
+    <div class="modal" id="savedFiltersModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>💾 Filtros Guardados</h2>
+                <button class="close-modal" id="closeFiltersBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="savedFiltersList">
+                    <p class="empty-filters">No hay filtros guardados</p>
+                </div>
+                <div class="save-filter-form">
+                    <input type="text" id="filterName" placeholder="Nombre para estos filtros" class="filter-input">
+                    <button class="btn-primary" id="saveCurrentBtn">💾 Guardar Actual</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast de notificación -->
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
