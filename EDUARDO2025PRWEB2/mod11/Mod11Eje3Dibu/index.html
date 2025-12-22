@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Imágenes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-theme="dark">
+    <!-- Header -->
+    <div class="app-header">
+        <div class="app-title">Editor de Imágenes</div>
+        <div class="theme-controls">
+            <button class="theme-toggle btn" id="themeToggle" data-tooltip="Cambiar tema">
+                <span class="icon">🌙</span>
+                <span class="text">Modo Claro</span>
+            </button>
+            <button class="btn btn-icon btn-primary" id="saveBtn" data-tooltip="Guardar">
+                <span class="icon">💾</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Sidebar de herramientas -->
+    <div class="sidebar">
+        <!-- Herramientas -->
+        <div class="sidebar-section">
+            <span class="section-title">Herramientas</span>
+            <div class="tool-grid">
+                <button class="btn tool-btn active" data-tool="brush" data-tooltip="Pincel">
+                    <span class="icon">🖌️</span>
+                    <span>Pincel</span>
+                </button>
+                <button class="btn tool-btn" data-tool="eraser" data-tooltip="Borrador">
+                    <span class="icon">🧹</span>
+                    <span>Borrar</span>
+                </button>
+                <button class="btn tool-btn" data-tool="fill" data-tooltip="Relleno">
+                    <span class="icon">🎨</span>
+                    <span>Relleno</span>
+                </button>
+                <button class="btn tool-btn" data-tool="shape" data-tooltip="Formas">
+                    <span class="icon">⬢</span>
+                    <span>Formas</span>
+                </button>
+                <button class="btn tool-btn" data-tool="text" data-tooltip="Texto">
+                    <span class="icon">A</span>
+                    <span>Texto</span>
+                </button>
+                <button class="btn tool-btn" data-tool="select" data-tooltip="Seleccionar">
+                    <span class="icon">🔲</span>
+                    <span>Seleccionar</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Propiedades del pincel -->
+        <div class="sidebar-section">
+            <span class="section-title">Propiedades</span>
+            <div class="control-group">
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Tamaño</span>
+                        <span class="slider-value" id="brushSize">10px</span>
+                    </div>
+                    <input type="range" id="brushSizeSlider" min="1" max="100" value="10">
+                </div>
+                
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Opacidad</span>
+                        <span class="slider-value" id="opacityValue">100%</span>
+                    </div>
+                    <input type="range" id="opacitySlider" min="1" max="100" value="100">
+                </div>
+                
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Color</span>
+                    </div>
+                    <div class="color-picker">
+                        <input type="color" id="colorPicker" value="#1a73e8">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capas -->
+        <div class="sidebar-section">
+            <span class="section-title">Capas</span>
+            <div class="layers-panel">
+                <div class="layer-item active">
+                    <div class="layer-preview" style="background: #4CAF50;"></div>
+                    <div class="layer-name">Fondo</div>
+                    <div class="layer-actions">
+                        <button class="btn btn-icon btn-small" data-tooltip="Ocultar">👁️</button>
+                        <button class="btn btn-icon btn-small" data-tooltip="Eliminar">🗑️</button>
+                    </div>
+                </div>
+                <div class="layer-item">
+                    <div class="layer-preview" style="background: #2196F3;"></div>
+                    <div class="layer-name">Capa 1</div>
+                    <div class="layer-actions">
+                        <button class="btn btn-icon btn-small" data-tooltip="Ocultar">👁️</button>
+                        <button class="btn btn-icon btn-small" data-tooltip="Eliminar">🗑️</button>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-small" id="addLayerBtn" style="margin-top: 10px;">
+                <span class="icon">+</span>
+                <span>Añadir Capa</span>
+            </button>
+        </div>
+
+        <!-- Acciones -->
+        <div class="sidebar-section">
+            <span class="section-title">Acciones</span>
+            <button class="btn btn-primary" id="newProjectBtn">
+                <span class="icon">🆕</span>
+                <span>Nuevo Proyecto</span>
+            </button>
+            <button class="btn btn-success" id="exportBtn">
+                <span class="icon">📤</span>
+                <span>Exportar</span>
+            </button>
+            <button class="btn btn-danger" id="clearBtn">
+                <span class="icon">🗑️</span>
+                <span>Limpiar</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Área de trabajo -->
+    <div class="editor-area">
+        <div class="canvas-container">
+            <canvas id="mainCanvas" width="800" height="600"></canvas>
+            <div class="canvas-overlay"></div>
+        </div>
+        
+        <!-- Controles del canvas -->
+        <div class="canvas-controls">
+            <button class="btn btn-icon btn-secondary" id="zoomOutBtn" data-tooltip="Alejar">
+                <span class="icon">➖</span>
+            </button>
+            <div class="zoom-display" id="zoomLevel">100%</div>
+            <button class="btn btn-icon btn-secondary" id="zoomInBtn" data-tooltip="Acercar">
+                <span class="icon">➕</span>
+            </button>
+            <button class="btn btn-secondary" id="resetViewBtn" data-tooltip="Vista original">
+                <span class="icon">⟲</span>
+                <span>Restablecer</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Barra de estado -->
+    <div class="status-bar">
+        <div class="status-info">
+            <span id="cursorPos">X: 0, Y: 0</span>
+            <span id="canvasSize">800 × 600</span>
+            <span id="toolStatus">Pincel activo</span>
+        </div>
+    </div>
+
+    <!-- Modal de nuevo proyecto -->
+    <div class="modal-overlay" id="newProjectModal">
+        <div class="modal-content">
+            <h3>Nuevo Proyecto</h3>
+            <!-- Contenido del modal -->
+            <button class="btn btn-primary" id="closeModalBtn">Cerrar</button>
+        </div>
+    </div>
+</body>
+</html>

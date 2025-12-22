@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Imágenes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="light">
+    <div class="container">
+        <!-- Header con controles de tema -->
+        <div class="header-wrapper">
+            <div class="theme-controls">
+                <button class="theme-toggle btn" id="themeToggle">
+                    <span class="icon">🌙</span>
+                    <span class="text">Modo Oscuro</span>
+                </button>
+            </div>
+            
+            <h1>Galería de Imágenes</h1>
+            <p class="subtitle">Sube y organiza tus imágenes favoritas. Soporta JPG, PNG y GIF.</p>
+        </div>
+
+        <!-- Área de subida -->
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📁</div>
+            <div class="upload-content">
+                <h2>Arrastra y suelta tus imágenes aquí</h2>
+                <p>o haz clic para seleccionar archivos</p>
+                <input type="file" id="fileInput" accept="image/*" multiple style="display: none;">
+                <button class="btn btn-primary btn-large" id="uploadBtn">
+                    <span class="icon">📤</span>
+                    <span>Seleccionar Archivos</span>
+                </button>
+                <span class="upload-hint">Máximo 10MB por imagen • Formatos: JPG, PNG, GIF</span>
+            </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="gallery-filters">
+            <div class="filter-label">Filtrar por:</div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Todas</button>
+                <button class="filter-btn" data-filter="recent">Recientes</button>
+                <button class="filter-btn" data-filter="large">Grandes</button>
+                <button class="filter-btn" data-filter="small">Pequeñas</button>
+            </div>
+            <input type="text" id="searchInput" class="search-input" placeholder="Buscar imágenes...">
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="stats">
+            <div class="stats-info">
+                <div class="stat-item">
+                    <span class="stat-label">Imágenes</span>
+                    <span class="stat-value" id="totalImages">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Tamaño total</span>
+                    <span class="stat-value" id="totalSize">0 MB</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Última subida</span>
+                    <span class="stat-value" id="lastUpload">-</span>
+                </div>
+            </div>
+            <div class="stats-actions">
+                <button class="btn btn-success btn-small" id="downloadAllBtn">
+                    <span class="icon">⬇️</span>
+                    <span>Descargar Todo</span>
+                </button>
+                <button class="btn btn-secondary btn-small" id="sortBtn">
+                    <span class="icon">🔽</span>
+                    <span>Ordenar</span>
+                </button>
+                <button class="btn btn-danger btn-small" id="clearAllBtn">
+                    <span class="icon">🗑️</span>
+                    <span>Limpiar Todo</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Galería de imágenes -->
+        <div class="gallery" id="galleryContainer">
+            <!-- Las imágenes se añadirán aquí dinámicamente -->
+            <div class="empty-state" id="emptyState">
+                <div class="icon">📷</div>
+                <h3>No hay imágenes aún</h3>
+                <p>Sube tu primera imagen usando el botón de arriba</p>
+            </div>
+        </div>
+
+        <!-- Modal para vista previa -->
+        <div class="modal" id="imageModal">
+            <div class="modal-overlay" id="modalOverlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title" id="modalTitle">Vista previa</div>
+                    <button class="modal-close" id="modalClose">×</button>
+                </div>
+                <img id="modalImage" src="" alt="Vista previa">
+                <div class="modal-info">
+                    <div class="info-item">
+                        <span class="info-label">Nombre</span>
+                        <span class="info-value" id="modalName">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Tamaño</span>
+                        <span class="info-value" id="modalSize">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Dimensiones</span>
+                        <span class="info-value" id="modalDimensions">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Fecha de subida</span>
+                        <span class="info-value" id="modalDate">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notificación de subida -->
+        <div class="upload-notification" id="uploadNotification">
+            <span class="icon">✅</span>
+            <span id="notificationText">¡Imagen subida exitosamente!</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
