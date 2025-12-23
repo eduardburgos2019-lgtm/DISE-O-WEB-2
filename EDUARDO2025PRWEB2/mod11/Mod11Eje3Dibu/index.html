@@ -3,172 +3,481 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editor de Imágenes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Editor Photoshop - Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body data-theme="dark">
     <!-- Header -->
-    <div class="app-header">
-        <div class="app-title">Editor de Imágenes</div>
-        <div class="theme-controls">
-            <button class="theme-toggle btn" id="themeToggle" data-tooltip="Cambiar tema">
-                <span class="icon">🌙</span>
-                <span class="text">Modo Claro</span>
+    <header class="app-header">
+        <div class="header-left">
+            <div class="app-logo">
+                <i class="fas fa-palette"></i>
+                <h1>PhotoPro Editor</h1>
+            </div>
+            <div class="file-info">
+                <span id="fileName">Nuevo Proyecto.psd</span>
+                <span class="file-size" id="fileSize">-</span>
+            </div>
+        </div>
+        
+        <div class="header-center">
+            <div class="zoom-controls">
+                <button class="btn btn-icon btn-tool" id="zoomOut" title="Alejar">
+                    <i class="fas fa-search-minus"></i>
+                </button>
+                <div class="zoom-display" id="zoomLevel">100%</div>
+                <button class="btn btn-icon btn-tool" id="zoomIn" title="Acercar">
+                    <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="btn btn-secondary btn-small" id="fitToScreen" title="Ajustar a pantalla">
+                    <i class="fas fa-expand-alt"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="header-right">
+            <button class="btn btn-icon btn-tool" id="undoBtn" title="Deshacer (Ctrl+Z)">
+                <i class="fas fa-undo"></i>
             </button>
-            <button class="btn btn-icon btn-primary" id="saveBtn" data-tooltip="Guardar">
-                <span class="icon">💾</span>
+            <button class="btn btn-icon btn-tool" id="redoBtn" title="Rehacer (Ctrl+Y)">
+                <i class="fas fa-redo"></i>
+            </button>
+            <div class="theme-toggle-container">
+                <button class="btn btn-icon btn-primary" id="themeToggle" title="Cambiar tema">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+            </div>
+            <button class="btn btn-success" id="saveBtn">
+                <i class="fas fa-save"></i>
+                <span>Guardar</span>
+            </button>
+            <button class="btn btn-primary" id="exportBtn">
+                <i class="fas fa-download"></i>
+                <span>Exportar</span>
             </button>
         </div>
-    </div>
+    </header>
 
-    <!-- Sidebar de herramientas -->
-    <div class="sidebar">
-        <!-- Herramientas -->
+    <!-- Sidebar Izquierda - Herramientas -->
+    <aside class="sidebar left-sidebar">
+        <!-- Sección de Herramientas -->
         <div class="sidebar-section">
-            <span class="section-title">Herramientas</span>
+            <h3 class="section-title">
+                <i class="fas fa-tools"></i>
+                <span>Herramientas</span>
+            </h3>
             <div class="tool-grid">
-                <button class="btn tool-btn active" data-tool="brush" data-tooltip="Pincel">
-                    <span class="icon">🖌️</span>
-                    <span>Pincel</span>
+                <button class="btn btn-tool active" data-tool="brush" data-tooltip="Pincel (B)">
+                    <i class="fas fa-paint-brush"></i>
+                    <span class="tool-label">Pincel</span>
                 </button>
-                <button class="btn tool-btn" data-tool="eraser" data-tooltip="Borrador">
-                    <span class="icon">🧹</span>
-                    <span>Borrar</span>
+                <button class="btn btn-tool" data-tool="eraser" data-tooltip="Borrador (E)">
+                    <i class="fas fa-eraser"></i>
+                    <span class="tool-label">Borrador</span>
                 </button>
-                <button class="btn tool-btn" data-tool="fill" data-tooltip="Relleno">
-                    <span class="icon">🎨</span>
-                    <span>Relleno</span>
+                <button class="btn btn-tool" data-tool="fill" data-tooltip="Bote de pintura (G)">
+                    <i class="fas fa-fill-drip"></i>
+                    <span class="tool-label">Relleno</span>
                 </button>
-                <button class="btn tool-btn" data-tool="shape" data-tooltip="Formas">
-                    <span class="icon">⬢</span>
-                    <span>Formas</span>
+                <button class="btn btn-tool" data-tool="shape" data-tooltip="Formas (U)">
+                    <i class="fas fa-shapes"></i>
+                    <span class="tool-label">Formas</span>
                 </button>
-                <button class="btn tool-btn" data-tool="text" data-tooltip="Texto">
-                    <span class="icon">A</span>
-                    <span>Texto</span>
+                <button class="btn btn-tool" data-tool="text" data-tooltip="Texto (T)">
+                    <i class="fas fa-font"></i>
+                    <span class="tool-label">Texto</span>
                 </button>
-                <button class="btn tool-btn" data-tool="select" data-tooltip="Seleccionar">
-                    <span class="icon">🔲</span>
-                    <span>Seleccionar</span>
+                <button class="btn btn-tool" data-tool="select" data-tooltip="Selección (M)">
+                    <i class="fas fa-vector-square"></i>
+                    <span class="tool-label">Seleccionar</span>
+                </button>
+                <button class="btn btn-tool" data-tool="crop" data-tooltip="Recortar (C)">
+                    <i class="fas fa-crop"></i>
+                    <span class="tool-label">Recortar</span>
+                </button>
+                <button class="btn btn-tool" data-tool="gradient" data-tooltip="Degradado (G)">
+                    <i class="fas fa-sliders-h"></i>
+                    <span class="tool-label">Degradado</span>
+                </button>
+                <button class="btn btn-tool" data-tool="pen" data-tooltip="Pluma (P)">
+                    <i class="fas fa-pen"></i>
+                    <span class="tool-label">Pluma</span>
+                </button>
+                <button class="btn btn-tool" data-tool="eyedropper" data-tooltip="Cuentagotas (I)">
+                    <i class="fas fa-eye-dropper"></i>
+                    <span class="tool-label">Cuentagotas</span>
+                </button>
+                <button class="btn btn-tool" data-tool="hand" data-tooltip="Mano (H)">
+                    <i class="fas fa-hand-paper"></i>
+                    <span class="tool-label">Mano</span>
+                </button>
+                <button class="btn btn-tool" data-tool="zoom" data-tooltip="Zoom (Z)">
+                    <i class="fas fa-search"></i>
+                    <span class="tool-label">Zoom</span>
                 </button>
             </div>
         </div>
 
-        <!-- Propiedades del pincel -->
+        <!-- Propiedades de la Herramienta -->
         <div class="sidebar-section">
-            <span class="section-title">Propiedades</span>
+            <h3 class="section-title">
+                <i class="fas fa-sliders-h"></i>
+                <span>Propiedades</span>
+            </h3>
             <div class="control-group">
                 <div class="slider-group">
-                    <div class="slider-label">
-                        <span>Tamaño</span>
-                        <span class="slider-value" id="brushSize">10px</span>
+                    <div class="slider-header">
+                        <label for="brushSize">Tamaño</label>
+                        <span class="slider-value" id="brushSizeValue">10px</span>
                     </div>
-                    <input type="range" id="brushSizeSlider" min="1" max="100" value="10">
+                    <div class="slider-container">
+                        <input type="range" id="brushSize" min="1" max="100" value="10" class="range-slider">
+                        <div class="slider-track"></div>
+                    </div>
                 </div>
                 
                 <div class="slider-group">
-                    <div class="slider-label">
-                        <span>Opacidad</span>
+                    <div class="slider-header">
+                        <label for="opacity">Opacidad</label>
                         <span class="slider-value" id="opacityValue">100%</span>
                     </div>
-                    <input type="range" id="opacitySlider" min="1" max="100" value="100">
+                    <div class="slider-container">
+                        <input type="range" id="opacity" min="1" max="100" value="100" class="range-slider">
+                        <div class="slider-track"></div>
+                    </div>
                 </div>
                 
                 <div class="slider-group">
-                    <div class="slider-label">
-                        <span>Color</span>
+                    <div class="slider-header">
+                        <label for="hardness">Dureza</label>
+                        <span class="slider-value" id="hardnessValue">100%</span>
                     </div>
-                    <div class="color-picker">
-                        <input type="color" id="colorPicker" value="#1a73e8">
+                    <div class="slider-container">
+                        <input type="range" id="hardness" min="1" max="100" value="100" class="range-slider">
+                        <div class="slider-track"></div>
+                    </div>
+                </div>
+                
+                <div class="slider-group">
+                    <div class="slider-header">
+                        <label for="flow">Flujo</label>
+                        <span class="slider-value" id="flowValue">100%</span>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="flow" min="1" max="100" value="100" class="range-slider">
+                        <div class="slider-track"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="color-section">
+                <div class="color-picker-group">
+                    <div class="color-header">
+                        <label>Color frontal</label>
+                        <button class="btn btn-icon btn-small" id="swapColors" title="Intercambiar colores">
+                            <i class="fas fa-exchange-alt"></i>
+                        </button>
+                    </div>
+                    <div class="color-picker-container">
+                        <div class="color-preview" id="foregroundColor" style="background: #1a73e8;"></div>
+                        <input type="color" id="foregroundPicker" value="#1a73e8" class="color-input">
+                    </div>
+                </div>
+                
+                <div class="color-picker-group">
+                    <div class="color-header">
+                        <label>Color de fondo</label>
+                        <button class="btn btn-icon btn-small" id="resetColors" title="Restablecer colores">
+                            <i class="fas fa-undo"></i>
+                        </button>
+                    </div>
+                    <div class="color-picker-container">
+                        <div class="color-preview" id="backgroundColor" style="background: #ffffff;"></div>
+                        <input type="color" id="backgroundPicker" value="#ffffff" class="color-input">
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Formas -->
+        <div class="sidebar-section">
+            <h3 class="section-title">
+                <i class="fas fa-shapes"></i>
+                <span>Formas</span>
+            </h3>
+            <div class="shapes-grid">
+                <button class="btn btn-shape" data-shape="rectangle" title="Rectángulo">
+                    <i class="fas fa-square"></i>
+                </button>
+                <button class="btn btn-shape" data-shape="circle" title="Círculo">
+                    <i class="fas fa-circle"></i>
+                </button>
+                <button class="btn btn-shape" data-shape="triangle" title="Triángulo">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="btn btn-shape" data-shape="line" title="Línea">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="btn btn-shape" data-shape="star" title="Estrella">
+                    <i class="fas fa-star"></i>
+                </button>
+                <button class="btn btn-shape" data-shape="polygon" title="Polígono">
+                    <i class="fas fa-draw-polygon"></i>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Área Principal -->
+    <main class="editor-area">
+        <div class="canvas-container" id="canvasContainer">
+            <canvas id="mainCanvas" width="1200" height="800"></canvas>
+            <div class="canvas-overlay" id="canvasOverlay"></div>
+            <div class="canvas-grid" id="canvasGrid"></div>
+            <div class="canvas-rulers">
+                <div class="ruler horizontal"></div>
+                <div class="ruler vertical"></div>
+            </div>
+        </div>
+        
+        <!-- Guías de alineación -->
+        <div class="canvas-guides">
+            <div class="guide horizontal" style="top: 50%"></div>
+            <div class="guide vertical" style="left: 50%"></div>
+        </div>
+    </main>
+
+    <!-- Sidebar Derecha - Capas y Efectos -->
+    <aside class="sidebar right-sidebar">
         <!-- Capas -->
         <div class="sidebar-section">
-            <span class="section-title">Capas</span>
-            <div class="layers-panel">
+            <div class="section-header">
+                <h3 class="section-title">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Capas</span>
+                </h3>
+                <div class="section-actions">
+                    <button class="btn btn-icon btn-small" id="newLayerBtn" title="Nueva capa">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="btn btn-icon btn-small" id="deleteLayerBtn" title="Eliminar capa">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="layers-container" id="layersContainer">
                 <div class="layer-item active">
-                    <div class="layer-preview" style="background: #4CAF50;"></div>
-                    <div class="layer-name">Fondo</div>
+                    <div class="layer-visibility">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="layer-thumbnail" style="background: #4CAF50;"></div>
+                    <div class="layer-info">
+                        <div class="layer-name">Fondo</div>
+                        <div class="layer-type">Color plano</div>
+                    </div>
                     <div class="layer-actions">
-                        <button class="btn btn-icon btn-small" data-tooltip="Ocultar">👁️</button>
-                        <button class="btn btn-icon btn-small" data-tooltip="Eliminar">🗑️</button>
+                        <button class="btn btn-icon btn-small layer-action" title="Bloquear capa">
+                            <i class="fas fa-lock"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="layer-item">
-                    <div class="layer-preview" style="background: #2196F3;"></div>
-                    <div class="layer-name">Capa 1</div>
+                    <div class="layer-visibility">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="layer-thumbnail" style="background: #2196F3;"></div>
+                    <div class="layer-info">
+                        <div class="layer-name">Capa 1</div>
+                        <div class="layer-type">Pincel</div>
+                    </div>
                     <div class="layer-actions">
-                        <button class="btn btn-icon btn-small" data-tooltip="Ocultar">👁️</button>
-                        <button class="btn btn-icon btn-small" data-tooltip="Eliminar">🗑️</button>
+                        <button class="btn btn-icon btn-small layer-action" title="Bloquear capa">
+                            <i class="fas fa-lock-open"></i>
+                        </button>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary btn-small" id="addLayerBtn" style="margin-top: 10px;">
-                <span class="icon">+</span>
-                <span>Añadir Capa</span>
-            </button>
         </div>
 
-        <!-- Acciones -->
+        <!-- Efectos y Filtros -->
         <div class="sidebar-section">
-            <span class="section-title">Acciones</span>
-            <button class="btn btn-primary" id="newProjectBtn">
-                <span class="icon">🆕</span>
-                <span>Nuevo Proyecto</span>
-            </button>
-            <button class="btn btn-success" id="exportBtn">
-                <span class="icon">📤</span>
-                <span>Exportar</span>
-            </button>
-            <button class="btn btn-danger" id="clearBtn">
-                <span class="icon">🗑️</span>
-                <span>Limpiar</span>
-            </button>
+            <h3 class="section-title">
+                <i class="fas fa-magic"></i>
+                <span>Efectos</span>
+            </h3>
+            <div class="effects-grid">
+                <button class="btn btn-effect" data-effect="blur" title="Desenfoque">
+                    <i class="fas fa-tint"></i>
+                    <span>Desenfoque</span>
+                </button>
+                <button class="btn btn-effect" data-effect="sharpen" title="Enfocar">
+                    <i class="fas fa-bullseye"></i>
+                    <span>Enfocar</span>
+                </button>
+                <button class="btn btn-effect" data-effect="brightness" title="Brillo">
+                    <i class="fas fa-sun"></i>
+                    <span>Brillo</span>
+                </button>
+                <button class="btn btn-effect" data-effect="contrast" title="Contraste">
+                    <i class="fas fa-adjust"></i>
+                    <span>Contraste</span>
+                </button>
+                <button class="btn btn-effect" data-effect="saturation" title="Saturación">
+                    <i class="fas fa-palette"></i>
+                    <span>Saturación</span>
+                </button>
+                <button class="btn btn-effect" data-effect="hue" title="Tono">
+                    <i class="fas fa-sliders-h"></i>
+                    <span>Tono</span>
+                </button>
+            </div>
         </div>
-    </div>
 
-    <!-- Área de trabajo -->
-    <div class="editor-area">
-        <div class="canvas-container">
-            <canvas id="mainCanvas" width="800" height="600"></canvas>
-            <div class="canvas-overlay"></div>
+        <!-- Historia -->
+        <div class="sidebar-section">
+            <div class="section-header">
+                <h3 class="section-title">
+                    <i class="fas fa-history"></i>
+                    <span>Historial</span>
+                </h3>
+                <button class="btn btn-text btn-small" id="clearHistory" title="Limpiar historial">
+                    Limpiar
+                </button>
+            </div>
+            <div class="history-container" id="historyContainer">
+                <div class="history-item active">
+                    <div class="history-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="history-info">
+                        <div class="history-action">Pincel aplicado</div>
+                        <div class="history-time">Hace 2 segundos</div>
+                    </div>
+                </div>
+                <div class="history-item">
+                    <div class="history-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="history-info">
+                        <div class="history-action">Capa creada</div>
+                        <div class="history-time">Hace 5 minutos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información del Documento -->
+        <div class="sidebar-section">
+            <h3 class="section-title">
+                <i class="fas fa-info-circle"></i>
+                <span>Información</span>
+            </h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Dimensiones:</div>
+                    <div class="info-value" id="dimensionsValue">1200 × 800 px</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Resolución:</div>
+                    <div class="info-value" id="resolutionValue">72 ppi</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Color:</div>
+                    <div class="info-value" id="colorModeValue">RGB</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Profundidad:</div>
+                    <div class="info-value" id="depthValue">8 bits</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Barra de Estado -->
+    <footer class="status-bar">
+        <div class="status-left">
+            <div class="cursor-position" id="cursorPosition">
+                <i class="fas fa-crosshairs"></i>
+                <span>X: 0, Y: 0</span>
+            </div>
+            <div class="canvas-size" id="canvasSizeDisplay">
+                <i class="fas fa-expand-alt"></i>
+                <span>1200 × 800 px</span>
+            </div>
         </div>
         
-        <!-- Controles del canvas -->
-        <div class="canvas-controls">
-            <button class="btn btn-icon btn-secondary" id="zoomOutBtn" data-tooltip="Alejar">
-                <span class="icon">➖</span>
-            </button>
-            <div class="zoom-display" id="zoomLevel">100%</div>
-            <button class="btn btn-icon btn-secondary" id="zoomInBtn" data-tooltip="Acercar">
-                <span class="icon">➕</span>
-            </button>
-            <button class="btn btn-secondary" id="resetViewBtn" data-tooltip="Vista original">
-                <span class="icon">⟲</span>
-                <span>Restablecer</span>
-            </button>
+        <div class="status-center">
+            <div class="tool-status" id="toolStatus">
+                <i class="fas fa-paint-brush"></i>
+                <span>Pincel activo</span>
+            </div>
+            <div class="memory-usage" id="memoryUsage">
+                <i class="fas fa-memory"></i>
+                <span>Memoria: 12.4 MB</span>
+            </div>
         </div>
-    </div>
-
-    <!-- Barra de estado -->
-    <div class="status-bar">
-        <div class="status-info">
-            <span id="cursorPos">X: 0, Y: 0</span>
-            <span id="canvasSize">800 × 600</span>
-            <span id="toolStatus">Pincel activo</span>
+        
+        <div class="status-right">
+            <button class="btn btn-icon btn-small" id="gridToggle" title="Mostrar/ocultar cuadrícula">
+                <i class="fas fa-th"></i>
+            </button>
+            <button class="btn btn-icon btn-small" id="rulersToggle" title="Mostrar/ocultar reglas">
+                <i class="fas fa-ruler-combined"></i>
+            </button>
+            <button class="btn btn-icon btn-small" id="guidesToggle" title="Mostrar/ocultar guías">
+                <i class="fas fa-drafting-compass"></i>
+            </button>
+            <div class="fps-counter" id="fpsCounter">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>60 FPS</span>
+            </div>
         </div>
-    </div>
+    </footer>
 
-    <!-- Modal de nuevo proyecto -->
-    <div class="modal-overlay" id="newProjectModal">
+    <!-- Modal de Nuevo Proyecto -->
+    <div class="modal" id="newProjectModal">
+        <div class="modal-overlay"></div>
         <div class="modal-content">
-            <h3>Nuevo Proyecto</h3>
-            <!-- Contenido del modal -->
-            <button class="btn btn-primary" id="closeModalBtn">Cerrar</button>
+            <div class="modal-header">
+                <h3>Nuevo Proyecto</h3>
+                <button class="btn btn-icon btn-close" id="closeModalBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Contenido del modal -->
+            </div>
         </div>
     </div>
+
+    <!-- Notificaciones -->
+    <div class="notification-container" id="notificationContainer">
+        <div class="notification success">
+            <i class="fas fa-check-circle"></i>
+            <span>¡Proyecto guardado exitosamente!</span>
+        </div>
+    </div>
+
+    <!-- Menú contextual -->
+    <div class="context-menu" id="contextMenu">
+        <button class="context-item">
+            <i class="fas fa-copy"></i>
+            <span>Copiar</span>
+        </button>
+        <button class="context-item">
+            <i class="fas fa-paste"></i>
+            <span>Pegar</span>
+        </button>
+        <div class="context-divider"></div>
+        <button class="context-item">
+            <i class="fas fa-crop"></i>
+            <span>Recortar</span>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
